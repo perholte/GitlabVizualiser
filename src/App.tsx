@@ -1,12 +1,12 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import React from "react"
-import { Commit, getCommits } from "./api/index"
+import { Branch, getBranches } from "./api/index"
 import "./App.css"
 
 function App() {
   async function test() {
     try {
-      let c: Commit[] = await getCommits(5)
+      let c: Branch[] = await getBranches()
       if (c) {
         console.log(c)
       }

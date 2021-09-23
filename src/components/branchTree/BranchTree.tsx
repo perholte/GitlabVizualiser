@@ -1,5 +1,7 @@
 import React from "react";
 import { Gitgraph, templateExtend, TemplateName } from "@gitgraph/react";
+import { getBranches } from "../../api";
+
 
 const BranchTree = () => {
 
@@ -18,21 +20,15 @@ const BranchTree = () => {
   return <>
   <Gitgraph options={options}>
     {(gitgraph) => {
-      const master = gitgraph.branch("master");
-      master.commit('init');
-
-      const develop = master.branch("style");
-      develop.commit("commit");
-
-      const branch1 = develop.branch("branch1");
-        branch1
-          .commit("commit-branch1")
-          .commit("commit2-branch1");
-
-        develop.merge(branch1);
-        develop.commit("merged");
-
-    }}
+      getBranches().then((res) => {
+        for (let i = 0; i < res.length; i++) {
+          console.log(res[i].name);
+          gitgraph.branch(res[i].name).commit(res[i].commit.title)
+          
+        }
+      })
+}
+  }
   </Gitgraph>
   </>;
 };

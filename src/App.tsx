@@ -1,12 +1,12 @@
-import React from "react";
 import "./App.css";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import Contributions from "./components/contributions/Contributions";
 
 function App() {
   return (
     <ChakraProvider>
-      <p>Hello World!</p>
+      <Contributions />
     </ChakraProvider>
   );
 }

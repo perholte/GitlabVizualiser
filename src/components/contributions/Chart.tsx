@@ -4,27 +4,25 @@ import { Cell, Legend, Pie, PieChart } from "recharts";
 type ChartData = { name: string; commits: number }[];
 
 const testData: ChartData = [
-  { name: "Dev1", commits: 400 },
-  { name: "Dev2", commits: 300 },
-  { name: "Dev3", commits: 300 },
-  { name: "Dev4", commits: 200 },
+  { name: "Dev1", commits: 45 },
+  { name: "Dev2", commits: 30 },
+  { name: "Dev3", commits: 15 },
+  { name: "Dev4", commits: 10 },
 ];
 
 const COLORS: string[] = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Chart: FC = () => {
-  const data = testData;
+  const data = testData; // should take formatted data from the api
   // https://recharts.org/en-US/examples/PieChartWithCustomizedLabel
   return (
     <PieChart width={800} height={400}>
-      <Legend />
       <Pie
         data={data}
         cx={400}
         cy={200}
-        innerRadius={70}
-        outerRadius={100}
-        fill="#8884d8"
+        innerRadius={100}
+        outerRadius={130}
         paddingAngle={5}
         dataKey="commits"
       >
@@ -32,6 +30,7 @@ const Chart: FC = () => {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
+      <Legend />
     </PieChart>
   );
 };

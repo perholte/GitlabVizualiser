@@ -1,6 +1,6 @@
 import { Container, Heading, Text, VStack } from "@chakra-ui/layout";
 import { FC } from "react";
-import DoughnutChart from "./DoughnutChart";
+import Chart from "./Chart";
 
 const Contributions: FC = () => {
   return (
@@ -8,7 +8,7 @@ const Contributions: FC = () => {
       <VStack spacing={2} paddingY={5}>
         <Heading>Contributions</Heading>
         <Text>In terms of commits</Text>
-        <DoughnutChart />
+        <Chart />
       </VStack>
     </Container>
   );

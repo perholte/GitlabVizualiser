@@ -19,7 +19,9 @@ function App() {
     <ChakraProvider>
       <p>Hello World!</p>
       <button onClick={test}>click</button>
-      <BranchTree></BranchTree>
+      <div id="graph-container">
+        <BranchTree ></BranchTree>
+      </div>
     </ChakraProvider>
   )
 }

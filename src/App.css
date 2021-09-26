@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+#graph-container > svg > g {
+  transform: scale(0.25) translate(10%, 10%);
+  max-width: fit-content;
+  max-height: fit-content;
+  justify-content: center;
+}
+
+
+#graph-container {
+  position: relative;
+  overflow: auto;
+  width: 200px;
+  height: 220px;
+  padding: 5px;
+  border-color: black;
+  border-width: 1px;
+  margin-left: 30px;
+}

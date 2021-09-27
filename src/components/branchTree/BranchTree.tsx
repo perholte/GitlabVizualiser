@@ -1,5 +1,5 @@
-import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react'
-import { Branch, getBranches } from '../../api'
+import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
+import { Branch, getBranches } from '../../api';
 
 const BranchTree = () => {
 	const options = {
@@ -12,14 +12,14 @@ const BranchTree = () => {
 				},
 			},
 		}),
-	}
+	};
 	return (
 		<>
 			<Gitgraph options={options}>
 				{(gitgraph) => {
 					getBranches().then((res) => {
-						let branches: Array<Branch> = []
-						let master: any
+						let branches: Array<Branch> = [];
+						let master: any;
 						// La til noen ekstra branches for å se hvordan det var med merged branches.
 						res.push({
 							name: 'test',
@@ -33,15 +33,17 @@ const BranchTree = () => {
 								short_id: 'ergerge',
 								created_at: new Date(),
 							},
-						})
+						});
 						for (let i = 0; i < res.length; i++) {
 							if (
 								res[i].name === 'main' ||
 								res[i].name === 'master'
 							) {
-								master = gitgraph.branch(res[i].name).commit('')
+								master = gitgraph
+									.branch(res[i].name)
+									.commit('');
 							} else {
-								branches.push(res[i])
+								branches.push(res[i]);
 							}
 						}
 
@@ -49,18 +51,18 @@ const BranchTree = () => {
 							if (element.merged) {
 								let branch = master
 									.branch(element.name)
-									.commit(element.commit.title)
-								master.merge(branch)
+									.commit(element.commit.title);
+								master.merge(branch);
 							} else {
 								master
 									.branch(element)
-									.commit(element.commit.title)
+									.commit(element.commit.title);
 							}
-						})
-					})
+						});
+					});
 				}}
 			</Gitgraph>
 		</>
-	)
-}
-export default BranchTree
+	);
+};
+export default BranchTree;

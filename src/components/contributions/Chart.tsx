@@ -1,19 +1,17 @@
 import { FC } from "react";
 import { Cell, Legend, Pie, PieChart } from "recharts";
+import { getContributionsData } from "../../api/utils";
 
-type ChartData = { name: string; commits: number }[];
-
-const testData: ChartData = [
-  { name: "Dev1", commits: 45 },
-  { name: "Dev2", commits: 30 },
-  { name: "Dev3", commits: 15 },
-  { name: "Dev4", commits: 10 },
+const COLORS: string[] = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#B84E66",
 ];
 
-const COLORS: string[] = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
 const Chart: FC = () => {
-  const data = testData; // should take formatted data from the api
+  const data = getContributionsData();
   // https://recharts.org/en-US/examples/PieChartWithCustomizedLabel
   return (
     <PieChart width={800} height={400}>

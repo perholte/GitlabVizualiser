@@ -1,15 +1,15 @@
-import { Accordion } from "@chakra-ui/accordion";
-import React from "react";
-import { useQuery } from "react-query";
-import Issue from "./Issue";
+import { Accordion } from '@chakra-ui/accordion';
+import React from 'react';
+import { useQuery } from 'react-query';
+import Issue from './Issue';
 
 const IssueList = () => {
-	const { data, isLoading, error } = useQuery<Array<any>>("issues", () =>
-		fetch("https://gitlab.stud.idi.ntnu.no/api/v4/projects/11994/issues", {
+	const { data, isLoading, error } = useQuery<Array<any>>('issues', () =>
+		fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/11994/issues', {
 			headers: {
-				"PRIVATE-TOKEN":
+				'PRIVATE-TOKEN':
 					process.env.TEAM_08_ACCESS_TOKENTOKEN ||
-					"cYhh3zBz6DtgeJb952WA",
+					'cYhh3zBz6DtgeJb952WA',
 			},
 		}).then((res) => res.json())
 	);

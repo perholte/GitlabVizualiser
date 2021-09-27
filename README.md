@@ -19,7 +19,7 @@ Branch-dataene har vi visualisert gjennom en tre-graf som viser hvordan de ulike
 
 Vi har også visualisert issuene våre gjennom en liste sortert fra nyest til eldst.
 
-### Utforming
+Som utforming har vi valgt å ha to ulike varianter basert på brukerens skjermstørrelse. Ved brede skjermer (typisk PC-skjermer og nettbrett) har vi plassert elementene i et rutenett-design, mens ved smalere skjermer (typisk mobiltelefoner) har vi plassert elementene i en vertikal stack. Dette gjør vi får at siden skal være lesbar på flere typer skjermer.
 
 ### Responsivitet
 

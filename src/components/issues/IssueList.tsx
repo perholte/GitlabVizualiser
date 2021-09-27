@@ -9,6 +9,8 @@ const IssueList = () => {
 		).then((res) => res.json());
 	});
 
+	console.log(data);
+
 	if (error || isLoading || !data) {
 		return <></>;
 	}

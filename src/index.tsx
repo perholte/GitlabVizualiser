@@ -10,13 +10,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 const queryClient = new QueryClient();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}></QueryClientProvider>
-      <App />
-    </ChakraProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<ChakraProvider theme={theme}>
+			<QueryClientProvider client={queryClient}>
+				<App />
+			</QueryClientProvider>
+		</ChakraProvider>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

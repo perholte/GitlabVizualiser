@@ -29,4 +29,8 @@ Vi har også visualisert issuene våre gjennom en liste sortert fra nyest til el
 
 ### Chakra
 
+Vi har valgt å ta i bruk UI-biblioteket Chakra UI. Dette er et bibliotekt som gjør det lett å både ta i bruk ferdiglagde komponenter, og lage egne komponenter. I tillegg har den støtte får å ha et globalt fargetema samt mulighet for å implementere både light og dark mode. Gjennom Chakra har vi også fått bruk flexbox og CSSGrid.
+
 ### Recharts
+
+Recharts er et populært grafbibliotek for React. Vi har brukt det til å lage et doughnut diagram slik at vi får presentert dataen vår på en hensiktsmessig måte.

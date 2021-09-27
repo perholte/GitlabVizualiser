@@ -4,7 +4,7 @@ import {
 	AccordionIcon,
 	AccordionPanel,
 } from '@chakra-ui/accordion';
-import { Box, HStack } from '@chakra-ui/layout';
+import { HStack } from '@chakra-ui/layout';
 import { useStyleConfig } from '@chakra-ui/react';
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 import React from 'react';

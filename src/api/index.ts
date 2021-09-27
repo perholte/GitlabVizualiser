@@ -23,6 +23,9 @@ export interface Branch {
     commit: Commit,
 }
 
+/**
+ * 
+ */
 export interface Issue {
     id: number
     title: string
@@ -41,15 +44,16 @@ export interface Issue {
  */
 export const getCommits = async (n: number): Promise<Commit[]> => {
     const url = `${BASE}repository/commits`
-    let commits
+    let commits: Commit[]
     try {
-        commits = await fetch(url, {
+        let res = await fetch(url, {
             mode: 'cors',
             cache: 'reload',
             headers: {
                 'PRIVATE-TOKEN': TOKEN,
             }
-        }).then(response => response.json())
+        })
+        commits = await res.json()
     } catch (err) {
         throw new Error('Could not fetch commits!')
 

@@ -3,6 +3,7 @@ import React from 'react'
 import { Branch, getBranches } from './api/index'
 import './App.css'
 import BranchTree from './components/branchTree/BranchTree'
+import CommitMessages from './components/commitMessages/CommitMessages'
 
 function App() {
 	async function test() {
@@ -20,6 +21,7 @@ function App() {
 			<p>Hello World!</p>
 			<button onClick={test}>click</button>
 			<BranchTree></BranchTree>
+			<CommitMessages />
 		</ChakraProvider>
 	)
 }

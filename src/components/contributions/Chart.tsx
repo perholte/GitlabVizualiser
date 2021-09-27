@@ -14,10 +14,10 @@ const Chart: FC = () => {
   const data = getContributionsData();
   // https://recharts.org/en-US/examples/PieChartWithCustomizedLabel
   return (
-    <PieChart width={800} height={400}>
+    <PieChart width={400} height={400}>
       <Pie
         data={data}
-        cx={400}
+        cx={200}
         cy={200}
         innerRadius={100}
         outerRadius={130}

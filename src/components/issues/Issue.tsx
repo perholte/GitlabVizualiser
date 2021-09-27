@@ -25,18 +25,17 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 	const styles = useStyleConfig('Issue', {
 		variant: data.closed ? 'closed' : 'open',
 	});
-	console.log(styles);
 
 	return (
 		<AccordionItem sx={styles}>
 			<AccordionButton>
-				<HStack>
-					<span>{'#' + data.id}</span>
-					<h2>
-						<Box flex='1' textAlign='left'>
-							{data.title}
-						</Box>
-					</h2>
+				<HStack w='100%' justifyContent='space-between'>
+					<HStack>
+						<span style={{ width: '4ch', textAlign: 'left' }}>
+							{'#' + data.id}
+						</span>
+						<h2>{data.title}</h2>
+					</HStack>
 					<AccordionIcon />
 				</HStack>
 			</AccordionButton>
@@ -49,14 +48,15 @@ export default Issue;
 export const IssueConfig: ComponentStyleConfig = {
 	baseStyle: {
 		width: '400px',
-		height: '2rem',
+		margin: 'auto',
+		boxShadow: '0 0 10px rgba(0,0,0,0.1)',
 	},
 	variants: {
 		open: {
-			background: 'grey.200', //TODO: change color
+			background: '#f9f9f9',
 		},
 		closed: {
-			background: 'grey.500', //TODO: chance color
+			background: '#dedede', //TODO: chance color
 		},
 	},
 };

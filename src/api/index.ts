@@ -91,5 +91,3 @@ export const getBranches = async (): Promise<Branch[]> => {
     })
     return branches
 }
-
-export default {}

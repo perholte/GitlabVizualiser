@@ -13,56 +13,37 @@ const BranchTree = () => {
 			},
 		}),
 	};
-	return (
-		<>
-			<Gitgraph options={options}>
-				{(gitgraph) => {
-					getBranches().then((res) => {
-						let branches: Array<Branch> = [];
-						let master: any;
-						// La til noen ekstra branches for å se hvordan det var med merged branches.
-						res.push({
-							name: 'test',
-							merged: true,
-							developers_can_push: false,
-							developers_can_merge: false,
-							web_url: 'egerger',
-							commit: {
-								title: 'test',
-								author_name: '',
-								short_id: 'ergerge',
-								created_at: new Date(),
-							},
-						});
-						for (let i = 0; i < res.length; i++) {
-							if (
-								res[i].name === 'main' ||
-								res[i].name === 'master'
-							) {
-								master = gitgraph
-									.branch(res[i].name)
-									.commit('');
-							} else {
-								branches.push(res[i]);
-							}
-						}
 
-						branches.forEach((element) => {
-							if (element.merged) {
-								let branch = master
-									.branch(element.name)
-									.commit(element.commit.title);
-								master.merge(branch);
-							} else {
-								master
-									.branch(element)
-									.commit(element.commit.title);
-							}
-						});
-					});
-				}}
-			</Gitgraph>
-		</>
-	);
+  return <>
+    <Gitgraph options={options}>
+      {(gitgraph) => {
+        getBranches().then((res) => {
+          const branches: Array<Branch> = []
+          let master:any
+          const mergedBranches:any = []
+          
+          for (let i = 0; i < res.length; i++) {
+            if (res[i].name === "main" || res[i].name === "master") {
+              master = gitgraph.branch(res[i].name).commit("");
+            } else {
+                branches.push(res[i]);
+            }
+          }
+
+          branches.forEach(element => { 
+            if (element.merged) {
+              mergedBranches.push(master.branch(element).commit(element.commit.title))
+            } else {
+              master.branch(element).commit(element.commit.title)
+            }
+          }) 
+          mergedBranches.forEach((element: any) => {
+            master.merge(element)
+          })
+        })
+    }
+  }
+    </Gitgraph>
+  </>;
 };
 export default BranchTree;

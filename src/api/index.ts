@@ -6,6 +6,7 @@ const TOKEN = process.env.REACT_APP_TEAM_08_ACCESS_TOKEN || 'TEAM_08_ACCESS_TOKE
  */
 export interface Commit {
     title: string,
+    author_name: string,
     short_id: string,
     created_at: Date,
 }
@@ -20,6 +21,15 @@ export interface Branch {
     developers_can_merge: boolean,
     web_url: string,
     commit: Commit,
+}
+
+export interface Issue {
+    id: number
+    title: string
+    description: string
+    closed: boolean
+    created_at: Date
+    task_completion_status: { completed_count: number, count: number }
 }
 
 /**
@@ -47,6 +57,7 @@ export const getCommits = async (n: number): Promise<Commit[]> => {
     commits = commits.map((c: any) => {
         let commit = {
             title: c.title,
+            author_name: c.author_name,
             short_id: c.short_id,
             created_at: new Date(c.created_at)
         }
@@ -90,4 +101,31 @@ export const getBranches = async (): Promise<Branch[]> => {
         return branch
     })
     return branches
+}
+
+
+export const getIssues = async (): Promise<Issue[]> => {
+    const url = `${BASE}issues`
+    let issues
+    try {
+        issues = await fetch(url, {
+            mode: 'cors',
+            cache: 'reload',
+            headers: {
+                'PRIVATE-TOKEN': TOKEN,
+            },
+        }).then((res) => res.json())
+    } catch (err) {
+        throw new Error('Could not fetch issues!')
+    }
+    issues = issues.map((i: any) => {
+        return {
+            id: i.iid,
+            title: i.title,
+            description: i.description,
+            created_at: new Date(i.created_at),
+            task_completion_status: i.task_completion_status
+        }
+    })
+    return issues
 }

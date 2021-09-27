@@ -18,38 +18,28 @@ export interface IssueType {
 }
 
 interface IssueProps {
-	issue: IssueType;
+	data: IssueType;
 }
 
-const Issue: React.FC<IssueProps> = ({ issue }) => {
+const Issue: React.FC<IssueProps> = ({ data }) => {
 	const styles = useStyleConfig("Issue", {
-		variant: issue.closed ? "closed" : "open",
+		variant: data.closed ? "closed" : "open",
 	});
 
 	return (
 		<AccordionItem sx={styles}>
 			<HStack>
-				<a href='link to gitlab issue by given id'>
-					{/* {'#' + issue.id} */}
-					#69
-				</a>
+				<a href='link to gitlab issue by given id'>{"#" + data.id}</a>
 				<h2>
 					<AccordionButton>
 						<Box flex='1' textAlign='left'>
-							{/* {issue.title} */}
-							Fix some bug
+							{data.title}
 						</Box>
 						<AccordionIcon />
 					</AccordionButton>
 				</h2>
 			</HStack>
-			<AccordionPanel pb={4}>
-				{/* {issue.description} */}
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris
-				nisi ut aliquip ex ea commodo consequat.
-			</AccordionPanel>
+			<AccordionPanel pb={4}>{data.description}</AccordionPanel>
 		</AccordionItem>
 	);
 };

@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+#graph-container > svg > * {
+  transform: scale(0.6) translate(10%, 10%);
+}
+
+#graph-container {
+  overflow: auto;
+  margin: auto;
+  max-width: max-content;
+  max-height: max-content;
+  padding: 10px;
+  border-color: black;
+  border-width: 1px;
+}

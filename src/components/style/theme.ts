@@ -7,6 +7,13 @@ const theme = extendTheme({
   },
   fonts: {
     body: 'Helvetica',
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        colorScheme: "blue"
+      }
+    }
   }
 })
 

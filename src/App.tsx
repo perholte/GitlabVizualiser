@@ -1,28 +1,34 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import React from 'react'
-import { Branch, getBranches } from './api/index'
 import './App.css'
 import BranchTree from './components/branchTree/BranchTree'
-import CommitMessages from './components/commitMessages/CommitMessages'
+import Header from './components/Header/Header'
+import { Route, Switch } from 'react-router-dom'
 
 function App() {
-	async function test() {
-		try {
-			let c: Branch[] = await getBranches()
-			if (c) {
-				console.log(c)
-			}
-		} catch (err) {
-			console.error(err)
-		}
-	}
 	return (
-		<ChakraProvider>
-			<p>Hello World!</p>
-			<button onClick={test}>click</button>
-			<BranchTree></BranchTree>
-			<CommitMessages />
-		</ChakraProvider>
+		<>
+			<Header />
+			<Switch>
+				<Route path='/branches'>
+					<BranchTree />
+					<p>Branches</p>
+				</Route>
+				<Route path='/issues'>
+					{/*<BranchTree/>*/}
+					<p>Issues</p>
+				</Route>
+				<Route path='/Contributors'>
+					{/*<BranchTree/>*/}
+					<p>Contributors</p>
+				</Route>
+				<Route path='/messages'>
+					{/*<BranchTree/>*/}
+					<p>Commit messages</p>
+				</Route>
+				<Route path='/'>
+					<p>Hjem</p>
+				</Route>
+			</Switch>
+		</>
 	)
 }
 

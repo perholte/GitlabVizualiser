@@ -3,5 +3,8 @@
     "prettier.useTabs": true,
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
-    "prettier.jsxSingleQuote": true
+    "prettier.jsxSingleQuote": true,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single",
+    "prettier.singleQuote": true
 }

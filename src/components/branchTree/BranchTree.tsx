@@ -1,19 +1,18 @@
-import { Gitgraph, templateExtend, TemplateName } from "@gitgraph/react";
-import { getBranches, Branch } from "../../api";
+import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
+import { Branch, getBranches } from '../../api';
 
 const BranchTree = () => {
-
-  const options = {
-    author: "employee1",
-    template: templateExtend(TemplateName.Metro, {
-      commit: {
-        message: {
-          displayAuthor: false,
-          displayHash: false
-        }
-      },
-    })
-  };
+	const options = {
+		author: 'employee1',
+		template: templateExtend(TemplateName.Metro, {
+			commit: {
+				message: {
+					displayAuthor: false,
+					displayHash: false,
+				},
+			},
+		}),
+	};
 
   return <>
     <Gitgraph options={options}>
@@ -23,7 +22,6 @@ const BranchTree = () => {
           let master:any
           const mergedBranches:any = []
           
-        
           for (let i = 0; i < res.length; i++) {
             if (res[i].name === "main" || res[i].name === "master") {
               master = gitgraph.branch(res[i].name).commit("");

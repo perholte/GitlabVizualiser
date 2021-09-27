@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Contributions = () => {
-  return <></>;
+	return <></>;
 };
 
 export default Contributions;

@@ -6,6 +6,7 @@ const TOKEN = process.env.REACT_APP_TEAM_08_ACCESS_TOKEN || 'TEAM_08_ACCESS_TOKE
  */
 export interface Commit {
     title: string,
+    author_name: string,
     short_id: string,
     created_at: Date,
 }
@@ -23,6 +24,18 @@ export interface Branch {
 }
 
 /**
+ * 
+ */
+export interface Issue {
+    id: number
+    title: string
+    description: string
+    closed: boolean
+    created_at: Date
+    task_completion_status: { completed_count: number, count: number }
+}
+
+/**
  * Get fields described in the Commit interface for each of the n
  * last commits pushed to the project. 
  * 
@@ -31,15 +44,16 @@ export interface Branch {
  */
 export const getCommits = async (n: number): Promise<Commit[]> => {
     const url = `${BASE}repository/commits`
-    let commits
+    let commits: Commit[]
     try {
-        commits = await fetch(url, {
+        let res = await fetch(url, {
             mode: 'cors',
             cache: 'reload',
             headers: {
                 'PRIVATE-TOKEN': TOKEN,
             }
-        }).then(response => response.json())
+        })
+        commits = await res.json()
     } catch (err) {
         throw new Error('Could not fetch commits!')
 
@@ -47,6 +61,7 @@ export const getCommits = async (n: number): Promise<Commit[]> => {
     commits = commits.map((c: any) => {
         let commit = {
             title: c.title,
+            author_name: c.author_name,
             short_id: c.short_id,
             created_at: new Date(c.created_at)
         }
@@ -92,4 +107,29 @@ export const getBranches = async (): Promise<Branch[]> => {
     return branches
 }
 
-export default {}
+
+export const getIssues = async (): Promise<Issue[]> => {
+    const url = `${BASE}issues`
+    let issues
+    try {
+        issues = await fetch(url, {
+            mode: 'cors',
+            cache: 'reload',
+            headers: {
+                'PRIVATE-TOKEN': TOKEN,
+            },
+        }).then((res) => res.json())
+    } catch (err) {
+        throw new Error('Could not fetch issues!')
+    }
+    issues = issues.map((i: any) => {
+        return {
+            id: i.iid,
+            title: i.title,
+            description: i.description,
+            created_at: new Date(i.created_at),
+            task_completion_status: i.task_completion_status
+        }
+    })
+    return issues
+}

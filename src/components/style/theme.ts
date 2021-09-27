@@ -1,5 +1,5 @@
-
 import { extendTheme } from '@chakra-ui/react'
+import { IssueConfig } from '../issues/Issue'
 
 const theme = extendTheme({
   fonts: {
@@ -10,7 +10,8 @@ const theme = extendTheme({
       baseStyle: {
         colorScheme: "blue"
       }
-    }
+    },
+    Issue: IssueConfig,
   }
 })
 

@@ -42,10 +42,10 @@ const BranchTree = () => {
 
           branches.forEach(element => {
             if (element.merged) {
-              let branch = master.branch(element.name).commit("")
+              let branch = master.branch(element.name).commit(element.commit.title)
               master.merge(branch)  
             } else {
-              master.branch(element).commit("")
+              master.branch(element).commit(element.commit.title)
             }
           })
         })

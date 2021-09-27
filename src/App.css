@@ -37,12 +37,8 @@
   }
 }
 
-#graph-container > svg > g {
+#graph-container > svg > * {
   transform: scale(0.6) translate(10%, 10%);
-}
-
-svg {
-  justify-content: center;
 }
 
 #graph-container {

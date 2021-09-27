@@ -1,8 +1,9 @@
-import { Route, Switch } from 'react-router-dom';
-import './App.css';
-import BranchTree from './components/branchTree/BranchTree';
-import Header from './components/Header/Header';
-import IssueList from './components/issues/IssueList';
+import { Route, Switch } from 'react-router-dom'
+import './App.css'
+import BranchTree from './components/branchTree/BranchTree'
+import CommitMessages from './components/commitMessages/CommitMessages'
+import Header from './components/Header/Header'
+import IssueList from './components/issues/IssueList'
 
 function App() {
 	return (
@@ -21,15 +22,14 @@ function App() {
 					<p>Contributors</p>
 				</Route>
 				<Route path='/messages'>
-					{/*<BranchTree/>*/}
-					<p>Commit messages</p>
+					<CommitMessages />
 				</Route>
 				<Route path='/'>
 					<p>Hjem</p>
 				</Route>
 			</Switch>
 		</>
-	);
+	)
 }
 
-export default App;
+export default App

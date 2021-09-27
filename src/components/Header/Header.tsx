@@ -1,5 +1,5 @@
-import { Flex, Button } from '@chakra-ui/react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Button, Flex } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 	return (
@@ -20,21 +20,21 @@ const Header = () => {
 				]}
 				color={['black', 'black', 'black', 'black']}
 			>
-				<Button>
-					<Link to='/branches'>Branches</Link>
-				</Button>
-				<Button>
-					<Link to='/issues'>Issues</Link>
-				</Button>
-				<Button>
-					<Link to='/contributors'>Contributors</Link>
-				</Button>
-				<Button>
-					<Link to='/messages'>Commit messages</Link>
-				</Button>
+				<Link to='/branches'>
+					<Button>Branches</Button>
+				</Link>
+				<Link to='/issues'>
+					<Button>Issues</Button>
+				</Link>
+				<Link to='/contributors'>
+					<Button>Contributors</Button>
+				</Link>
+				<Link to='/messages'>
+					<Button>Commit messages</Button>
+				</Link>
 			</Flex>
 		</>
-	);
-};
+	)
+}
 
-export default Header;
+export default Header

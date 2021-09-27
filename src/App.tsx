@@ -12,7 +12,6 @@ function App() {
 			<Switch>
 				<Route path='/branches'>
 					<BranchTree />
-					<p>Branches</p>
 				</Route>
 				<Route path='/issues'>
 					<IssueList />

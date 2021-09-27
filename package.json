@@ -50,6 +50,8 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.24",
-    "parcel": "^2.0.0-rc.0"
+    "@types/react-router-dom": "^5.3.0",
+    "parcel": "^2.0.0-rc.0",
+    "react-router-dom": "^5.3.0"
   }
 }

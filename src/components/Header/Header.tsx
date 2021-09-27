@@ -1,27 +1,43 @@
-import { NavLink, HashRouter, useHistory } from "react-router-dom"
-import { HStack, Button } from '@chakra-ui/react'
+import { Flex, Button} from "@chakra-ui/react";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 
 const Header = () => {
 
-    const history = useHistory();
-    const routeChange = () => {
-        let path = "/mainPage";
-        history.push(path);
-    }
-
     return <>
-    <HashRouter>
-            <Button colorScheme="blue"> 
-                <NavLink to="/issues">Issues</NavLink>
-            </Button>
-            <Button colorScheme="green"> 
-                <NavLink to="/test">Test</NavLink>
-            </Button>
-            <Button colorScheme="red">
-                <NavLink to="/Branches">Branches</NavLink>
-            </Button>
-    </HashRouter>
-    
+        <Flex
+        as="nav"
+        align="center"
+        justify="space-between"
+        wrap="wrap"
+        w="100%"
+        mb={8}
+        p={8}
+        bg={["primary.500", "primary.500", "transparent", "transparent"]}
+        color={["black", "black", "black", "black"]}>
+        <Router>
+        <Button>
+        <Link to="/branches">
+            Branches
+        </Link>
+        </Button>
+        <Button>
+        <Link to="/issues">
+            Issues
+        </Link>
+        </Button>
+        <Button>
+        <Link to="/contributors">
+            Contributors
+        </Link>
+        </Button>
+        <Button>
+        <Link to="/messages">
+            Commit messages
+        </Link>
+        </Button>
+        </Router>
+        </Flex>
     </>
-}
+    }
+      
 export default Header;

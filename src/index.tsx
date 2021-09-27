@@ -1,20 +1,23 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ChakraProvider } from '@chakra-ui/react';
-import theme from './components/style/theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import theme from './components/style/theme';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
 	<React.StrictMode>
 		<ChakraProvider theme={theme}>
-			<QueryClientProvider client={queryClient}>
-				<App />
-			</QueryClientProvider>
+			<BrowserRouter>
+				<QueryClientProvider client={queryClient}>
+					<App />
+				</QueryClientProvider>
+			</BrowserRouter>
 		</ChakraProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

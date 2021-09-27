@@ -14,7 +14,6 @@ const Header = () => {
         p={8}
         bg={["primary.500", "primary.500", "transparent", "transparent"]}
         color={["black", "black", "black", "black"]}>
-        <Router>
         <Button>
         <Link to="/branches">
             Branches
@@ -35,7 +34,6 @@ const Header = () => {
             Commit messages
         </Link>
         </Button>
-        </Router>
         </Flex>
     </>
     }

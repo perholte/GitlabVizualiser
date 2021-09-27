@@ -1,5 +1,4 @@
 import { ChakraProvider } from "@chakra-ui/react"
-import React from "react"
 import { Branch, getBranches } from "./api/index"
 import "./App.css"
 import BranchTree from "./components/branchTree/BranchTree"

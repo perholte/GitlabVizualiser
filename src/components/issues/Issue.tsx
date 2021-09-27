@@ -5,7 +5,7 @@ import {
 	AccordionPanel,
 } from "@chakra-ui/accordion";
 import { Box, HStack } from "@chakra-ui/layout";
-import { useStyleConfig } from "@chakra-ui/system";
+import { useStyleConfig } from "@chakra-ui/react";
 import { ComponentStyleConfig } from "@chakra-ui/theme";
 import React from "react";
 
@@ -25,20 +25,21 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 	const styles = useStyleConfig("Issue", {
 		variant: data.closed ? "closed" : "open",
 	});
+	console.log(styles);
 
 	return (
 		<AccordionItem sx={styles}>
-			<HStack>
-				<a href='link to gitlab issue by given id'>{"#" + data.id}</a>
-				<h2>
-					<AccordionButton>
+			<AccordionButton>
+				<HStack>
+					<span>{"#" + data.id}</span>
+					<h2>
 						<Box flex='1' textAlign='left'>
 							{data.title}
 						</Box>
-						<AccordionIcon />
-					</AccordionButton>
-				</h2>
-			</HStack>
+					</h2>
+					<AccordionIcon />
+				</HStack>
+			</AccordionButton>
 			<AccordionPanel pb={4}>{data.description}</AccordionPanel>
 		</AccordionItem>
 	);
@@ -48,7 +49,7 @@ export default Issue;
 export const IssueConfig: ComponentStyleConfig = {
 	baseStyle: {
 		width: "400px",
-		height: "4rem",
+		height: "2rem",
 	},
 	variants: {
 		open: {

@@ -2,10 +2,10 @@
 
 Dette er GitLabViz, en datavisualisering av vårt GitLab repository. Dataene som presenteres er
 
-- Meldingene fra de siste commitene
-- Antall commits fra hver student
-- Et tre med oversikt git branchene våre
-- En liste med issuene våre
+-   Meldingene fra de siste commitene
+-   Antall commits fra hver student
+-   Et tre med oversikt git branchene våre
+-   En liste med issuene våre
 
 ## Valg av løsninger
 
@@ -15,11 +15,11 @@ Av sideelementer har vi valgt å hente ut data fra tre områder som vi mener er 
 
 På websiden er det to bokser som inneholder informasjon om commits: en for commitmeldingene fra de siste committene som er blitt pushet til main-branchen, og ett kakediagram som reflekterer mengden commits fra de ulike utviklerne.
 
-Branch-dataene har vi visualisert gjennom en tre-graf som viser hvordan de ulike branchene våre har utviklet seg over tid.
+Branch-dataene har vi visualisert gjennom en tre-graf som viser hvordan de ulike branchene våre har utviklet seg over tid. Dette følte vi var den mest oversiktlige måten å presentere slik data på.
 
-Vi har også visualisert issuene våre gjennom en liste sortert fra nyest til eldst.
+Issuene våre har vi visualisert gjennom en modifiserbar liste, der man kan legge inn antall ønskede commits (fra 1 til 20) og et tidsinterval for commiten.
 
-Som utforming har vi valgt å ha to ulike varianter basert på brukerens skjermstørrelse. Ved brede skjermer (typisk PC-skjermer og nettbrett) har vi plassert elementene i et rutenett-design, mens ved smalere skjermer (typisk mobiltelefoner) har vi plassert elementene i en vertikal stack. Dette gjør vi får at siden skal være lesbar på flere typer skjermer.
+Som utforming har vi valgt å ha ha vært element på hver sin side. Dette mener vi gjør siden oversiktlig og entydig. Navigasjonen skjer gjennom knapper øverst på siden, eller via bokser på hjemskjermen. Ved brede skjermer (typisk PC-skjermer og nettbrett) har vi plassert knappene horisontalt, mens ved smalere skjermer (typisk mobiltelefoner) har vi plassert knappene vertikalt. Dette gjør vi får at siden skal være lesbar på flere typer skjermer.
 
 ### Responsivitet
 

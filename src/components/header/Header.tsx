@@ -7,30 +7,37 @@ const Header = () => {
 			<Flex
 				as='nav'
 				align='center'
-				justify='space-between'
-				wrap='wrap'
+				justify='space-evenly'
 				w='100%'
 				mb={8}
 				p={8}
-				bg={[
-					'primary.500',
-					'primary.500',
-					'transparent',
-					'transparent',
-				]}
-				color={['black', 'black', 'black', 'black']}
+				bg={'seagreen'}
+				color={'MenuText'}
 			>
+				<Link to='/'>
+					<Button marginX='1rem' h='3rem' w='full'>
+						Home
+					</Button>
+				</Link>
 				<Link to='/branches'>
-					<Button>Branches</Button>
+					<Button marginX='1rem' h='3rem' w='full'>
+						Branches
+					</Button>
 				</Link>
 				<Link to='/issues'>
-					<Button>Issues</Button>
+					<Button marginX='1rem' h='3rem' w='full'>
+						Issues
+					</Button>
 				</Link>
 				<Link to='/contributors'>
-					<Button>Contributors</Button>
+					<Button marginX='1rem' h='3rem' w='full'>
+						Contributors
+					</Button>
 				</Link>
 				<Link to='/messages'>
-					<Button>Commits</Button>
+					<Button marginX='1rem' h='3rem' w='full'>
+						Commits
+					</Button>
 				</Link>
 			</Flex>
 		</>

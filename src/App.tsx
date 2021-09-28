@@ -4,6 +4,7 @@ import BranchTree from './components/branchTree/BranchTree';
 import Contributions from './components/contributions/Contributions';
 import Header from './components/header/Header';
 import IssueList from './components/issues/IssueList';
+import Frontpage from './components/frontpage/Frontpage';
 
 function App() {
 	return (
@@ -12,7 +13,6 @@ function App() {
 			<Switch>
 				<Route path='/branches'>
 					<BranchTree />
-					<p>Branches</p>
 				</Route>
 				<Route path='/issues'>
 					<IssueList />
@@ -25,7 +25,7 @@ function App() {
 					<p>Commit messages</p>
 				</Route>
 				<Route path='/'>
-					<p>Hjem</p>
+					<Frontpage />
 				</Route>
 			</Switch>
 		</>

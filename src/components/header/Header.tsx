@@ -9,10 +9,12 @@ const Header = () => {
 				align='center'
 				justify='space-evenly'
 				w='100%'
-				mb={8}
+				mb={0}
 				p={8}
 				bg={'seagreen'}
 				color={'MenuText'}
+				minH='15vh'
+				maxH='15vh'
 			>
 				<Link to='/'>
 					<Button marginX='1rem' h='3rem' w='full'>

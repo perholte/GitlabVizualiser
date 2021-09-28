@@ -4,14 +4,13 @@ import { FC } from 'react';
 const Frontpage: FC = () => {
 	return (
 		<Flex
-			minH='75vh'
-			maxH='75vh'
+			minH='85vh'
+			maxH='85vh'
 			justifyContent='center'
 			alignItems='center'
 			backgroundColor='Highlight'
 			color='HighlightText'
 			fontFamily='heading'
-			marginTop={20}
 		>
 			<Heading justifyContent='center' textAlign='center' size='4xl'>
 				GitLabViz

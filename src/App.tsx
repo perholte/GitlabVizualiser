@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import BranchTree from './components/branchTree/BranchTree';
+import Contributions from './components/contributions/Contributions';
 import Header from './components/Header/Header';
 import IssueList from './components/issues/IssueList';
 
@@ -17,8 +18,7 @@ function App() {
 					<IssueList />
 				</Route>
 				<Route path='/Contributors'>
-					{/*<BranchTree/>*/}
-					<p>Contributors</p>
+					<Contributions />
 				</Route>
 				<Route path='/messages'>
 					{/*<BranchTree/>*/}

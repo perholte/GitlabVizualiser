@@ -26,7 +26,7 @@ const Chart: FC = () => {
 	}, [refresh]);
 	// https://recharts.org/en-US/examples/PieChartWithCustomizedLabel
 	return (
-		<PieChart width={300} height={300}>
+		<PieChart width={300} height={400}>
 			<Pie
 				data={data}
 				cx={150}

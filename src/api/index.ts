@@ -42,17 +42,19 @@ export interface Issue {
  * @param n 
  * @returns n amount of Commit objects
  */
-export const getCommits = async (n: number): Promise<Commit[]> => {
+export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
     const url = `${BASE}repository/commits`
     let commits: Commit[]
     try {
         let res = await fetch(url, {
             mode: 'cors',
-            cache: 'reload',
+            cache: 'force-cache',
             headers: {
                 'PRIVATE-TOKEN': TOKEN,
             }
         })
+        // Array.from(res.headers.values()).forEach(h => console.log(h))
+        // Array.from(res.headers.keys()).forEach(h => console.log(h))
         commits = await res.json()
     } catch (err) {
         throw new Error('Could not fetch commits!')
@@ -67,7 +69,11 @@ export const getCommits = async (n: number): Promise<Commit[]> => {
         }
         return commit
     })
-    return commits.slice(0, n)
+    if (n === 0 || !n) {
+        return commits
+    } else {
+        return commits.slice(0, n)
+    }
 }
 
 /**

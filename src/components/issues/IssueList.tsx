@@ -33,7 +33,7 @@ const IssueList = () => {
 							id: issue.iid,
 							title: issue.title,
 							description: issue.description,
-							closed: issue.closed_at === null,
+							closed: !!issue.closed_at,
 						}}
 					/>
 				)

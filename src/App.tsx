@@ -22,7 +22,7 @@ function App() {
 				</Route>
 				<Route path='/messages'>
 					{/*<BranchTree/>*/}
-					<p>Commit messages</p>
+					<p>Commit message</p>
 				</Route>
 				<Route path='/'>
 					<p>Hjem</p>

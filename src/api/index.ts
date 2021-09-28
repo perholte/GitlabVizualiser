@@ -45,21 +45,16 @@ export interface Issue {
 export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
     const url = `${BASE}repository/commits`
     let commits: Commit[]
-    try {
-        let res = await fetch(url, {
-            mode: 'cors',
-            cache: 'force-cache',
-            headers: {
-                'PRIVATE-TOKEN': TOKEN,
-            }
-        })
-        // Array.from(res.headers.values()).forEach(h => console.log(h))
-        // Array.from(res.headers.keys()).forEach(h => console.log(h))
-        commits = await res.json()
-    } catch (err) {
-        throw new Error('Could not fetch commits!')
-
-    }
+    // try {
+    let res = await fetch(url, {
+        mode: 'cors',
+        // cache: 'force-cache',
+        cache: 'reload',
+        headers: {
+            'PRIVATE-TOKEN': TOKEN,
+        }
+    })
+    commits = await res.json()
     commits = commits.map((c: any) => {
         let commit = {
             title: c.title,
@@ -69,7 +64,7 @@ export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
         }
         return commit
     })
-    if (n === 0 || !n) {
+    if (!n || n <= 0 || n > commits.length) {
         return commits
     } else {
         return commits.slice(0, n)

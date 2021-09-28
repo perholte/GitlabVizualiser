@@ -24,7 +24,9 @@ function App() {
 					<CommitMessages />
 				</Route>
 				<Route path='/'>
-					<p>Hjem</p>
+					<h1 style={{ textAlign: 'center' }}>
+						Tissegutta uwu(′ꈍωꈍ‵)
+					</h1>
 				</Route>
 			</Switch>
 		</>

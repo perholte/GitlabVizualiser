@@ -48,7 +48,7 @@ export default Issue;
 
 export const IssueConfig: ComponentStyleConfig = {
 	baseStyle: {
-		width: '400px',
+		width: '100%',
 		...containerStyles,
 		margin: 'auto',
 	},

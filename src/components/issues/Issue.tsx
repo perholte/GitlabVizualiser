@@ -8,6 +8,7 @@ import { HStack } from '@chakra-ui/layout';
 import { useStyleConfig } from '@chakra-ui/react';
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 import React from 'react';
+import { containerStyles } from '../style/styles';
 
 //TODO: update this type and maybe move it to a 'type' folder
 export interface IssueType {
@@ -47,9 +48,9 @@ export default Issue;
 
 export const IssueConfig: ComponentStyleConfig = {
 	baseStyle: {
-		width: '400px',
+		width: '100%',
+		...containerStyles,
 		margin: 'auto',
-		boxShadow: '0 0 10px rgba(0,0,0,0.1)',
 	},
 	variants: {
 		open: {

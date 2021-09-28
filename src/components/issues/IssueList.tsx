@@ -1,4 +1,5 @@
 import { Accordion } from '@chakra-ui/accordion';
+import { VStack } from '@chakra-ui/layout';
 import React from 'react';
 import { useQuery } from 'react-query';
 import Issue from './Issue';
@@ -19,25 +20,27 @@ const IssueList = () => {
 	}
 
 	return (
-		<Accordion allowMultiple>
-			{data.map(
-				(issue: {
-					iid: number;
-					title: string;
-					description: string;
-					closed_at: string | null;
-				}) => (
-					<Issue
-						key={issue.iid}
-						data={{
-							id: issue.iid,
-							title: issue.title,
-							description: issue.description,
-							closed: !!issue.closed_at,
-						}}
-					/>
-				)
-			)}
+		<Accordion allowMultiple p='1em'>
+			<VStack>
+				{data.map(
+					(issue: {
+						iid: number;
+						title: string;
+						description: string;
+						closed_at: string | null;
+					}) => (
+						<Issue
+							key={issue.iid}
+							data={{
+								id: issue.iid,
+								title: issue.title,
+								description: issue.description,
+								closed: !!issue.closed_at,
+							}}
+						/>
+					)
+				)}
+			</VStack>
 		</Accordion>
 	);
 };

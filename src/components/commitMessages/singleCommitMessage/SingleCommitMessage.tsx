@@ -6,6 +6,7 @@ export interface CommitMessageProps {
 	commit: Commit
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TimeFormatOptions = {
 	weekday: undefined,
 	year: 'numeric',
@@ -16,7 +17,6 @@ const TimeFormatOptions = {
 export default function SingleCommitMessage({ commit }: CommitMessageProps) {
 	return (
 		<Container
-			key={commit.short_id}
 			variant={'components'}
 			centerContent
 			maxW='container.lg'

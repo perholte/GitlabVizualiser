@@ -1,62 +1,51 @@
-import { Container, Input, StackDivider, VStack } from '@chakra-ui/react'
+import { Container, StackDivider, VStack } from '@chakra-ui/react'
 import * as React from 'react'
 import { Commit, getCommits } from '../../api/index'
+import MyInput from './inputs/NumberInput'
 import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage'
 
-const NUMBER_OF_COMMITS = 5
-
-const EXAMPLE_COMMITS = [
-	{
-		title: 'README.md',
-		author_name: 'Per',
-		short_id: '1',
-		created_at: new Date(),
-	},
-	{
-		title: 'App.tsx',
-		author_name: 'Jørgen',
-		short_id: '2',
-		created_at: new Date(),
-	},
-	{
-		title: 'Components',
-		author_name: 'André',
-		short_id: '3',
-		created_at: new Date(),
-	},
-	{
-		title: '.gitignore',
-		author_name: 'Sigbjørn',
-		short_id: '4',
-		created_at: new Date(),
-	},
-]
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface CommitMessageQuery {
 	beforeDate?: Date
 	afterDate?: Date
-	number?: number
+	number: number
+}
+
+const defualtQuery: CommitMessageQuery = {
+	number: 5,
 }
 
 const CommitMessages = () => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	let [settings, setSettings] =
+		React.useState<CommitMessageQuery>(defualtQuery)
 	let [commits, setCommits] = React.useState<Commit[] | undefined>(undefined)
-	let [settings, setSettings] = React.useState(undefined)
-	React.useEffect(() => {
-		const f = async () => {
-			try {
-				let newCommits = await getCommits(NUMBER_OF_COMMITS)
-				setCommits(newCommits)
-			} catch (err) {
-				setCommits(EXAMPLE_COMMITS)
-			}
+	const fetchCommits = async () => {
+		try {
+			let n = settings.number - 1 > 0 ? settings.number - 1 : 1
+			let newCommits = await getCommits(n)
+			setCommits(newCommits)
+		} catch (err) {
+			console.error(err)
 		}
-		f()
-		console.log(commits?.length)
+	}
+	React.useEffect(() => {
+		fetchCommits()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
+	const numberChange = (newNumber: any) => {
+		setSettings({ ...settings, number: newNumber })
+		;(async () => {
+			await fetchCommits()
+		})()
+	}
 	return (
 		<>
 			<Container margin='5em auto'>
-				<Input />
+				<MyInput
+					numberChange={(a) => numberChange(a)}
+					value={settings.number}
+				/>
 			</Container>
 			<VStack
 				divider={<StackDivider borderColor='gray.200' />}
@@ -65,7 +54,9 @@ const CommitMessages = () => {
 				margin={'auto'}
 			>
 				{commits
-					? commits.map((c) => <SingleCommitMessage commit={c} />)
+					? commits.map((c) => (
+							<SingleCommitMessage commit={c} key={c.short_id} />
+					  ))
 					: null}
 			</VStack>
 		</>

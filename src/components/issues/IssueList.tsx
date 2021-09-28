@@ -1,7 +1,7 @@
-import { Accordion } from '@chakra-ui/accordion';
-import React from 'react';
-import { useQuery } from 'react-query';
-import Issue from './Issue';
+import { Accordion } from '@chakra-ui/accordion'
+import React from 'react'
+import { useQuery } from 'react-query'
+import Issue from './Issue'
 
 const IssueList = () => {
 	const { data, isLoading, error } = useQuery<Array<any>>('issues', () =>
@@ -12,20 +12,20 @@ const IssueList = () => {
 					'cYhh3zBz6DtgeJb952WA',
 			},
 		}).then((res) => res.json())
-	);
+	)
 
 	if (error || isLoading || !data) {
-		return <></>;
+		return <></>
 	}
 
 	return (
 		<Accordion allowMultiple>
 			{data.map(
 				(issue: {
-					iid: number;
-					title: string;
-					description: string;
-					closed_at: string | null;
+					iid: number
+					title: string
+					description: string
+					closed_at: string | null
 				}) => (
 					<Issue
 						key={issue.iid}
@@ -39,7 +39,7 @@ const IssueList = () => {
 				)
 			)}
 		</Accordion>
-	);
-};
+	)
+}
 
-export default IssueList;
+export default IssueList

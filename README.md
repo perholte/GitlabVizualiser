@@ -19,9 +19,11 @@ Branch-dataene har vi visualisert gjennom en tre-graf som viser hvordan de ulike
 
 Issuene våre har vi visualisert gjennom en modifiserbar liste, der man kan legge inn antall ønskede commits (fra 1 til 20) og et tidsinterval for commiten.
 
-Som utforming har vi valgt å ha ha vært element på hver sin side. Dette mener vi gjør siden oversiktlig og entydig. Navigasjonen skjer gjennom knapper øverst på siden, eller via bokser på hjemskjermen. Ved brede skjermer (typisk PC-skjermer og nettbrett) har vi plassert knappene horisontalt, mens ved smalere skjermer (typisk mobiltelefoner) har vi plassert knappene vertikalt. Dette gjør vi får at siden skal være lesbar på flere typer skjermer.
+Som utforming har vi valgt å ha ha vært element på hver sin side. Dette mener vi gjør siden oversiktlig og entydig. Samtidig er det lett og navigere til deulike sidene gjennom knappene i headeren, eventuelt boksene på forsiden.
 
 ### Responsivitet
+
+Ved brede skjermer (typisk PC-skjermer og nettbrett) har vi plassert knappene horisontalt, mens ved smalere skjermer (typisk mobiltelefoner) har vi plassert knappene vertikalt. Dette gjør vi får at siden skal være lesbar på flere typer skjermer.
 
 ### Lokal lagring
 

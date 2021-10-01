@@ -17,7 +17,7 @@ const BranchTree = () => {
 
 	return (
 		<Center>
-			<svg viewBox="0 0 1500 1500">
+			<svg id="graph-container" viewBox="0 0 523 523">
 				<Gitgraph options={options}>
 					{(gitgraph) => {
 						getBranches().then((res) => {

@@ -17,6 +17,9 @@ function App() {
 	);
 
 	useEffect(() => {
+		document.getElementById('root')!.className = darkmode
+			? 'dark'
+			: 'light';
 		localStorage.setItem('darkmode', JSON.stringify(darkmode));
 	}, [darkmode]);
 

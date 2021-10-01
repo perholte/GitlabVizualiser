@@ -1,6 +1,8 @@
 import { Button, Flex } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
-import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { Link, Switch } from 'react-router-dom'
+import { ThemeContext as DarkmodeContext } from '../../App'
 import './Header.css'
 
 // This is the default breakpoint
@@ -12,7 +14,12 @@ export const breakpoints = createBreakpoints({
 	'2xl': '96em',
 })
 
-const Header = () => {
+interface HeaderProps {
+	handleToggleTheme: () => void
+}
+
+const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
+	const theme = useContext(DarkmodeContext)
 	return (
 		<>
 			<Flex
@@ -50,6 +57,10 @@ const Header = () => {
 				<Link className='header-btn' to='/messages'>
 					<Button>Commit messages</Button>
 				</Link>
+				<Switch
+					isChecked={theme.darkmode}
+					onChange={handleToggleTheme}
+				/>
 			</Flex>
 		</>
 	)

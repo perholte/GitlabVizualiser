@@ -1,12 +1,11 @@
 {
-    "prettier.tabWidth": 4,
-    "prettier.useTabs": true,
-    "prettier.semi": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "prettier.jsxSingleQuote": true,
-    "javascript.preferences.quoteStyle": "single",
-    "typescript.preferences.quoteStyle": "single",
-    "prettier.singleQuote": true,
-    "prettier.useEditorConfig": false
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+	"prettier.semi": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"prettier.jsxSingleQuote": true,
+	"javascript.preferences.quoteStyle": "single",
+	"typescript.preferences.quoteStyle": "single",
+	"prettier.singleQuote": true
 }

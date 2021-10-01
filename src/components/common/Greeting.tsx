@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/layout';
-import { FC } from 'react-router/node_modules/@types/react';
+import { FC } from 'react';
 
 const Greeting: FC = () => {
 	return !!sessionStorage.getItem('name') ? (

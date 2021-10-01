@@ -15,7 +15,11 @@ function App() {
 		JSON.parse(localStorage.getItem('darkmode') ?? 'false')
 	);
 	useEffect(() => {
-		document.getElementById('root')!.className = darkmode
+		const root = document.getElementById('root');
+		if (root === null) {
+			return
+		}
+		root.className = darkmode
 			? 'dark'
 			: 'light';
 		localStorage.setItem('darkmode', JSON.stringify(darkmode));

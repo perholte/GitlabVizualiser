@@ -22,9 +22,9 @@ const BranchTree = () => {
 			<Gitgraph options={options}>
 				{(gitgraph) => {
 					getBranches().then((res) => {
-						const branches: Array<Branch> = [];
+						let branches: Array<Branch> = [];
 						let master: any;
-						const mergedBranches: any = [];
+						let mergedBranches: any = [];
 
 						for (let i = 0; i < res.length; i++) {
 							if (

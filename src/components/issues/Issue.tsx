@@ -8,7 +8,7 @@ import { HStack } from '@chakra-ui/layout';
 import { useStyleConfig } from '@chakra-ui/react';
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from '';
 import { containerStyles } from '../style/styles';
 import './issues.css';
 

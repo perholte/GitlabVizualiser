@@ -1,4 +1,5 @@
 import { cleanup, render, screen } from "@testing-library/react"
+import {jest} from '@jest/globals'
 import App from '../App'
 import { BrowserRouter } from "react-router-dom"
 import { act } from "react-dom/test-utils"
@@ -24,7 +25,9 @@ it("renders the App correctly", () => {
 })
 
 it("Renders the header correctly", () => {
-  expect(<Header></Header>).toMatchSnapshot()
+  expect(<Header handleToggleTheme={function() {
+    throw new Error('Function not implemented.')
+  } }></Header>).toMatchSnapshot()
 })
 
 
@@ -44,20 +47,9 @@ describe("Checking the routing of the header", () =>{
   })
     //Check that the correct component is showed.
 
-
-  it("Re-routes to issues when issues-link is clicked", async () => {
-    act(() => {
-      const issueLink = screen.getByText("Issues") 
-      issueLink.click()
-    })
-    expect(location.pathname).toEqual("/issues")
-  })
-    //Check that the correct component is showed.
-
-
   it("Re-routes to commit-messages when commit-link is clicked", async () => {
     act(() => {
-      const commitLink = screen.getByText("Commit messages") 
+      const commitLink = screen.getByText("Commits") 
       commitLink.click()
     })
     expect(location.pathname).toEqual("/messages")

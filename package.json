@@ -53,10 +53,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@babel/preset-env": "^7.15.6",
-    "@types/react": "^17.0.24",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/react": "^17.0.26",
     "@types/react-router-dom": "^5.3.0",
     "parcel": "^2.0.0-rc.0",
-    "react-router-dom": "^5.3.0"
+    "react-router-dom": "^5.3.0",
+    "ts-node": "^10.2.1"
   }
 }

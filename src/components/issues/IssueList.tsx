@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import Issue from './Issue';
 import './issues.css';
 
-const IssueList = () => {
+const IssueList: React.FC = () => {
 	const { data, isLoading, error } = useQuery<Array<any>>('issues', () =>
 		fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/11994/issues', {
 			headers: {

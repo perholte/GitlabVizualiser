@@ -20,8 +20,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 	const theme = useContext(DarkmodeContext);
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const darkmode = theme.darkmode;
+
 	return (
 		<Flex
 			as='nav'
@@ -40,12 +39,6 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 			p={8}
 			color={'black'}
 		>
-			<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
-				<Switch
-					isChecked={theme.darkmode}
-					onChange={handleToggleTheme}
-				/>
-			</Box>
 			<Link className='header-btn' to='/branches'>
 				<Button>Branches</Button>
 			</Link>
@@ -58,6 +51,12 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 			<Link className='header-btn' to='/messages'>
 				<Button>Commits</Button>
 			</Link>
+			<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
+				<Switch
+					isChecked={theme.darkmode}
+					onChange={handleToggleTheme}
+				/>
+			</Box>
 		</Flex>
 	);
 };

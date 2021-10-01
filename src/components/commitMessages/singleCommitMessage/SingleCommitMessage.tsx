@@ -3,15 +3,16 @@ import {
 	AccordionIcon,
 	AccordionItem,
 	AccordionPanel,
+	Heading,
 	HStack,
 	ListItem,
 	UnorderedList,
 	useStyleConfig,
-} from '@chakra-ui/react'
-import * as React from 'react'
-import { Commit } from '../../../api'
+} from '@chakra-ui/react';
+import * as React from 'react';
+import { Commit } from '../../../api';
 export interface CommitMessageProps {
-	commit: Commit
+	commit: Commit;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -20,20 +21,28 @@ const TimeFormatOptions = {
 	year: 'numeric',
 	month: 'long',
 	day: 'numeric',
-}
+};
 
 export default function SingleCommitMessage({ commit }: CommitMessageProps) {
 	const styles = useStyleConfig('SingleCommitMessage', {
 		variant: 'open',
 		size: 'xl',
-	})
+	});
 	return (
 		<AccordionItem sx={styles}>
 			<h1>
 				<AccordionButton>
 					<HStack w='100%' justifyContent='space-between'>
 						<HStack fontWeight='bold'>
-							<h1>{commit.title}</h1>
+							<Heading
+								fontSize='1rem'
+								overflow='hidden'
+								w='500px'
+								textOverflow='ellipsis'
+								whiteSpace='nowrap'
+							>
+								{commit.title}
+							</Heading>
 						</HStack>
 						<AccordionIcon />
 					</HStack>
@@ -47,5 +56,5 @@ export default function SingleCommitMessage({ commit }: CommitMessageProps) {
 				</UnorderedList>
 			</AccordionPanel>
 		</AccordionItem>
-	)
+	);
 }

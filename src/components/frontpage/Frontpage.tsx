@@ -1,14 +1,18 @@
 import { Flex, Heading } from '@chakra-ui/layout';
-import { FC } from 'react';
+import React, { FC, useContext } from 'react';
+import { ThemeContext } from '../../App';
 
 const Frontpage: FC = () => {
+	const theme = useContext(ThemeContext);
+	const darkmode = theme.darkmode;
+
 	return (
 		<Flex
 			minH='85vh'
 			maxH='85vh'
 			justifyContent='center'
 			alignItems='center'
-			backgroundColor='Highlight'
+			backgroundColor={darkmode ? 'black' : 'Highlight'}
 			color='HighlightText'
 			fontFamily='heading'
 		>

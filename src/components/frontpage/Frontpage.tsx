@@ -23,7 +23,7 @@ const Frontpage: FC<{}> = () => {
 			minH='85vh'
 			maxH='85vh'
 			flexDir='column'
-			backgroundColor={darkmode ? 'black' : 'Highlight'}
+			backgroundColor={darkmode ? '#121212' : 'Highlight'}
 			color='HighlightText'
 			fontFamily='heading'
 		>
@@ -47,8 +47,9 @@ const Frontpage: FC<{}> = () => {
 					onSubmit={storeName}
 				>
 					<FormControl margin={3}>
-						<FormLabel>Enter your name</FormLabel>
+						<FormLabel color={color}>Enter your name</FormLabel>
 						<Input
+							color={color}
 							focusBorderColor={darkmode ? '#fff' : 'green.500'}
 							isRequired
 							type='text'

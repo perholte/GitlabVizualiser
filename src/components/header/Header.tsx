@@ -1,53 +1,63 @@
-import React, { useContext } from 'react';
-import { Flex, Button, Switch } from '@chakra-ui/react';
+import { Box, Button, Flex, Switch } from '@chakra-ui/react';
+import { createBreakpoints } from '@chakra-ui/theme-tools';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '../../App';
+import { ThemeContext as DarkmodeContext } from '../../App';
+import './Header.css';
+
+// This is the default breakpoint
+export const breakpoints = createBreakpoints({
+	sm: '30em',
+	md: '48em',
+	lg: '62em',
+	xl: '80em',
+	'2xl': '96em',
+});
+
 interface HeaderProps {
 	handleToggleTheme: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
-	const theme = useContext(ThemeContext);
-
+	const theme = useContext(DarkmodeContext);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const darkmode = theme.darkmode;
 	return (
 		<Flex
 			as='nav'
-			align='center'
-			justify='space-evenly'
-			w='100%'
-			mb={0}
+			justify='center'
+			align={{
+				sm: 'stretch',
+				md: 'stretch',
+				lg: 'center',
+				xl: 'center',
+			}}
+			direction={['column', 'column', 'column', 'row']}
+			wrap='wrap'
+			w='100vw'
+			margin='0 auto'
+			mb={8}
 			p={8}
-			bg={'seagreen'}
-			color={'MenuText'}
-			minH='15vh'
-			maxH='15vh'
+			color={'black'}
 		>
-			<Link to='/'>
-				<Button marginX='1rem' h='3rem' w='full'>
-					Home
-				</Button>
+			<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
+				<Switch
+					isChecked={theme.darkmode}
+					onChange={handleToggleTheme}
+				/>
+			</Box>
+			<Link className='header-btn' to='/branches'>
+				<Button>Branches</Button>
 			</Link>
-			<Link to='/branches'>
-				<Button marginX='1rem' h='3rem' w='full'>
-					Branches
-				</Button>
+			<Link className='header-btn' to='/issues'>
+				<Button>Issues</Button>
 			</Link>
-			<Link to='/issues'>
-				<Button marginX='1rem' h='3rem' w='full'>
-					Issues
-				</Button>
+			<Link className='header-btn' to='/contributors'>
+				<Button>Contributors</Button>
 			</Link>
-			<Link to='/contributors'>
-				<Button marginX='1rem' h='3rem' w='full'>
-					Contributors
-				</Button>
+			<Link className='header-btn' to='/messages'>
+				<Button>Commits</Button>
 			</Link>
-			<Link to='/messages'>
-				<Button marginX='1rem' h='3rem' w='full'>
-					Commits
-				</Button>
-			</Link>
-			<Switch isChecked={theme.darkmode} onChange={handleToggleTheme} />
 		</Flex>
 	);
 };

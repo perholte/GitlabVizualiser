@@ -17,43 +17,42 @@ const BranchTree = () => {
 
 	return (
 		<Center>
-			<Gitgraph options={options}>
-				{(gitgraph) => {
-					getBranches().then((res) => {
-						const branches: Array<Branch> = []
-						let master: any
-						const mergedBranches: any = []
+			<svg viewBox="0 0 1500 1500">
+				<Gitgraph options={options}>
+					{(gitgraph) => {
+						getBranches().then((res) => {
+							const branches: Array<Branch> = []
+							let master: any
+							const mergedBranches: any = []
 
-						for (let i = 0; i < res.length; i++) {
-							if (
-								res[i].name === 'main' ||
-								res[i].name === 'master'
-							) {
-								master = gitgraph.branch(res[i].name).commit('')
-							} else {
-								branches.push(res[i])
-							}
-						}
+							res.forEach(element => {
+								if(element.name === "main" || element.name === "master") {
+									master = gitgraph.branch(element.name).commit("")
+								} else {
+									branches.push(element)
+								}
+							})
 
-						branches.forEach((element) => {
-							if (element.merged) {
-								mergedBranches.push(
+							branches.forEach((element) => {
+								if (element.merged) {
+									mergedBranches.push(
+										master
+											.branch(element)
+											.commit("")
+									)
+								} else {
 									master
 										.branch(element)
-										.commit(element.commit.title)
-								)
-							} else {
-								master
-									.branch(element)
-									.commit(element.commit.title)
-							}
+										.commit("")
+								}
+							})
+							mergedBranches.forEach((element: any) => {
+								master.merge(element, " ")
+							})
 						})
-						mergedBranches.forEach((element: any) => {
-							master.merge(element)
-						})
-					})
-				}}
-			</Gitgraph>
+					}}
+				</Gitgraph>
+			</svg>
 		</Center>
 	)
 }

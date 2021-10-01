@@ -13,7 +13,6 @@ export const ThemeContext = React.createContext({ darkmode: false });
 
 function App() {
 	const [darkmode, setDarkmode] = useState<boolean>(false);
-	console.log(darkmode);
 
 	return (
 		<ThemeContext.Provider value={{ darkmode: darkmode }}>

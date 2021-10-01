@@ -8,7 +8,6 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 	const theme = useContext(ThemeContext);
-	console.log({ theme });
 
 	return (
 		<Flex

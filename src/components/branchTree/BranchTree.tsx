@@ -1,4 +1,4 @@
-import { VStack } from '@chakra-ui/layout';
+import { Center } from '@chakra-ui/react';
 import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
 import { Branch, getBranches } from '../../api';
 import Greeting from '../common/Greeting';
@@ -17,48 +17,46 @@ const BranchTree = () => {
 	};
 
 	return (
-		<VStack>
+		<Center flexDirection={'column'}>
 			<Greeting />
-			<Gitgraph options={options}>
-				{(gitgraph) => {
-					getBranches().then((res) => {
-						const branches: Array<Branch> = [];
-						let master: any;
-						const mergedBranches: any = [];
+			<svg id='graph-container' viewBox='0 0 600 600'>
+				<Gitgraph options={options}>
+					{(gitgraph) => {
+						getBranches().then((res) => {
+							const branches: Array<Branch> = [];
+							let master: any;
+							const mergedBranches: any = [];
 
-						for (let i = 0; i < res.length; i++) {
-							if (
-								res[i].name === 'main' ||
-								res[i].name === 'master'
-							) {
-								master = gitgraph
-									.branch(res[i].name)
-									.commit('');
-							} else {
-								branches.push(res[i]);
-							}
-						}
+							res.forEach((element) => {
+								if (
+									element.name === 'main' ||
+									element.name === 'master'
+								) {
+									master = gitgraph
+										.branch(element.name)
+										.commit('');
+								} else {
+									branches.push(element);
+								}
+							});
 
-						branches.forEach((element) => {
-							if (element.merged) {
-								mergedBranches.push(
-									master
-										.branch(element)
-										.commit(element.commit.title)
-								);
-							} else {
-								master
-									.branch(element)
-									.commit(element.commit.title);
-							}
+							branches.forEach((element) => {
+								if (element.merged) {
+									mergedBranches.push(
+										master.branch(element).commit('')
+									);
+								} else {
+									master.branch(element).commit('');
+								}
+							});
+							mergedBranches.forEach((element: any) => {
+								master.merge(element, ' ');
+							});
 						});
-						mergedBranches.forEach((element: any) => {
-							master.merge(element);
-						});
-					});
-				}}
-			</Gitgraph>
-		</VStack>
+					}}
+				</Gitgraph>
+			</svg>
+		</Center>
 	);
 };
 export default BranchTree;

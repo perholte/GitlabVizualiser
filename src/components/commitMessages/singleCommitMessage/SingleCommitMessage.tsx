@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { Commit } from '../../../api';
+import '../../issues/issues.css';
 export interface CommitMessageProps {
 	commit: Commit;
 }
@@ -29,7 +30,7 @@ export default function SingleCommitMessage({ commit }: CommitMessageProps) {
 		size: 'xl',
 	});
 	return (
-		<AccordionItem sx={styles}>
+		<AccordionItem sx={styles} className='issue_element'>
 			<h1>
 				<AccordionButton>
 					<HStack w='100%' justifyContent='space-between'>

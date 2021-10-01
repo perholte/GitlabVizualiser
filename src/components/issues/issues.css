@@ -1,4 +1,6 @@
 #issue_list {
+	display: flex;
+	flex-direction: column;
 	margin: auto;
 	max-width: 600px;
 }
@@ -10,6 +12,9 @@
 	}
 }
 
+.issue_element {
+	margin-top: .5em !important;
+}
 
 .issue_element ul,
 .issue_element ol {

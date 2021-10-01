@@ -3,6 +3,7 @@ import App from '../App'
 import { BrowserRouter } from "react-router-dom"
 import { act } from "react-dom/test-utils"
 import { QueryClient, QueryClientProvider } from "react-query"
+import Header from '../components/Header/Header'
 
 // Prosjektet skal vise oppsett av og eksempel på testing med Jest - minimum er å ha en snapshottest og noen enkle tester på komponentenes oppførsel.
 
@@ -18,8 +19,12 @@ beforeEach(() => {
 )
 afterEach(cleanup)
 
-it("renders the header correctly", () => {
+it("renders the App correctly", () => {
   expect(<App></App>).toMatchSnapshot()
+})
+
+it("Renders the header correctly", () => {
+  expect(<Header></Header>).toMatchSnapshot()
 })
 
 
@@ -28,6 +33,7 @@ describe("Checking the routing of the header", () =>{
   it("Should be on the home page", () => {
     expect(location.pathname).toEqual("/")
   })
+  //Check that the correct component is showed.
   
   it("Re-routes to branches when branches-link is clicked", async () => {
     act(() => {
@@ -36,7 +42,9 @@ describe("Checking the routing of the header", () =>{
     })
     expect(location.pathname).toEqual("/branches")
   })
-  
+    //Check that the correct component is showed.
+
+
   it("Re-routes to issues when issues-link is clicked", async () => {
     act(() => {
       const issueLink = screen.getByText("Issues") 
@@ -44,7 +52,9 @@ describe("Checking the routing of the header", () =>{
     })
     expect(location.pathname).toEqual("/issues")
   })
-  
+    //Check that the correct component is showed.
+
+
   it("Re-routes to commit-messages when commit-link is clicked", async () => {
     act(() => {
       const commitLink = screen.getByText("Commit messages") 
@@ -53,7 +63,9 @@ describe("Checking the routing of the header", () =>{
     expect(location.pathname).toEqual("/messages")
     
   })
-  
+    //Check that the correct component is showed.
+
+
   it("Re-routes to contributors when contributor-link is clicked", async () => {
     act(() => {
       const contributorLink = screen.getByText("Contributors") 
@@ -61,5 +73,5 @@ describe("Checking the routing of the header", () =>{
     })
     expect(location.pathname).toEqual("/contributors")
   })
-  
+    //Check that the correct component is showed.
 })

@@ -1,3 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the header correctly 1`] = `<App />`;
+exports[`Renders the header correctly 1`] = `<Header />`;
+
+exports[`renders the App correctly 1`] = `<App />`;
+

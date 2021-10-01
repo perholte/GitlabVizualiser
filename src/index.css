@@ -14,26 +14,10 @@ body,
   min-height: 100vh;
 }
 
-:root.light {
-  --color-1: red;
-  --color-2: green;
-  --color-3: blue;
-  --color-4: yellow;
-}
-
-:root.dark {
-  --color-1: pink;
-  --color-2: blueviolet;
-  --color-3: gold;
-  --color-4: silver;
-}
-
-
 #root {
   position: relative !important;
   overflow-x: hidden;
   margin-bottom: 3em;
-  /* background: var(--color-2) !important; */
 }
 
 code {

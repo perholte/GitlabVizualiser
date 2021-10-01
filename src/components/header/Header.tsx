@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Switch, useStyleConfig } from '@chakra-ui/react';
+import { Box, Button, Flex, Switch } from '@chakra-ui/react';
 import { createBreakpoints } from '@chakra-ui/theme-tools';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -20,11 +20,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 	const theme = useContext(DarkmodeContext);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const darkmode = theme.darkmode;
-	const styles = useStyleConfig('Container', {
-		darkMode: false,
-	});
-	console.log(styles);
 	return (
 		<Flex
 			as='nav'
@@ -41,8 +38,7 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 			margin='0 auto'
 			mb={8}
 			p={8}
-			bg={darkmode ? 'red' : 'transparent'}
-			color={['black', 'black', 'black', 'black']}
+			color={'black'}
 		>
 			<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
 				<Switch

@@ -5,15 +5,6 @@ const theme = extendTheme({
 	fonts: {
 		body: 'Helvetica',
 	},
-	colors: {
-		1: '#000',
-		2: '#fff',
-		3: '#aaa',
-		4: '#123abc',
-		5: '#ff0',
-		6: '#ff00ffaa',
-		7: '#00ff00aa',
-	},
 	components: {
 		Button: {
 			baseStyle: {
@@ -22,14 +13,6 @@ const theme = extendTheme({
 		},
 		Issue: IssueConfig,
 		SingleCommitMessage: IssueConfig,
-		Container: {
-			baseStyle: (darkMode: boolean) => ({
-				bg: darkMode ? "#000" : "#fff",
-				color: darkMode ? "#fff" : "#000",
-			}),
-			variants: {},
-			sizes: {}
-		},
 	},
 })
 

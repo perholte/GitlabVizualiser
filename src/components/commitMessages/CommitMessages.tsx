@@ -105,7 +105,6 @@ const CommitMessages = () => {
 						<b>Antall commits</b>
 					</h1>
 					<MyInput
-						className={'Commit-message-input'}
 						numberChange={(a) => numberChange(a)}
 						value={settings.number}
 					/>

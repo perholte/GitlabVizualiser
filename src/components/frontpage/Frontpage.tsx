@@ -1,6 +1,6 @@
 import { Center, Heading } from '@chakra-ui/layout';
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import React, { FC, FormEventHandler, useContext, useState } from 'react';
+import React, { FC, FormEventHandler, useState, useContext } from 'react';
 import { ThemeContext } from '../../App';
 
 const Frontpage: FC = () => {

@@ -10,7 +10,6 @@ import React, { Component } from 'react'
 interface MyInputIProps {
 	numberChange: (s: any) => void
 	value: number
-	className?: string
 }
 
 class MyInput extends Component<MyInputIProps> {
@@ -25,7 +24,6 @@ class MyInput extends Component<MyInputIProps> {
 				max={20}
 				value={this.props.value}
 				onChange={this.update.bind(this)}
-				className={this.props.className}
 			>
 				<NumberInputField />
 				<NumberInputStepper>

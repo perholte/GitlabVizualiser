@@ -1,10 +1,4 @@
-import {
-	Accordion,
-	Box,
-	Container,
-	StackDivider,
-	VStack,
-} from '@chakra-ui/react';
+import { Box, Container, StackDivider, VStack } from '@chakra-ui/react';
 import * as React from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Commit, getCommits } from '../../api/index';
@@ -42,6 +36,8 @@ const CommitMessages = () => {
 			let c = await fetchCommits();
 			if (c) {
 				c = sortAndFilterCommits(c);
+			} else {
+				console.log('fuuu');
 			}
 			setCommits(c);
 		})();
@@ -67,6 +63,8 @@ const CommitMessages = () => {
 			let c = await fetchCommits();
 			if (c) {
 				c = sortAndFilterCommits(c);
+			} else {
+				console.log('fuuu');
 			}
 			setCommits(c);
 		})();
@@ -93,10 +91,9 @@ const CommitMessages = () => {
 			<Container
 				ref={dateRef}
 				maxW={'container.lg'}
-				minW={['4em']}
 				margin={'5em auto'}
 				display={'flex'}
-				flexDirection={['column', 'row', 'row', 'row']}
+				flexDirection={'row'}
 				justifyContent={'center'}
 				width={'100vw'}
 			>
@@ -119,7 +116,7 @@ const CommitMessages = () => {
 						minDate={new Date(163283426645)}
 						format={'dd.MM.y'}
 						clearIcon={null}
-						className={'My-styled-date-picker Commit-message-input'}
+						className={'My-styled-date-picker'}
 						onChange={(evt: any) => updateDate(evt)}
 						value={settings.date}
 					/>
@@ -129,22 +126,13 @@ const CommitMessages = () => {
 				divider={<StackDivider borderColor={'gray.200'} />}
 				spacing={4}
 				align='center'
-				margin={'2em auto'}
+				margin={'auto'}
 			>
-				<Accordion
-					margin={'2em auto'}
-					allowMultiple={false}
-					allowToggle={true}
-				>
-					{commits
-						? commits.map((c) => (
-								<SingleCommitMessage
-									commit={c}
-									key={c.short_id}
-								/>
-						  ))
-						: null}
-				</Accordion>
+				{commits
+					? commits.map((c) => (
+							<SingleCommitMessage commit={c} key={c.short_id} />
+					  ))
+					: null}
 			</VStack>
 		</VStack>
 	);

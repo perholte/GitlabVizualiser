@@ -1,16 +1,14 @@
 import {
+	AccordionItem,
 	AccordionButton,
 	AccordionIcon,
-	AccordionItem,
 	AccordionPanel,
 } from '@chakra-ui/accordion';
 import { HStack } from '@chakra-ui/layout';
 import { useStyleConfig } from '@chakra-ui/react';
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import { containerStyles } from '../style/styles';
-import './issues.css';
 
 //TODO: update this type and maybe move it to a 'type' folder
 export interface IssueType {
@@ -30,23 +28,19 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 	});
 
 	return (
-		<AccordionItem sx={styles} className='issue_element'>
+		<AccordionItem sx={styles}>
 			<AccordionButton>
 				<HStack w='100%' justifyContent='space-between'>
-					<HStack fontWeight='bold'>
+					<HStack>
 						<span style={{ width: '4ch', textAlign: 'left' }}>
 							{'#' + data.id}
 						</span>
-						<ReactMarkdown>{data.title}</ReactMarkdown>
+						<h2>{data.title}</h2>
 					</HStack>
-					{data.description ? <AccordionIcon /> : null}
+					<AccordionIcon />
 				</HStack>
 			</AccordionButton>
-			{data.description ? (
-				<AccordionPanel pb={4}>
-					<ReactMarkdown>{data.description}</ReactMarkdown>
-				</AccordionPanel>
-			) : null}
+			<AccordionPanel pb={4}>{data.description}</AccordionPanel>
 		</AccordionItem>
 	);
 };

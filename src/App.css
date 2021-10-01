@@ -11,3 +11,13 @@
 	border-color: black;
 	border-width: 1px;
 }
+
+.dark {
+	background: #121212;
+	color: #eee;
+}
+
+.light {
+	background-color: #fefefe;
+	color: black;
+}

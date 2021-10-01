@@ -21,7 +21,7 @@ const IssueList = () => {
 	}
 
 	return (
-		<Accordion allowMultiple id='issue_list'>
+		<Accordion allowMultiple={false} allowToggle={true} id='issue_list'>
 			<VStack>
 				{data.map(
 					(issue: {

@@ -5,6 +5,7 @@ import Contributions from './components/contributions/Contributions';
 import Header from './components/header/Header';
 import IssueList from './components/issues/IssueList';
 import Frontpage from './components/frontpage/Frontpage';
+import CommitMessages from './components/commitMessages/CommitMessages';
 
 function App() {
 	return (
@@ -21,8 +22,7 @@ function App() {
 					<Contributions />
 				</Route>
 				<Route path='/messages'>
-					{/*<BranchTree/>*/}
-					<p>Commit messages</p>
+					<CommitMessages />
 				</Route>
 				<Route path='/'>
 					<Frontpage />

@@ -1,5 +1,6 @@
-import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
-import { Branch, getBranches } from '../../api';
+import { Center } from '@chakra-ui/layout'
+import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react'
+import { Branch, getBranches } from '../../api'
 
 const BranchTree = () => {
 	const options = {
@@ -12,38 +13,48 @@ const BranchTree = () => {
 				},
 			},
 		}),
-	};
+	}
 
-  return <>
-    <Gitgraph options={options}>
-      {(gitgraph) => {
-        getBranches().then((res) => {
-          const branches: Array<Branch> = []
-          let master:any
-          const mergedBranches:any = []
-          
-          for (let i = 0; i < res.length; i++) {
-            if (res[i].name === "main" || res[i].name === "master") {
-              master = gitgraph.branch(res[i].name).commit("");
-            } else {
-                branches.push(res[i]);
-            }
-          }
+	return (
+		<Center>
+			<Gitgraph options={options}>
+				{(gitgraph) => {
+					getBranches().then((res) => {
+						const branches: Array<Branch> = []
+						let master: any
+						const mergedBranches: any = []
 
-          branches.forEach(element => { 
-            if (element.merged) {
-              mergedBranches.push(master.branch(element).commit(element.commit.title))
-            } else {
-              master.branch(element).commit(element.commit.title)
-            }
-          }) 
-          mergedBranches.forEach((element: any) => {
-            master.merge(element)
-          })
-        })
-    }
-  }
-    </Gitgraph>
-  </>;
-};
-export default BranchTree;
+						for (let i = 0; i < res.length; i++) {
+							if (
+								res[i].name === 'main' ||
+								res[i].name === 'master'
+							) {
+								master = gitgraph.branch(res[i].name).commit('')
+							} else {
+								branches.push(res[i])
+							}
+						}
+
+						branches.forEach((element) => {
+							if (element.merged) {
+								mergedBranches.push(
+									master
+										.branch(element)
+										.commit(element.commit.title)
+								)
+							} else {
+								master
+									.branch(element)
+									.commit(element.commit.title)
+							}
+						})
+						mergedBranches.forEach((element: any) => {
+							master.merge(element)
+						})
+					})
+				}}
+			</Gitgraph>
+		</Center>
+	)
+}
+export default BranchTree

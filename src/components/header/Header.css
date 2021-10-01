@@ -1,0 +1,10 @@
+.header-btn {
+    margin: auto 2em;
+    width: auto;
+    flex-direction: column;
+    width: auto;
+}
+
+.header-btn>button {
+    width: 100%;
+}

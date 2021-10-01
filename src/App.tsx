@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import BranchTree from './components/branchTree/BranchTree';
 import CommitMessages from './components/commitMessages/CommitMessages';
 import Contributions from './components/contributions/Contributions';
-import IssueList from './components/issues/IssueList';
-import Header from './components/header/Header';
 import Frontpage from './components/frontpage/Frontpage';
+import Header from './components/header/Header';
+import IssueList from './components/issues/IssueList';
 
 export const ThemeContext = React.createContext({ darkmode: false });
 
@@ -15,14 +14,12 @@ function App() {
 	const [darkmode, setDarkmode] = useState<boolean>(() =>
 		JSON.parse(localStorage.getItem('darkmode') ?? 'false')
 	);
-
 	useEffect(() => {
 		document.getElementById('root')!.className = darkmode
 			? 'dark'
 			: 'light';
 		localStorage.setItem('darkmode', JSON.stringify(darkmode));
 	}, [darkmode]);
-
 	return (
 		<ThemeContext.Provider value={{ darkmode: darkmode }}>
 			<Header handleToggleTheme={() => setDarkmode(!darkmode)} />
@@ -33,7 +30,7 @@ function App() {
 				<Route path='/issues'>
 					<IssueList />
 				</Route>
-				<Route path='/Contributors'>
+				<Route path='/contributors'>
 					<Contributions />
 				</Route>
 				<Route path='/messages'>

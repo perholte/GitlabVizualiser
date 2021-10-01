@@ -11,7 +11,6 @@ import {
 	Stack,
 	Center,
 } from '@chakra-ui/react';
-// import { createBreakpoints } from '@chakra-ui/theme-tools';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext as DarkmodeContext } from '../../App';
@@ -69,10 +68,15 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 				</HStack>
 
 				<Center w='7rem'>
-					<Switch isChecked={darkmode} onChange={handleToggleTheme} />
+					<Switch
+						isChecked={darkmode}
+						onChange={handleToggleTheme}
+						colorScheme='whiteAlpha'
+					/>
 				</Center>
 
 				<IconButton
+					transitionDuration='0'
 					display={{ lg: 'none' }}
 					size={'md'}
 					bgColor={darkmode ? 'seagreen' : 'white'}

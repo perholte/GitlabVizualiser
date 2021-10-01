@@ -3,7 +3,7 @@ import App from '../App'
 import { BrowserRouter } from "react-router-dom"
 import { act } from "react-dom/test-utils"
 import { QueryClient, QueryClientProvider } from "react-query"
-import Header from '../components/Header/Header'
+import Header from '../components/header/Header'
 
 // Prosjektet skal vise oppsett av og eksempel på testing med Jest - minimum er å ha en snapshottest og noen enkle tester på komponentenes oppførsel.
 

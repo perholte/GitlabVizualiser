@@ -1,4 +1,4 @@
-import { Center, VStack } from '@chakra-ui/layout';
+import { VStack } from '@chakra-ui/layout';
 import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
 import { Branch, getBranches } from '../../api';
 import Greeting from '../common/Greeting';

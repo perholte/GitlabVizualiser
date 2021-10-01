@@ -8,6 +8,7 @@ import Chart from './Chart';
 const Contributions: FC = () => {
 	return (
 		<Center flexDir='column'>
+			<Greeting />
 			<Container maxW='container.sm' sx={containerStyles}>
 				<Flex marginY={5} flexDir='column' alignItems='center'>
 					<Heading>Contributions</Heading>
@@ -15,7 +16,6 @@ const Contributions: FC = () => {
 					<Chart />
 				</Flex>
 			</Container>
-			<Greeting />
 		</Center>
 	);
 };

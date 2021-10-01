@@ -1,91 +1,93 @@
-import { Box, Container, StackDivider, VStack } from '@chakra-ui/react'
-import * as React from 'react'
-import DateTimePicker from 'react-datetime-picker'
-import { Commit, getCommits } from '../../api/index'
-import './CommitMessages.css'
-import MyInput from './inputs/NumberInput'
-import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage'
+import { Box, Container, StackDivider, VStack } from '@chakra-ui/react';
+import * as React from 'react';
+import DateTimePicker from 'react-datetime-picker';
+import { Commit, getCommits } from '../../api/index';
+import Greeting from '../common/Greeting';
+import './CommitMessages.css';
+import MyInput from './inputs/NumberInput';
+import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage';
 
 interface CommitMessageQuery {
-	date: Date
-	number: number
+	date: Date;
+	number: number;
 }
 
 const defualtQuery: CommitMessageQuery = {
 	number: 1,
 	date: new Date(new Date().getTime() - 86400 * 1000),
-}
+};
 
 const CommitMessages = () => {
-	let dateRef = React.createRef<HTMLDivElement>()
+	let dateRef = React.createRef<HTMLDivElement>();
 	let [settings, setSettings] =
-		React.useState<CommitMessageQuery>(defualtQuery)
-	let [commits, setCommits] = React.useState<Commit[] | undefined>(undefined)
+		React.useState<CommitMessageQuery>(defualtQuery);
+	let [commits, setCommits] = React.useState<Commit[] | undefined>(undefined);
 	const fetchCommits: () => Promise<Commit[] | undefined> =
 		React.useCallback(async () => {
 			try {
-				return await getCommits(settings.number)
+				return await getCommits(settings.number);
 			} catch (err) {
-				console.error(err)
+				console.error(err);
 			}
-			return undefined
-		}, [settings.number])
+			return undefined;
+		}, [settings.number]);
 	React.useEffect(() => {
-		;(async () => {
-			let c = await fetchCommits()
+		(async () => {
+			let c = await fetchCommits();
 			if (c) {
-				c = sortAndFilterCommits(c)
+				c = sortAndFilterCommits(c);
 			} else {
-				console.log('fuuu')
+				console.log('fuuu');
 			}
-			setCommits(c)
-		})()
+			setCommits(c);
+		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [fetchCommits, settings.date])
+	}, [fetchCommits, settings.date]);
 	function sortAndFilterCommits(commits: Commit[]): Commit[] {
 		// Sort commits in ascending order with respect to date
 		commits.sort((a, b) => {
-			let t0 = a.created_at.getTime()
-			let t1 = b.created_at.getTime()
-			return t0 > t1 ? 1 : -1
-		})
+			let t0 = a.created_at.getTime();
+			let t1 = b.created_at.getTime();
+			return t0 > t1 ? 1 : -1;
+		});
 		// Filter out commits that are older than the user specified date
 		// console.log(commits.map((c) => c.created_at))
 		commits = commits.filter(
 			(c) => c.created_at.getTime() > settings.date.getTime()
-		)
-		return commits
+		);
+		return commits;
 	}
 	const numberChange = (newNumber: any) => {
-		setSettings({ ...settings, number: parseInt(newNumber) })
-		;(async () => {
-			let c = await fetchCommits()
+		setSettings({ ...settings, number: parseInt(newNumber) });
+		(async () => {
+			let c = await fetchCommits();
 			if (c) {
-				c = sortAndFilterCommits(c)
+				c = sortAndFilterCommits(c);
 			} else {
-				console.log('fuuu')
+				console.log('fuuu');
 			}
-			setCommits(c)
-		})()
-	}
+			setCommits(c);
+		})();
+	};
 	const updateDate = (newDate: any) => {
-		let date
+		let date;
 		if (newDate instanceof Date) {
-			date = newDate
+			date = newDate;
 		} else {
 			date = new Date(
 				new Date().getTime() + newDate?.timeStamp ||
 					new Date().getTime()
-			)
+			);
 		}
 		let newSettings: CommitMessageQuery = {
 			...settings,
 			date,
-		}
-		setSettings(newSettings)
-	}
+		};
+		setSettings(newSettings);
+	};
 	return (
-		<div id='Commit-messages-container'>
+		<VStack id='Commit-messages-container'>
+			<Greeting />
 			<Container
 				ref={dateRef}
 				maxW={'container.lg'}
@@ -132,8 +134,8 @@ const CommitMessages = () => {
 					  ))
 					: null}
 			</VStack>
-		</div>
-	)
-}
+		</VStack>
+	);
+};
 
-export default CommitMessages
+export default CommitMessages;

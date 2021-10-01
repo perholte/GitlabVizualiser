@@ -24,7 +24,7 @@ const Frontpage: FC<{}> = () => {
 			minH='85vh'
 			maxH='85vh'
 			flexDir='column'
-			backgroundColor={darkmode ? 'black' : 'Highlight'}
+			backgroundColor={darkmode ? '#121212' : 'Highlight'}
 			color='HighlightText'
 			fontFamily='heading'
 		>

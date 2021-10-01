@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# GitLabViz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dette er GitLabViz, en datavisualisering av vårt GitLab repository. Dataene som presenteres er
 
-## Available Scripts
+-   Meldingene fra de siste commitene
+-   Antall commits fra hver student
+-   Et tre med oversikt git branchene våre
+-   En liste med issuene våre
 
-In the project directory, you can run:
+## Valg av løsninger
 
-### `yarn start`
+### Sideelementer
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Av sideelementer har vi valgt å hente ut data fra tre områder som vi mener er sentrale i utvikling med Git/GitLab: commits, branches og issues.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+På websiden er det to bokser som inneholder informasjon om commits: en for commitmeldingene fra de siste committene som er blitt pushet til main-branchen, og ett kakediagram som reflekterer mengden commits fra de ulike utviklerne.
 
-### `yarn test`
+Branch-dataene har vi visualisert gjennom en tre-graf som viser hvordan de ulike branchene våre har utviklet seg over tid. Dette følte vi var den mest oversiktlige måten å presentere slik data på.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Issuene våre har vi visualisert gjennom en modifiserbar liste, der man kan legge inn antall ønskede commits (fra 1 til 20) og et tidsinterval for commiten.
 
-### `yarn build`
+Som utforming har vi valgt å ha ha vært element på hver sin side. Dette mener vi gjør siden oversiktlig og entydig. Samtidig er det lett og navigere til deulike sidene gjennom knappene i headeren, eventuelt boksene på forsiden.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Responsivitet
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ved brede skjermer (typisk PC-skjermer og nettbrett) har vi plassert knappene horisontalt, mens ved smalere skjermer (typisk mobiltelefoner) har vi plassert knappene vertikalt. Dette gjør vi får at siden skal være lesbar på flere typer skjermer.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Lokal lagring
 
-### `yarn eject`
+### Parameterisert datauthenting
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Chakra
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Vi har valgt å ta i bruk UI-biblioteket Chakra UI. Dette er et bibliotekt som gjør det lett å både ta i bruk ferdiglagde komponenter, og lage egne komponenter. I tillegg har den støtte får å ha et globalt fargetema samt mulighet for å implementere både light og dark mode. Gjennom Chakra har vi også fått bruk flexbox og CSSGrid.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Recharts
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Recharts er et populært grafbibliotek for React. Vi har brukt det til å lage et doughnut diagram slik at vi får presentert dataen vår på en hensiktsmessig måte.

@@ -1,24 +1,25 @@
-import { Flex, Heading } from '@chakra-ui/layout';
+import { Center, Heading } from '@chakra-ui/layout';
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { FC, FormEventHandler, useState } from 'react';
 
 const Frontpage: FC = () => {
 	const [name, setName] = useState<string>();
-	const [submitted, setSubmitted] = useState<boolean>(false);
+	const [rerender, setRerender] = useState<boolean>(false);
+
+	const hasName = () => {
+		return sessionStorage.getItem('name');
+	};
 
 	const storeName: FormEventHandler = (event) => {
-		event.preventDefault();
 		sessionStorage.setItem('name', name!);
-		setSubmitted(true);
+		setRerender(!rerender);
 	};
 
 	return (
-		<Flex
+		<Center
 			minH='85vh'
 			maxH='85vh'
 			flexDir='column'
-			justifyContent='center'
-			alignItems='center'
 			backgroundColor='Highlight'
 			color='HighlightText'
 			fontFamily='heading'
@@ -26,9 +27,9 @@ const Frontpage: FC = () => {
 			<Heading justifyContent='center' textAlign='center' size='4xl'>
 				GitLabViz
 			</Heading>
-			{!submitted ? (
+			{!hasName() ? (
 				<form onSubmit={storeName}>
-					<FormControl>
+					<FormControl margin={3}>
 						<FormLabel>Enter your name</FormLabel>
 						<Input
 							isRequired
@@ -42,7 +43,7 @@ const Frontpage: FC = () => {
 			) : (
 				<p>Your name will be displayed on the different pages :)</p>
 			)}
-		</Flex>
+		</Center>
 	);
 };
 

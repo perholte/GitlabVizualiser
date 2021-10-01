@@ -39,6 +39,9 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 			p={8}
 			color={'black'}
 		>
+			<Link className='header-btn' to='/'>
+				<Button>Home</Button>
+			</Link>
 			<Link className='header-btn' to='/branches'>
 				<Button>Branches</Button>
 			</Link>

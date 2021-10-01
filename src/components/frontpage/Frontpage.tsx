@@ -37,7 +37,6 @@ const Frontpage: FC = () => {
 						<Input
 							isRequired
 							type='text'
-							placeholder='Your name here'
 							onChange={(event) => setName(event.target.value)}
 						></Input>
 					</FormControl>

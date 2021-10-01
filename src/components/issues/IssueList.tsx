@@ -2,6 +2,7 @@ import { Accordion } from '@chakra-ui/accordion';
 import { VStack } from '@chakra-ui/layout';
 import React from 'react';
 import { useQuery } from 'react-query';
+import Greeting from '../common/Greeting';
 import Issue from './Issue';
 import './issues.css';
 
@@ -15,13 +16,12 @@ const IssueList = () => {
 			},
 		}).then((res) => res.json())
 	);
-
 	if (error || isLoading || !data) {
 		return <></>;
 	}
-
 	return (
 		<Accordion allowMultiple={false} allowToggle={true} id='issue_list'>
+			<Greeting />
 			<VStack>
 				{data.map(
 					(issue: {

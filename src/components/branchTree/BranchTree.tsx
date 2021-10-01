@@ -1,6 +1,7 @@
-import { Center } from '@chakra-ui/layout'
-import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react'
-import { Branch, getBranches } from '../../api'
+import { VStack } from '@chakra-ui/layout';
+import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
+import { Branch, getBranches } from '../../api';
+import Greeting from '../common/Greeting';
 
 const BranchTree = () => {
 	const options = {
@@ -13,7 +14,7 @@ const BranchTree = () => {
 				},
 			},
 		}),
-	}
+	};
 
 	return (
 		<Center>

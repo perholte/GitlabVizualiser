@@ -9,3 +9,13 @@
 	max-height: 600px;
 	border-color: black;
 }
+
+.dark {
+	background: #121212;
+	color: seagreen;
+}
+
+.light {
+	background-color: #fefefe;
+	color: black;
+}

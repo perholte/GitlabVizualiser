@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 					<Button>Contributors</Button>
 				</Link>
 				<Link className='header-btn' to='/messages'>
-					<Button>Commit messages</Button>
+					<Button>Commits</Button>
 				</Link>
 			</Flex>
 		</>

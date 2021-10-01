@@ -1,4 +1,10 @@
-import { Box, Container, StackDivider, VStack } from '@chakra-ui/react'
+import {
+	Accordion,
+	Box,
+	Container,
+	StackDivider,
+	VStack,
+} from '@chakra-ui/react'
 import * as React from 'react'
 import DateTimePicker from 'react-datetime-picker'
 import { Commit, getCommits } from '../../api/index'
@@ -35,8 +41,6 @@ const CommitMessages = () => {
 			let c = await fetchCommits()
 			if (c) {
 				c = sortAndFilterCommits(c)
-			} else {
-				console.log('fuuu')
 			}
 			setCommits(c)
 		})()
@@ -62,8 +66,6 @@ const CommitMessages = () => {
 			let c = await fetchCommits()
 			if (c) {
 				c = sortAndFilterCommits(c)
-			} else {
-				console.log('fuuu')
 			}
 			setCommits(c)
 		})()
@@ -128,11 +130,16 @@ const CommitMessages = () => {
 				align='center'
 				margin={'auto'}
 			>
-				{commits
-					? commits.map((c) => (
-							<SingleCommitMessage commit={c} key={c.short_id} />
-					  ))
-					: null}
+				<Accordion allowMultiple={false} allowToggle={true}>
+					{commits
+						? commits.map((c) => (
+								<SingleCommitMessage
+									commit={c}
+									key={c.short_id}
+								/>
+						  ))
+						: null}
+				</Accordion>
 			</VStack>
 		</div>
 	)

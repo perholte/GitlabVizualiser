@@ -1,7 +1,7 @@
-import { Button, Flex } from '@chakra-ui/react'
+import { Button, Flex, Switch } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { useContext } from 'react'
-import { Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ThemeContext as DarkmodeContext } from '../../App'
 import './Header.css'
 

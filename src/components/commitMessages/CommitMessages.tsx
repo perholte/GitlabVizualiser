@@ -31,7 +31,9 @@ const CommitMessages = () => {
 	const fetchCommits: () => Promise<Commit[] | undefined> =
 		React.useCallback(async () => {
 			try {
-				return await getCommits(settings.number);
+				const c = await getCommits(settings.number);
+				console.log(c.length);
+				return c;
 			} catch (err) {
 				console.error(err);
 			}
@@ -56,9 +58,9 @@ const CommitMessages = () => {
 		});
 		// Filter out commits that are older than the user specified date
 		// console.log(commits.map((c) => c.created_at))
-		commits = commits.filter(
-			(c) => c.created_at.getTime() > settings.date.getTime()
-		);
+		// commits = commits.filter(
+		// 	(c) => c.created_at.getTime() > settings.date.getTime()
+		// );
 		return commits;
 	}
 	const numberChange = (newNumber: any) => {

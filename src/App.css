@@ -1,10 +1,9 @@
 #graph-container>svg {
-	width: fit-content;
-	height: fit-content;
+	max-width: fit-content;
+	max-height: fit-content;
 }
 
 #graph-container {
-	padding-top: 40px;
 	max-width: 80%;
 	max-height: 600px;
 	border-color: black;

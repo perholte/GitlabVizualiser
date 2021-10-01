@@ -1,5 +1,5 @@
 import { Center, Heading } from '@chakra-ui/layout';
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Text } from '@chakra-ui/react';
 import React, { FC, FormEventHandler, useContext, useState } from 'react';
 import { ThemeContext } from '../../App';
 
@@ -17,7 +17,6 @@ const Frontpage: FC<{}> = () => {
 	};
 	const theme = useContext(ThemeContext);
 	const darkmode = theme.darkmode;
-	// let bg = darkmode ? 'black' : 'green.500';
 	let color = !darkmode ? 'black' : 'green.500';
 	return (
 		<Center
@@ -48,8 +47,9 @@ const Frontpage: FC<{}> = () => {
 					onSubmit={storeName}
 				>
 					<FormControl margin={3}>
-						<FormLabel>Enter your name</FormLabel>
+						<FormLabel color={color}>Enter your name</FormLabel>
 						<Input
+							color={color}
 							focusBorderColor={darkmode ? '#fff' : 'green.500'}
 							isRequired
 							type='text'
@@ -63,9 +63,9 @@ const Frontpage: FC<{}> = () => {
 					</Button>
 				</form>
 			) : (
-				<p style={{ color: darkmode ? '#38A169' : '#000' }}>
+				<Text color={color}>
 					Your name will be displayed on the different pages :)
-				</p>
+				</Text>
 			)}
 		</Center>
 	);

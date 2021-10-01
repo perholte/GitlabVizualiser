@@ -1,0 +1,18 @@
+#issue_list {
+	margin: auto;
+	max-width: 600px;
+}
+
+@media only screen and (max-width: 667px) {
+	#issue_list {
+		margin: 5vw;
+		width: calc(100% - 10vw);
+	}
+}
+
+
+.issue_element ul,
+.issue_element ol {
+	margin: auto !important;
+	padding: 0 1rem !important;
+}

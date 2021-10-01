@@ -1,13 +1,16 @@
 import {
-	AccordionItem,
 	AccordionButton,
 	AccordionIcon,
+	AccordionItem,
 	AccordionPanel,
 } from '@chakra-ui/accordion';
-import { Box, HStack } from '@chakra-ui/layout';
+import { HStack } from '@chakra-ui/layout';
 import { useStyleConfig } from '@chakra-ui/react';
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import { containerStyles } from '../style/styles';
+import './issues.css';
 
 //TODO: update this type and maybe move it to a 'type' folder
 export interface IssueType {
@@ -25,22 +28,25 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 	const styles = useStyleConfig('Issue', {
 		variant: data.closed ? 'closed' : 'open',
 	});
-	console.log(styles);
 
 	return (
-		<AccordionItem sx={styles}>
+		<AccordionItem sx={styles} className='issue_element'>
 			<AccordionButton>
-				<HStack>
-					<span>{'#' + data.id}</span>
-					<h2>
-						<Box flex='1' textAlign='left'>
-							{data.title}
-						</Box>
-					</h2>
-					<AccordionIcon />
+				<HStack w='100%' justifyContent='space-between'>
+					<HStack fontWeight='bold'>
+						<span style={{ width: '4ch', textAlign: 'left' }}>
+							{'#' + data.id}
+						</span>
+						<ReactMarkdown>{data.title}</ReactMarkdown>
+					</HStack>
+					{data.description ? <AccordionIcon /> : null}
 				</HStack>
 			</AccordionButton>
-			<AccordionPanel pb={4}>{data.description}</AccordionPanel>
+			{data.description ? (
+				<AccordionPanel pb={4}>
+					<ReactMarkdown>{data.description}</ReactMarkdown>
+				</AccordionPanel>
+			) : null}
 		</AccordionItem>
 	);
 };
@@ -48,15 +54,16 @@ export default Issue;
 
 export const IssueConfig: ComponentStyleConfig = {
 	baseStyle: {
-		width: '400px',
-		height: '2rem',
+		width: '100%',
+		...containerStyles,
+		margin: 'auto',
 	},
 	variants: {
 		open: {
-			background: 'grey.200', //TODO: change color
+			background: '#f9f9f9',
 		},
 		closed: {
-			background: 'grey.500', //TODO: chance color
+			background: '#dedede', //TODO: chance color
 		},
 	},
 };

@@ -26,11 +26,11 @@ const Chart: FC = () => {
 	}, [refresh]);
 	// https://recharts.org/en-US/examples/PieChartWithCustomizedLabel
 	return (
-		<PieChart width={400} height={400}>
+		<PieChart width={300} height={400}>
 			<Pie
 				data={data}
-				cx={200}
-				cy={200}
+				cx={150}
+				cy={150}
 				innerRadius={100}
 				outerRadius={130}
 				paddingAngle={5}

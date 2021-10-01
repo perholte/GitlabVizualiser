@@ -1,4 +1,4 @@
-#graph-container > svg > * {
+#graph-container>svg>* {
 	transform: scale(0.6) translate(10%, 10%);
 }
 
@@ -10,4 +10,14 @@
 	padding: 10px;
 	border-color: black;
 	border-width: 1px;
+}
+
+.dark {
+	background: #121212;
+	color: seagreen;
+}
+
+.light {
+	background-color: #fefefe;
+	color: black;
 }

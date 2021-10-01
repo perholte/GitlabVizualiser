@@ -1,15 +1,33 @@
 import { Button, Flex } from '@chakra-ui/react'
+import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { Link } from 'react-router-dom'
+import './Header.css'
+
+// This is the default breakpoint
+export const breakpoints = createBreakpoints({
+	sm: '30em',
+	md: '48em',
+	lg: '62em',
+	xl: '80em',
+	'2xl': '96em',
+})
 
 const Header = () => {
 	return (
 		<>
 			<Flex
 				as='nav'
-				align='center'
-				justify='space-between'
+				justify='center'
+				align={{
+					sm: 'stretch',
+					md: 'stretch',
+					lg: 'center',
+					xl: 'center',
+				}}
+				direction={['column', 'column', 'column', 'row']}
 				wrap='wrap'
-				w='100%'
+				w='100vw'
+				margin='auto'
 				mb={8}
 				p={8}
 				bg={[
@@ -20,16 +38,16 @@ const Header = () => {
 				]}
 				color={['black', 'black', 'black', 'black']}
 			>
-				<Link to='/branches'>
+				<Link className='header-btn' to='/branches'>
 					<Button>Branches</Button>
 				</Link>
-				<Link to='/issues'>
+				<Link className='header-btn' to='/issues'>
 					<Button>Issues</Button>
 				</Link>
-				<Link to='/contributors'>
+				<Link className='header-btn' to='/contributors'>
 					<Button>Contributors</Button>
 				</Link>
-				<Link to='/messages'>
+				<Link className='header-btn' to='/messages'>
 					<Button>Commit messages</Button>
 				</Link>
 			</Flex>

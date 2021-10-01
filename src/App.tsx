@@ -1,10 +1,11 @@
-import { Route, Switch } from 'react-router-dom'
-import './App.css'
-import BranchTree from './components/branchTree/BranchTree'
-import CommitMessages from './components/commitMessages/CommitMessages'
-import Contributions from './components/contributions/Contributions'
-import Header from './components/Header/Header'
-import IssueList from './components/issues/IssueList'
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import BranchTree from './components/branchTree/BranchTree';
+import Contributions from './components/contributions/Contributions';
+import Header from './components/header/Header';
+import IssueList from './components/issues/IssueList';
+import Frontpage from './components/frontpage/Frontpage';
+import CommitMessages from './components/commitMessages/CommitMessages';
 
 function App() {
 	return (
@@ -24,13 +25,11 @@ function App() {
 					<CommitMessages />
 				</Route>
 				<Route path='/'>
-					<h1 style={{ textAlign: 'center' }}>
-						Tissegutta uwu(′ꈍωꈍ‵)
-					</h1>
+					<Frontpage />
 				</Route>
 			</Switch>
 		</>
-	)
+	);
 }
 
-export default App
+export default App;

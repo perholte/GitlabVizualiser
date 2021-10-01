@@ -10,6 +10,7 @@ import { ComponentStyleConfig } from '@chakra-ui/theme'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { containerStyles } from '../style/styles'
+import './issues.css'
 
 //TODO: update this type and maybe move it to a 'type' folder
 export interface IssueType {
@@ -29,23 +30,23 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 	})
 
 	return (
-		<AccordionItem sx={styles}>
+		<AccordionItem sx={styles} className='issue_element'>
 			<AccordionButton>
 				<HStack w='100%' justifyContent='space-between'>
-					<HStack>
+					<HStack fontWeight='bold'>
 						<span style={{ width: '4ch', textAlign: 'left' }}>
 							{'#' + data.id}
 						</span>
 						<ReactMarkdown>{data.title}</ReactMarkdown>
-						{/* <h2>{data.title}</h2> */}
 					</HStack>
-					<AccordionIcon />
+					{data.description ? <AccordionIcon /> : null}
 				</HStack>
 			</AccordionButton>
-			<AccordionPanel pb={4}>
-				{/* {data.description} */}
-				<ReactMarkdown>{data.description}</ReactMarkdown>
-			</AccordionPanel>
+			{data.description ? (
+				<AccordionPanel pb={4}>
+					<ReactMarkdown>{data.description}</ReactMarkdown>
+				</AccordionPanel>
+			) : null}
 		</AccordionItem>
 	)
 }

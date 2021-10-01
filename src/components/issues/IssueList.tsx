@@ -1,6 +1,6 @@
-import React from 'react'
 import { Accordion } from '@chakra-ui/accordion'
 import { VStack } from '@chakra-ui/layout'
+import React from 'react'
 import { useQuery } from 'react-query'
 import Issue from './Issue'
 import './issues.css'

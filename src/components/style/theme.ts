@@ -12,7 +12,7 @@ const theme = extendTheme({
       }
     },
     Issue: IssueConfig,
-  }
+  },
 })
 
 export default theme

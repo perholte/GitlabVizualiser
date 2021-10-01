@@ -1,4 +1,4 @@
-import { Button, Flex, Switch } from '@chakra-ui/react'
+import { Box, Button, Flex, Switch } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
@@ -45,6 +45,12 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 				]}
 				color={['black', 'black', 'black', 'black']}
 			>
+				<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
+					<Switch
+						isChecked={theme.darkmode}
+						onChange={handleToggleTheme}
+					/>
+				</Box>
 				<Link className='header-btn' to='/branches'>
 					<Button>Branches</Button>
 				</Link>
@@ -57,10 +63,6 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 				<Link className='header-btn' to='/messages'>
 					<Button>Commit messages</Button>
 				</Link>
-				<Switch
-					isChecked={theme.darkmode}
-					onChange={handleToggleTheme}
-				/>
 			</Flex>
 		</>
 	)

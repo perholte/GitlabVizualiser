@@ -29,7 +29,7 @@ function App() {
 				<Route path='/issues'>
 					<IssueList />
 				</Route>
-				<Route path='/Contributors'>
+				<Route path='/contributors'>
 					<Contributions />
 				</Route>
 				<Route path='/messages'>

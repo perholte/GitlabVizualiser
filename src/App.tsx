@@ -1,15 +1,20 @@
-import { Route, Switch } from 'react-router-dom'
-import './App.css'
-import BranchTree from './components/branchTree/BranchTree'
-import CommitMessages from './components/commitMessages/CommitMessages'
-import Contributions from './components/contributions/Contributions'
-import Header from './components/Header/Header'
-import IssueList from './components/issues/IssueList'
+import React from 'react';
+import { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import BranchTree from './components/branchTree/BranchTree';
+import CommitMessages from './components/commitMessages/CommitMessages';
+import Contributions from './components/contributions/Contributions';
+import Header from './components/Header/Header';
+import IssueList from './components/issues/IssueList';
 
 function App() {
+	const [darkmode, setDarkmode] = useState<boolean>(false);
+	const ThemeContext = React.createContext(false);
+
 	return (
-		<>
-			<Header />
+		<ThemeContext.Provider value={darkmode}>
+			<Header handleToggleTheme={() => setDarkmode(!darkmode)} />
 			<Switch>
 				<Route path='/branches'>
 					<BranchTree />
@@ -29,8 +34,8 @@ function App() {
 					</h1>
 				</Route>
 			</Switch>
-		</>
-	)
+		</ThemeContext.Provider>
+	);
 }
 
-export default App
+export default App;

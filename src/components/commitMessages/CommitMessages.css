@@ -1,3 +1,9 @@
+.Commit-message-input {
+    /* display: none; */
+    min-width: 10em !important;
+    width: 15em !important;
+}
+
 #Commit-messages-container {
     margin: 0 auto 5em auto;
 }

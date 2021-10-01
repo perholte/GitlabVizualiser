@@ -89,9 +89,10 @@ const CommitMessages = () => {
 			<Container
 				ref={dateRef}
 				maxW={'container.lg'}
+				minW={['4em']}
 				margin={'5em auto'}
 				display={'flex'}
-				flexDirection={'row'}
+				flexDirection={['column', 'row', 'row', 'row']}
 				justifyContent={'center'}
 				width={'100vw'}
 			>
@@ -100,6 +101,7 @@ const CommitMessages = () => {
 						<b>Antall commits</b>
 					</h1>
 					<MyInput
+						className={'Commit-message-input'}
 						numberChange={(a) => numberChange(a)}
 						value={settings.number}
 					/>
@@ -114,7 +116,7 @@ const CommitMessages = () => {
 						minDate={new Date(163283426645)}
 						format={'dd.MM.y'}
 						clearIcon={null}
-						className={'My-styled-date-picker'}
+						className={'My-styled-date-picker Commit-message-input'}
 						onChange={(evt: any) => updateDate(evt)}
 						value={settings.date}
 					/>

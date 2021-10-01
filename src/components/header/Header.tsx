@@ -20,7 +20,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 	const theme = useContext(DarkmodeContext);
-
+	const darkmode = theme.darkmode;
+	const color = !darkmode ? 'black' : 'green.500';
 	return (
 		<Flex
 			as='nav'
@@ -34,28 +35,29 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 			direction={['column', 'column', 'column', 'row']}
 			wrap='wrap'
 			w='100vw'
-			margin='0 auto'
-			mb={8}
+			margin={'auto'}
 			p={8}
 			color={'black'}
 		>
 			<Link className='header-btn' to='/'>
-				<Button>Home</Button>
+				<Button color={color}>Home</Button>
 			</Link>
 			<Link className='header-btn' to='/branches'>
-				<Button>Branches</Button>
+				<Button color={color}>Branches</Button>
 			</Link>
 			<Link className='header-btn' to='/issues'>
-				<Button>Issues</Button>
+				<Button color={color}>Issues</Button>
 			</Link>
 			<Link className='header-btn' to='/contributors'>
-				<Button>Contributors</Button>
+				<Button color={color}>Contributors</Button>
 			</Link>
 			<Link className='header-btn' to='/messages'>
-				<Button>Commits</Button>
+				<Button color={color}>Commits</Button>
 			</Link>
 			<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
 				<Switch
+					colorScheme='green'
+					size={'md'}
 					isChecked={theme.darkmode}
 					onChange={handleToggleTheme}
 				/>

@@ -1,18 +1,18 @@
-#graph-container > svg {
+#graph-container>svg {
 	width: fit-content;
 	height: fit-content;
 }
 
 #graph-container {
 	padding-top: 40px;
-	max-width: 80%;	
+	max-width: 80%;
 	max-height: 600px;
 	border-color: black;
 }
 
 .dark {
 	background: #121212;
-	color: seagreen;
+	color: #2e8b57;
 }
 
 .light {

@@ -5,6 +5,7 @@ import { ThemeContext } from '../../App';
 const Frontpage: FC = () => {
 	const theme = useContext(ThemeContext);
 	const darkmode = theme.darkmode;
+	console.log(darkmode);
 
 	return (
 		<Flex

@@ -3,31 +3,31 @@ import {
 	AccordionIcon,
 	AccordionItem,
 	AccordionPanel,
-} from '@chakra-ui/accordion'
-import { HStack } from '@chakra-ui/layout'
-import { useStyleConfig } from '@chakra-ui/react'
-import { ComponentStyleConfig } from '@chakra-ui/theme'
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import { containerStyles } from '../style/styles'
-import './issues.css'
+} from '@chakra-ui/accordion';
+import { HStack } from '@chakra-ui/layout';
+import { useStyleConfig } from '@chakra-ui/react';
+import { ComponentStyleConfig } from '@chakra-ui/theme';
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import { containerStyles } from '../style/styles';
+import './issues.css';
 
 //TODO: update this type and maybe move it to a 'type' folder
 export interface IssueType {
-	id: number
-	title: string
-	description: string
-	closed: boolean
+	id: number;
+	title: string;
+	description: string;
+	closed: boolean;
 }
 
 interface IssueProps {
-	data: IssueType
+	data: IssueType;
 }
 
 const Issue: React.FC<IssueProps> = ({ data }) => {
 	const styles = useStyleConfig('Issue', {
 		variant: data.closed ? 'closed' : 'open',
-	})
+	});
 
 	return (
 		<AccordionItem sx={styles} className='issue_element'>
@@ -48,9 +48,9 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 				</AccordionPanel>
 			) : null}
 		</AccordionItem>
-	)
-}
-export default Issue
+	);
+};
+export default Issue;
 
 export const IssueConfig: ComponentStyleConfig = {
 	baseStyle: {
@@ -66,4 +66,4 @@ export const IssueConfig: ComponentStyleConfig = {
 			background: '#dedede', //TODO: chance color
 		},
 	},
-}
+};

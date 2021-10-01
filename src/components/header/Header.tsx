@@ -1,9 +1,9 @@
-import { Box, Button, Flex, Switch } from '@chakra-ui/react'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
-import { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { ThemeContext as DarkmodeContext } from '../../App'
-import './Header.css'
+import { Box, Button, Flex, Switch, useStyleConfig } from '@chakra-ui/react';
+import { createBreakpoints } from '@chakra-ui/theme-tools';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { ThemeContext as DarkmodeContext } from '../../App';
+import './Header.css';
 
 // This is the default breakpoint
 export const breakpoints = createBreakpoints({
@@ -12,60 +12,58 @@ export const breakpoints = createBreakpoints({
 	lg: '62em',
 	xl: '80em',
 	'2xl': '96em',
-})
+});
 
 interface HeaderProps {
-	handleToggleTheme: () => void
+	handleToggleTheme: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
-	const theme = useContext(DarkmodeContext)
+	const theme = useContext(DarkmodeContext);
+	const darkmode = theme.darkmode;
+	const styles = useStyleConfig('Container', {
+		darkMode: false,
+	});
+	console.log(styles);
 	return (
-		<>
-			<Flex
-				as='nav'
-				justify='center'
-				align={{
-					sm: 'stretch',
-					md: 'stretch',
-					lg: 'center',
-					xl: 'center',
-				}}
-				direction={['column', 'column', 'column', 'row']}
-				wrap='wrap'
-				w='100vw'
-				margin='auto'
-				mb={8}
-				p={8}
-				bg={[
-					'primary.500',
-					'primary.500',
-					'transparent',
-					'transparent',
-				]}
-				color={['black', 'black', 'black', 'black']}
-			>
-				<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
-					<Switch
-						isChecked={theme.darkmode}
-						onChange={handleToggleTheme}
-					/>
-				</Box>
-				<Link className='header-btn' to='/branches'>
-					<Button>Branches</Button>
-				</Link>
-				<Link className='header-btn' to='/issues'>
-					<Button>Issues</Button>
-				</Link>
-				<Link className='header-btn' to='/contributors'>
-					<Button>Contributors</Button>
-				</Link>
-				<Link className='header-btn' to='/messages'>
-					<Button>Commits</Button>
-				</Link>
-			</Flex>
-		</>
-	)
-}
+		<Flex
+			as='nav'
+			justify='center'
+			align={{
+				sm: 'stretch',
+				md: 'stretch',
+				lg: 'center',
+				xl: 'center',
+			}}
+			direction={['column', 'column', 'column', 'row']}
+			wrap='wrap'
+			w='100vw'
+			margin='0 auto'
+			mb={8}
+			p={8}
+			bg={darkmode ? 'red' : 'transparent'}
+			color={['black', 'black', 'black', 'black']}
+		>
+			<Box margin={['1em auto', '1em auto', '1em auto', '1em']}>
+				<Switch
+					isChecked={theme.darkmode}
+					onChange={handleToggleTheme}
+				/>
+			</Box>
+			<Link className='header-btn' to='/branches'>
+				<Button>Branches</Button>
+			</Link>
+			<Link className='header-btn' to='/issues'>
+				<Button>Issues</Button>
+			</Link>
+			<Link className='header-btn' to='/contributors'>
+				<Button>Contributors</Button>
+			</Link>
+			<Link className='header-btn' to='/messages'>
+				<Button>Commits</Button>
+			</Link>
+		</Flex>
+	);
+};
 
-export default Header
+export default Header;

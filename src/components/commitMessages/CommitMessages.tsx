@@ -1,19 +1,10 @@
-<<<<<<< HEAD
 import {
 	Accordion,
 	Box,
 	Container,
 	StackDivider,
 	VStack,
-} from '@chakra-ui/react'
-import * as React from 'react'
-import DateTimePicker from 'react-datetime-picker'
-import { Commit, getCommits } from '../../api/index'
-import './CommitMessages.css'
-import MyInput from './inputs/NumberInput'
-import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage'
-=======
-import { Box, Container, StackDivider, VStack } from '@chakra-ui/react';
+} from '@chakra-ui/react';
 import * as React from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Commit, getCommits } from '../../api/index';
@@ -21,7 +12,6 @@ import Greeting from '../common/Greeting';
 import './CommitMessages.css';
 import MyInput from './inputs/NumberInput';
 import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage';
->>>>>>> b5bf3a8b33d44c0e823170232ff8018362b6f06a
 
 interface CommitMessageQuery {
 	date: Date;
@@ -51,7 +41,7 @@ const CommitMessages = () => {
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
-				c = sortAndFilterCommits(c)
+				c = sortAndFilterCommits(c);
 			}
 			setCommits(c);
 		})();
@@ -76,13 +66,7 @@ const CommitMessages = () => {
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
-<<<<<<< HEAD
-				c = sortAndFilterCommits(c)
-=======
 				c = sortAndFilterCommits(c);
-			} else {
-				console.log('fuuu');
->>>>>>> b5bf3a8b33d44c0e823170232ff8018362b6f06a
 			}
 			setCommits(c);
 		})();
@@ -146,9 +130,13 @@ const CommitMessages = () => {
 				divider={<StackDivider borderColor={'gray.200'} />}
 				spacing={4}
 				align='center'
-				margin={'auto'}
+				margin={'2em auto'}
 			>
-				<Accordion allowMultiple={false} allowToggle={true}>
+				<Accordion
+					margin={'2em auto'}
+					allowMultiple={false}
+					allowToggle={true}
+				>
 					{commits
 						? commits.map((c) => (
 								<SingleCommitMessage

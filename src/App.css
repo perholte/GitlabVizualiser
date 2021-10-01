@@ -1,20 +1,18 @@
-#graph-container>svg>* {
-	transform: scale(0.6) translate(10%, 10%);
+#graph-container>svg {
+	width: fit-content;
+	height: fit-content;
 }
 
 #graph-container {
-	overflow: auto;
-	margin: auto;
-	max-width: max-content;
-	max-height: max-content;
-	padding: 10px;
+	padding-top: 40px;
+	max-width: 80%;
+	max-height: 600px;
 	border-color: black;
-	border-width: 1px;
 }
 
 .dark {
 	background: #121212;
-	color: seagreen;
+	color: #2e8b57;
 }
 
 .light {

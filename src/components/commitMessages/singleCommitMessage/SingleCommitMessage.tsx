@@ -36,6 +36,7 @@ export default function SingleCommitMessage({ commit }: CommitMessageProps) {
 					<HStack w='100%' justifyContent='space-between'>
 						<HStack fontWeight='bold'>
 							<Heading
+								textAlign='left'
 								fontSize='1rem'
 								overflow='hidden'
 								w='500px'

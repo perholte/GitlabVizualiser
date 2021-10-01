@@ -43,7 +43,7 @@ export interface Issue {
  * @returns n amount of Commit objects
  */
 export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
-	const url = `${BASE}repository/commits/?per_page=100`
+	const url = `${BASE}repository/commits/?per_page=100&all=true`
 	let commits: Commit[]
 	// try {
 	let res = await fetch(url, {

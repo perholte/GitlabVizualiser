@@ -1,5 +1,6 @@
 import { Center } from '@chakra-ui/react';
 import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
+import * as React from 'react';
 import { Branch, getBranches } from '../../api';
 import Greeting from '../common/Greeting';
 
@@ -15,11 +16,14 @@ const BranchTree = () => {
 			},
 		}),
 	};
-
 	return (
 		<Center flexDirection={'column'}>
 			<Greeting />
-			<svg id='graph-container' viewBox='0 0 600 600'>
+			<svg
+				id='graph-container'
+				viewBox={`0 0 700 700`}
+				style={{ marginTop: '5em', transform: 'scale(1.2)' }}
+			>
 				<Gitgraph options={options}>
 					{(gitgraph) => {
 						getBranches().then((res) => {

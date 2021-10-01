@@ -12,6 +12,7 @@ const theme = extendTheme({
       }
     },
     Issue: IssueConfig,
+    SingleCommitMessage: IssueConfig,
   },
 })
 

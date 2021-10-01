@@ -6,7 +6,7 @@ const Greeting: FC = () => {
 	const theme = useContext(ThemeContext);
 	const darkmode = theme.darkmode;
 	let color = !darkmode ? 'black' : 'green.500';
-	const name = sessionStorage.get('name');
+	const name = sessionStorage.getItem('name');
 	return !!name ? (
 		<Text color={color} textAlign={'center'} margin='2em auto'>
 			Hello {name}

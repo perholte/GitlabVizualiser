@@ -1,6 +1,7 @@
 import { Center, Heading } from '@chakra-ui/layout';
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { FC, FormEventHandler, useState } from 'react';
+import React, { FC, FormEventHandler, useState, useContext } from 'react';
+import { ThemeContext } from '../../App';
 
 const Frontpage: FC = () => {
 	const [name, setName] = useState<string>();
@@ -14,13 +15,15 @@ const Frontpage: FC = () => {
 		sessionStorage.setItem('name', name!);
 		setRerender(!rerender);
 	};
+	const theme = useContext(ThemeContext);
+	const darkmode = theme.darkmode;
 
 	return (
 		<Center
 			minH='85vh'
 			maxH='85vh'
 			flexDir='column'
-			backgroundColor='Highlight'
+			backgroundColor={darkmode ? 'black' : 'Highlight'}
 			color='HighlightText'
 			fontFamily='heading'
 		>

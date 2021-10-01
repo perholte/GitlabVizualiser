@@ -17,7 +17,7 @@ const Frontpage: FC<{}> = () => {
 	};
 	const theme = useContext(ThemeContext);
 	const darkmode = theme.darkmode;
-	let bg = darkmode ? 'black' : 'green.500';
+	// let bg = darkmode ? 'black' : 'green.500';
 	let color = !darkmode ? 'black' : 'green.500';
 	return (
 		<Center

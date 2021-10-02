@@ -4,6 +4,7 @@ import {
 	Flex,
 	FormControl,
 	FormLabel,
+	Text,
 	VStack,
 } from '@chakra-ui/react';
 import * as React from 'react';
@@ -11,10 +12,10 @@ import DateTimePicker from 'react-datetime-picker';
 import { Commit, getCommits } from '../../api/index';
 import { filterOutCommitsBeforeDate, sortCommitsByDate } from '../../api/utils';
 import { ThemeContext as DarkmodeContext } from '../../App';
+import '../style/AccordionList.css';
 import './CommitMessages.css';
 import MyInput from './inputs/NumberInput';
 import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage';
-import '../style/AccordionList.css';
 
 interface CommitMessageQuery {
 	date: number;
@@ -43,48 +44,26 @@ const CommitMessages = () => {
 	let [settings, setSettings] =
 		React.useState<CommitMessageQuery>(defualtQuery);
 	let [commits, setCommits] = React.useState<Commit[] | undefined>(undefined);
-
+	let [n, setN] = React.useState<number>(0);
 	/**
-	 * Wrapper-funksjon for callback som henter data samlingen med api-kall.
-	 * Denne funksjonen blir kallet på når siden laster, når brukeren endrer
-	 * antall commits som skal vises og når brukere endrer dato.
-	 */
-	const fetchCommits: () => Promise<Commit[] | undefined> =
-		React.useCallback(async () => {
-			try {
-				const c = await getCommits(settings.number);
-				return c;
-			} catch (err) {
-				console.error(err);
-			}
-			return undefined;
-		}, [settings.number]);
-
-	/**
-	 * Henter daa når siden laster inn i browseren.
+	 * Henter data når siden laster inn i browseren.
 	 */
 	React.useEffect(() => {
 		(async () => {
-			let c = await fetchCommits();
+			let c = await getCommits(undefined);
 			if (c) {
+				setN(c.length);
 				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
 			}
 			setCommits(c);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [fetchCommits, settings.date]);
+	}, []);
 
 	const numberChange = (newNumber: any) => {
 		setSettings({ ...settings, number: parseInt(newNumber) });
+		setCommits(sortCommitsByDate(commits || [], true));
 		localStorage.setItem('number-of-commits', newNumber.toString());
-		(async () => {
-			let c = await fetchCommits();
-			if (c) {
-				c = sortCommitsByDate(c, true);
-				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
-			}
-			setCommits(c);
-		})();
 	};
 
 	const updateDate = (newDate: any) => {
@@ -105,6 +84,7 @@ const CommitMessages = () => {
 			...settings,
 			date: date.getTime(),
 		};
+		setCommits(sortCommitsByDate(commits || [], true));
 		localStorage.setItem('commits-since-date', date.getTime().toString());
 		setSettings(newSettings);
 	};
@@ -117,7 +97,8 @@ const CommitMessages = () => {
 					</FormLabel>
 					<MyInput
 						numberChange={(a) => numberChange(a)}
-						value={settings.number}
+						value={settings.number || 1}
+						maxVal={n || 1}
 					/>
 				</FormControl>
 				<FormControl maxW='max-content'>
@@ -143,10 +124,15 @@ const CommitMessages = () => {
 					/>
 				</FormControl>
 			</Flex>
-
+			<Text w={'100%'} fontWeight={'bold'}>
+				Total number of commits: {commits?.length}
+			</Text>
 			<Accordion w='100%' allowToggle pb='7vh'>
 				{commits
-					? commits.map((c) => (
+					? filterOutCommitsBeforeDate(
+							commits.slice(0, settings.number),
+							new Date(settings.date)
+					  ).map((c) => (
 							<SingleCommitMessage commit={c} key={c.short_id} />
 					  ))
 					: null}

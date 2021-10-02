@@ -63,9 +63,9 @@ export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
 		return commit
 	})
 	if (!n || n <= 0 || n > commits.length) {
-		return sortCommitsByDate(anonymizeAuthors(commits), true)
+		return sortCommitsByDate(anonymizeAuthors(commits), false)
 	} else {
-		return sortCommitsByDate(anonymizeAuthors(commits.slice(0, n)), true)
+		return anonymizeAuthors(sortCommitsByDate(commits, false).slice(0, n))
 	}
 }
 

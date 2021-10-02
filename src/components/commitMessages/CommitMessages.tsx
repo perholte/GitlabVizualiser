@@ -9,7 +9,7 @@ import {
 import * as React from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Commit, getCommits } from '../../api/index';
-import { filterOutCommitsBeforeDate } from '../../api/utils';
+import { filterOutCommitsBeforeDate, sortCommitsByDate } from '../../api/utils';
 import { ThemeContext as DarkmodeContext } from '../../App';
 import Greeting from '../common/Greeting';
 import './CommitMessages.css';
@@ -45,6 +45,7 @@ const CommitMessages = () => {
 			}
 			return undefined;
 		}, [settings.number]);
+
 	React.useEffect(() => {
 		(async () => {
 			let c = await fetchCommits();
@@ -55,17 +56,21 @@ const CommitMessages = () => {
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fetchCommits, settings.date]);
+
 	const numberChange = (newNumber: any) => {
 		setSettings({ ...settings, number: parseInt(newNumber) });
 		localStorage.setItem('number-of-commits', newNumber.toString());
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
+				console.log(c.map((c) => c.created_at.getDate()).join(', '));
+				c = sortCommitsByDate(c, true);
 				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
 			}
 			setCommits(c);
 		})();
 	};
+
 	const updateDate = (newDate: any) => {
 		let date;
 		if (newDate instanceof Date) {
@@ -80,7 +85,7 @@ const CommitMessages = () => {
 		date.setMinutes(0);
 		date.setSeconds(0);
 		date.setMilliseconds(0);
-		console.log(date);
+		console.log(commits);
 		let newSettings: CommitMessageQuery = {
 			...settings,
 			date: date.getTime(),
@@ -118,6 +123,7 @@ const CommitMessages = () => {
 						ref={dateRef}
 						disableCalendar={false}
 						minDate={new Date(163283426645)}
+						maxDate={new Date()}
 						format={'dd.MM.y'}
 						clearIcon={null}
 						calendarIcon={

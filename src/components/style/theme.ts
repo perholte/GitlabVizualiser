@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
-import { IssueConfig } from '../issues/Issue';
+import { AccordionListItemConfig } from '../common/AccordionListItem';
 
 const theme = extendTheme({
 	fonts: {
@@ -11,8 +11,7 @@ const theme = extendTheme({
 				colorScheme: 'blue',
 			},
 		},
-		Issue: IssueConfig,
-		SingleCommitMessage: IssueConfig,
+		AccordionListItem: AccordionListItemConfig,
 	},
 });
 

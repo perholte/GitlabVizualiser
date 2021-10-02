@@ -23,7 +23,6 @@ export default function SingleCommitMessage({ commit }: CommitMessageProps) {
 					textAlign='left'
 					fontSize='1rem'
 					overflow='hidden'
-					w='500px'
 					textOverflow='ellipsis'
 					whiteSpace='nowrap'
 				>

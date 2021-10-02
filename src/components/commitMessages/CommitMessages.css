@@ -3,10 +3,6 @@
 	width: 15em !important;
 }
 
-#Commit-messages-container {
-	margin: 0 auto 5em auto;
-}
-
 .My-styled-date-picker > div {
 	width: 100%;
 	min-width: 0px;

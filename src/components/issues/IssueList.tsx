@@ -1,10 +1,11 @@
 import { Accordion } from '@chakra-ui/accordion';
-import { VStack, Stack } from '@chakra-ui/layout';
+import { Stack } from '@chakra-ui/layout';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import FilterIssues, { IssueFilter } from './FilterIssues';
 import Issue from './Issue';
-import './issues.css';
+// import './issues.css';
+import '../style/AccordionList.css';
 
 const IssueList: React.FC = () => {
 	const { data, isLoading, error } = useQuery<Array<any>>('issues', () =>
@@ -40,36 +41,32 @@ const IssueList: React.FC = () => {
 	}
 
 	return (
-		<>
-			<Stack id='issue_list_container' spacing='5' pt='4rem'>
-				<FilterIssues
-					activeFilter={activeFilter}
-					updateFilter={setActiveFilter}
-				/>
-				<Accordion allowMultiple={false} allowToggle={true} pb='7vh'>
-					<VStack>
-						{filteredIssues.map(
-							(issue: {
-								iid: number;
-								title: string;
-								description: string;
-								closed_at: string | null;
-							}) => (
-								<Issue
-									key={issue.iid}
-									data={{
-										id: issue.iid,
-										title: issue.title,
-										description: issue.description,
-										closed: !!issue.closed_at,
-									}}
-								/>
-							)
-						)}
-					</VStack>
-				</Accordion>
-			</Stack>
-		</>
+		<Stack spacing='5' pt='4rem' className='accordion_list_container'>
+			<FilterIssues
+				activeFilter={activeFilter}
+				updateFilter={setActiveFilter}
+			/>
+			<Accordion allowToggle pb='7vh'>
+				{filteredIssues.map(
+					(issue: {
+						iid: number;
+						title: string;
+						description: string;
+						closed_at: string | null;
+					}) => (
+						<Issue
+							key={issue.iid}
+							data={{
+								id: issue.iid,
+								title: issue.title,
+								description: issue.description,
+								closed: !!issue.closed_at,
+							}}
+						/>
+					)
+				)}
+			</Accordion>
+		</Stack>
 	);
 };
 

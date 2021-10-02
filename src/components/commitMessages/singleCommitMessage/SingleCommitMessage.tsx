@@ -2,7 +2,6 @@ import React from 'react';
 import { Heading, ListItem, UnorderedList } from '@chakra-ui/react';
 import { Commit } from '../../../api';
 import AccordionListItem from '../../common/AccordionListItem';
-import '../../issues/issues.css';
 export interface CommitMessageProps {
 	commit: Commit;
 }

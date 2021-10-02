@@ -1,7 +1,6 @@
 import { CalendarIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
-	Box,
 	Flex,
 	FormControl,
 	FormLabel,

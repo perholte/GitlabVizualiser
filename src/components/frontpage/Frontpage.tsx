@@ -20,8 +20,8 @@ const Frontpage: FC<{}> = () => {
 	let color = !darkmode ? 'black' : 'green.500';
 	return (
 		<Center
-			minH='85vh'
-			maxH='85vh'
+			minH='calc(100% - 5em)'
+			maxH='calc(100% - 5em)'
 			flexDir='column'
 			backgroundColor={darkmode ? '#121212' : 'Highlight'}
 			color='HighlightText'

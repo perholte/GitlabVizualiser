@@ -1,4 +1,4 @@
-import { anonymizeAuthors } from './utils'
+import { anonymizeAuthors, sortCommitsByDate } from './utils'
 
 const BASE = 'https://gitlab.stud.idi.ntnu.no/api/v4/projects/11994/'
 const TOKEN = process.env.REACT_APP_TEAM_08_ACCESS_TOKEN || 'NO TOKEN'
@@ -47,7 +47,6 @@ export interface Issue {
 export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
 	const url = `${BASE}repository/commits/?per_page=100&all=true`
 	let commits: Commit[]
-	// try {
 	let res = await fetch(url, {
 		headers: {
 			'PRIVATE-TOKEN': TOKEN,
@@ -64,9 +63,9 @@ export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
 		return commit
 	})
 	if (!n || n <= 0 || n > commits.length) {
-		return anonymizeAuthors(commits)
+		return sortCommitsByDate(anonymizeAuthors(commits), true)
 	} else {
-		return anonymizeAuthors(commits.slice(0, n))
+		return sortCommitsByDate(anonymizeAuthors(commits.slice(0, n)), true)
 	}
 }
 

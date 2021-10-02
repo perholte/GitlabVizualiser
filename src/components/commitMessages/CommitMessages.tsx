@@ -1,3 +1,4 @@
+import { CalendarIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
 	Box,
@@ -8,23 +9,29 @@ import {
 import * as React from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Commit, getCommits } from '../../api/index';
+import { filterOutCommitsBeforeDate } from '../../api/utils';
+import { ThemeContext as DarkmodeContext } from '../../App';
 import Greeting from '../common/Greeting';
 import './CommitMessages.css';
 import MyInput from './inputs/NumberInput';
 import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage';
 
 interface CommitMessageQuery {
-	date: Date;
+	date: number;
 	number: number;
 }
 
 const defualtQuery: CommitMessageQuery = {
-	number: 1,
-	date: new Date(new Date().getTime() - 86400 * 1000),
+	number: parseInt(localStorage.getItem('number-of-commits') || '1'),
+	date: parseInt(
+		localStorage.getItem('commits-since-date') ||
+			new Date().getTime().toString()
+	),
 };
 
 const CommitMessages = () => {
 	let dateRef = React.createRef<HTMLDivElement>();
+	const { darkmode } = React.useContext(DarkmodeContext);
 	let [settings, setSettings] =
 		React.useState<CommitMessageQuery>(defualtQuery);
 	let [commits, setCommits] = React.useState<Commit[] | undefined>(undefined);
@@ -32,7 +39,6 @@ const CommitMessages = () => {
 		React.useCallback(async () => {
 			try {
 				const c = await getCommits(settings.number);
-				console.log(c.length);
 				return c;
 			} catch (err) {
 				console.error(err);
@@ -43,32 +49,19 @@ const CommitMessages = () => {
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
-				c = sortAndFilterCommits(c);
+				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
 			}
 			setCommits(c);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fetchCommits, settings.date]);
-	function sortAndFilterCommits(commits: Commit[]): Commit[] {
-		// Sort commits in ascending order with respect to date
-		commits.sort((a, b) => {
-			let t0 = a.created_at.getTime();
-			let t1 = b.created_at.getTime();
-			return t0 > t1 ? 1 : -1;
-		});
-		// Filter out commits that are older than the user specified date
-		// console.log(commits.map((c) => c.created_at))
-		// commits = commits.filter(
-		// 	(c) => c.created_at.getTime() > settings.date.getTime()
-		// );
-		return commits;
-	}
 	const numberChange = (newNumber: any) => {
 		setSettings({ ...settings, number: parseInt(newNumber) });
+		localStorage.setItem('number-of-commits', newNumber.toString());
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
-				c = sortAndFilterCommits(c);
+				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
 			}
 			setCommits(c);
 		})();
@@ -83,10 +76,16 @@ const CommitMessages = () => {
 					new Date().getTime()
 			);
 		}
+		date.setHours(0);
+		date.setMinutes(0);
+		date.setSeconds(0);
+		date.setMilliseconds(0);
+		console.log(date);
 		let newSettings: CommitMessageQuery = {
 			...settings,
-			date,
+			date: date.getTime(),
 		};
+		localStorage.setItem('commits-since-date', date.getTime().toString());
 		setSettings(newSettings);
 	};
 	return (
@@ -121,9 +120,15 @@ const CommitMessages = () => {
 						minDate={new Date(163283426645)}
 						format={'dd.MM.y'}
 						clearIcon={null}
+						calendarIcon={
+							<CalendarIcon
+								margin={'auto .5em'}
+								color={darkmode ? 'white' : 'black'}
+							/>
+						}
 						className={'My-styled-date-picker Commit-message-input'}
 						onChange={(evt: any) => updateDate(evt)}
-						value={settings.date}
+						value={new Date(settings.date)}
 					/>
 				</Box>
 			</Container>

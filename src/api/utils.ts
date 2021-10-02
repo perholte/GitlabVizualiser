@@ -92,3 +92,17 @@ function unique(a: any[]): any[] {
 		return (index === 0) || (value !== array[index - 1])
 	})
 }
+
+// Sort commits in ascending order with respect to date
+export const sortCommitsByDate = (commits: Commit[], ascending: boolean): Commit[] => {
+	return commits.sort((a, b) => {
+		let t0 = a.created_at.getTime()
+		let t1 = b.created_at.getTime()
+		return (ascending ? 1 : -1) * (t0 > t1 ? 1 : -1)
+	})
+}
+
+export const filterOutCommitsBeforeDate = (commits: Commit[], date: Date): Commit[] => {
+	// Filter out commits that are older than the user specified date
+	return commits.filter((c) => c.created_at.getTime() < date.getTime())
+}

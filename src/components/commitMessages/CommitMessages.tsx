@@ -1,78 +1,92 @@
+import { CalendarIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
-	Box,
-	Container,
-	StackDivider,
+	Flex,
+	FormControl,
+	FormLabel,
 	VStack,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { Commit, getCommits } from '../../api/index';
-import Greeting from '../common/Greeting';
+import { filterOutCommitsBeforeDate, sortCommitsByDate } from '../../api/utils';
+import { ThemeContext as DarkmodeContext } from '../../App';
 import './CommitMessages.css';
 import MyInput from './inputs/NumberInput';
 import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage';
+import '../style/AccordionList.css';
 
 interface CommitMessageQuery {
-	date: Date;
+	date: number;
 	number: number;
 }
 
 const defualtQuery: CommitMessageQuery = {
-	number: 1,
-	date: new Date(new Date().getTime() - 86400 * 1000),
+	number: parseInt(localStorage.getItem('number-of-commits') || '1'),
+	date: parseInt(
+		localStorage.getItem('commits-since-date') ||
+			new Date().getTime().toString()
+	),
 };
 
+/**
+ *
+ * En samling av commits. Dette komponentet tar inn data fra src/api/index.ts og
+ * delegerer denne dataen til en liste med SingleCommitMessage-komponenter. I tilleg,
+ * inneholder CommitMessages-komponentet tilstand om antall commits som skal vises
+ * og definerer hvor gammel commit-ene som vises maksimalt kan være.
+ *
+ */
 const CommitMessages = () => {
 	let dateRef = React.createRef<HTMLDivElement>();
+	const { darkmode } = React.useContext(DarkmodeContext);
 	let [settings, setSettings] =
 		React.useState<CommitMessageQuery>(defualtQuery);
 	let [commits, setCommits] = React.useState<Commit[] | undefined>(undefined);
+
+	/**
+	 * Wrapper-funksjon for callback som henter data samlingen med api-kall.
+	 * Denne funksjonen blir kallet på når siden laster, når brukeren endrer
+	 * antall commits som skal vises og når brukere endrer dato.
+	 */
 	const fetchCommits: () => Promise<Commit[] | undefined> =
 		React.useCallback(async () => {
 			try {
 				const c = await getCommits(settings.number);
-				console.log(c.length);
 				return c;
 			} catch (err) {
 				console.error(err);
 			}
 			return undefined;
 		}, [settings.number]);
+
+	/**
+	 * Henter daa når siden laster inn i browseren.
+	 */
 	React.useEffect(() => {
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
-				c = sortAndFilterCommits(c);
+				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
 			}
 			setCommits(c);
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fetchCommits, settings.date]);
-	function sortAndFilterCommits(commits: Commit[]): Commit[] {
-		// Sort commits in ascending order with respect to date
-		commits.sort((a, b) => {
-			let t0 = a.created_at.getTime();
-			let t1 = b.created_at.getTime();
-			return t0 > t1 ? 1 : -1;
-		});
-		// Filter out commits that are older than the user specified date
-		// console.log(commits.map((c) => c.created_at))
-		// commits = commits.filter(
-		// 	(c) => c.created_at.getTime() > settings.date.getTime()
-		// );
-		return commits;
-	}
+
 	const numberChange = (newNumber: any) => {
 		setSettings({ ...settings, number: parseInt(newNumber) });
+		localStorage.setItem('number-of-commits', newNumber.toString());
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
-				c = sortAndFilterCommits(c);
+				c = sortCommitsByDate(c, true);
+				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
 			}
 			setCommits(c);
 		})();
 	};
+
 	const updateDate = (newDate: any) => {
 		let date;
 		if (newDate instanceof Date) {
@@ -83,71 +97,60 @@ const CommitMessages = () => {
 					new Date().getTime()
 			);
 		}
+		date.setHours(0);
+		date.setMinutes(0);
+		date.setSeconds(0);
+		date.setMilliseconds(0);
 		let newSettings: CommitMessageQuery = {
 			...settings,
-			date,
+			date: date.getTime(),
 		};
+		localStorage.setItem('commits-since-date', date.getTime().toString());
 		setSettings(newSettings);
 	};
 	return (
-		<VStack id='Commit-messages-container'>
-			<Greeting />
-			<Container
-				ref={dateRef}
-				maxW={'container.lg'}
-				minW={['4em']}
-				margin={'5em auto'}
-				display={'flex'}
-				flexDirection={['column', 'row', 'row', 'row']}
-				justifyContent={'center'}
-				width={'100vw'}
-			>
-				<Box margin={'auto'}>
-					<h1>
-						<b>Antall commits</b>
-					</h1>
+		<VStack mt='4rem' className='accordion_list_container'>
+			<Flex justifyContent='space-between' w='100%' flexWrap='wrap'>
+				<FormControl maxW='max-content' mb='1rem'>
+					<FormLabel fontWeight='bold' mb='0'>
+						Number of commits
+					</FormLabel>
 					<MyInput
 						numberChange={(a) => numberChange(a)}
 						value={settings.number}
 					/>
-				</Box>
-				<Box margin={'auto'}>
-					<h1>
-						<b>Commits siden dato</b>
-					</h1>
+				</FormControl>
+				<FormControl maxW='max-content'>
+					<FormLabel fontWeight='bold' mb='0'>
+						Start date
+					</FormLabel>
 					<DateTimePicker
 						ref={dateRef}
 						disableCalendar={false}
 						minDate={new Date(163283426645)}
+						maxDate={new Date()}
 						format={'dd.MM.y'}
 						clearIcon={null}
+						calendarIcon={
+							<CalendarIcon
+								margin={'auto .5em'}
+								color={darkmode ? 'white' : 'black'}
+							/>
+						}
 						className={'My-styled-date-picker Commit-message-input'}
 						onChange={(evt: any) => updateDate(evt)}
-						value={settings.date}
+						value={new Date(settings.date)}
 					/>
-				</Box>
-			</Container>
-			<VStack
-				divider={<StackDivider borderColor={'gray.200'} />}
-				spacing={4}
-				align='center'
-				margin={'2em auto'}
-			>
-				<Accordion
-					margin={'2em auto'}
-					allowMultiple={false}
-					allowToggle={true}
-				>
-					{commits
-						? commits.map((c) => (
-								<SingleCommitMessage
-									commit={c}
-									key={c.short_id}
-								/>
-						  ))
-						: null}
-				</Accordion>
-			</VStack>
+				</FormControl>
+			</Flex>
+
+			<Accordion w='100%' allowToggle pb='7vh'>
+				{commits
+					? commits.map((c) => (
+							<SingleCommitMessage commit={c} key={c.short_id} />
+					  ))
+					: null}
+			</Accordion>
 		</VStack>
 	);
 };

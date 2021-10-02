@@ -4,8 +4,8 @@ Dette er GitLabViz, en datavisualisering av vårt GitLab repository. Dataene som
 
 -   Meldingene fra de siste commitene
 -   Antall commits fra hver student
--   Et tre med oversikt git branchene våre
--   En liste med issuene våre
+-   Et tre med oversikt over git-branchene våre
+-   En liste med våre issues
 
 ## Valg av løsninger
 
@@ -13,27 +13,31 @@ Dette er GitLabViz, en datavisualisering av vårt GitLab repository. Dataene som
 
 Av sideelementer har vi valgt å hente ut data fra tre områder som vi mener er sentrale i utvikling med Git/GitLab: commits, branches og issues.
 
-På websiden er det to bokser som inneholder informasjon om commits: en for commitmeldingene fra de siste committene som er blitt pushet til main-branchen, og ett kakediagram som reflekterer mengden commits fra de ulike utviklerne.
+I applikasjonen er det to sider som inneholder informasjon om **commits**: en for commitmeldingene fra de siste committene som er blitt pushet til main-branchen, og ett kakediagram som reflekterer mengden commits fra de ulike utviklerne.
 
-Branch-dataene har vi visualisert gjennom en tre-graf som viser hvordan de ulike branchene våre har utviklet seg over tid. Dette følte vi var den mest oversiktlige måten å presentere slik data på.
+**Branch**-dataene har vi visualisert gjennom en tre-graf som viser hvilke brancher som er merget og ikke.
 
-**Endre dette:**
-~~Issuene våre har vi visualisert gjennom en modifiserbar liste, der man kan legge inn antall ønskede commits (fra 1 til 20) og et tidsinterval for commiten.~~
+**Issues** og **commit-meldinger** vises som en liste, hvor man kan trykke på tittelen for å se beskrivelsen.
 
-Som utforming har vi valgt å ha vært element på hver sin side. Dette mener vi gjør siden oversiktlig og entydig. Samtidig er det lett og navigere til deulike sidene gjennom knappene i headeren, eventuelt boksene på forsiden.
+Som utforming har vi valgt å ha vært element på hver sin side. Dette mener vi gjør siden oversiktlig og entydig. Samtidig er det lett å navigere til de ulike sidene gjennom knappene i navigasjonsmenyen.
 
 ### Responsivitet
 
-For å håndere forskjellige skjermstørrelser (feks laptop/mobil/tablett) har vi benyttet av oss prosenter av skjermhøyden og -bredden. Når skjermbredden blir smal (typisk mobiler) hånderer vi dette ved hjelp av mediaqueries, for å endre stylingen slik at innholdet ikke går utenfor skjermen. Et eksempel på dette er at navigasjonsmenyen viser alle knappene om de får plass, men når skjermen blir smal blir endret til en hamburgermeny.
+For å håndere forskjellige skjermstørrelser (feks laptop/mobil/tablett) har vi benyttet oss av prosenter av skjermhøyden og -bredden. Når skjermbredden blir smal (typisk mobiler) hånderer vi dette med bruk av mediaqueries ved å endre stylingen slik at innholdet ikke går utenfor skjermen. Et eksempel på dette er at navigasjonsmenyen viser alle knappene om de får plass, men n år skjermen blir smal blir endret til en hamburgermeny.
 
-På eksempelet med hamburgermenyen har vi brukt [Chakra UI breakpoints](https://chakra-ui.com/docs/features/responsive-styles). Så når vi har koden `display={{ base: 'none', lg: 'flex' }` for å vise/skjule elementer, så fungerer den slik at når bredden er større enn _lg_ (62em) så vil 'display' være av typen 'flex', men ellers 'none'. Chakra benytter seg av media queries for å få til dette, men for å vise at vi også mestrer media queries har vi også brukt det i noen filer som feks. _issues.css_.
+På eksempelet med hamburgermenyen har vi brukt [Chakra UI breakpoints](https://chakra-ui.com/docs/features/responsive-styles). Så når vi har koden `display={{ base: 'none', lg: 'flex' }` for å vise/skjule elementer, så fungerer den slik at når bredden er større enn _lg_ (62em) så vil 'display' være av typen 'flex', men ellers 'none'. Chakra benytter seg av media queries for å få til dette, men for å vise at vi også mestrer 'vanlige' media queries har vi også brukt det i _AccordionList.css_.
 
 ### Lokal lagring
 
 Applikasjonen benytter seg av **Localstorage** for å lagre hvilket fargetema ('light' eller 'dark') brukeren har valgt. Dette gjør at neste gang brukeren besøker siden så kan vi hente denne dataen for å sette fargetema.
 
-På hovedsiden bruker vi **Sessionstorage** for å lagre navnet på brukeren.
-**_Utdype her_**
+På hovedsiden bruker vi **Sessionstorage** for å lagre navnet på brukeren. Når brukeren skriver inn navnet blir stringen satt i sessionstorage med tagen 'name'. Denne verdien blir så hentet ut ved `sessionStorage.getItem('name')`, og presentert øverst sammen med en hilsen.
+
+### Async/await
+
+Vi har brukt laget en samling av asynkrone funksjoner som ligger under _src/api/index.ts_. Denne filen definerer hvilke data vi henter ut fra gitlabs rest-api, samt utfører api-kallene. Videre har react-komponentene som mottar data definerte asynkrone funksjoner for å motta denne dataen.
+
+Vi har også brukt _React Query_ for statehånderting i _IssueList.tsx_, men har her som andre steder bevist gjort løst dette på to forskjellige måter for å være sikre på at vi oppfyller kravene.
 
 ### Parameterisert datauthenting
 
@@ -65,7 +69,7 @@ Gitgraph-react er et bibliotek hvor man kan lage visualiseringer av git-brancher
 I tillegg til dependencies vi har fra start(create-react-app) har vi lagt til blant annet:
 @babel/core, @babel/plugin-transform-modules-commonjs, @babel/preset-env, @babel/preset-typescript, ts-node
 Disse er for å hjelpe til med overgangen fra typescript til javascript når det kommer til syntax o.l.
-Vi har brukt snapshottesting av appen, for å verifisere at den rendrer som den skal. Dette gjøres ved at man rendrer <app/> komponenten og tar et snapshot. Hver gang testen kjøres etter dette sjekker man om den rendrede komponenten matcher dette bildet.
+Vi har brukt snapshottesting av appen, for å verifisere at den rendrer som den skal. Dette gjøres ved at man rendrer `<app/>` komponenten og tar et snapshot. Hver gang testen kjøres etter dette sjekker man om den rendrede komponenten matcher dette bildet.
 
 Vi har også testet funksjonaliteten til routing componentene i headeren. Dette er gjort ved at vi simulerer et klikk på navigasjonselementene, og deretter bruker `window.location.path` for å sjekke at applikasjonen navigerte til riktig path.
 Samtidig sjekker vi at det er det riktige komponentet som blir _render_-et ved å lete etter elementer vi vet er til stede i de gitte komponentene.

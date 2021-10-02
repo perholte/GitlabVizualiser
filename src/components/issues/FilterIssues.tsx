@@ -1,4 +1,4 @@
-import { FormLabel, Select, Box } from '@chakra-ui/react';
+import { FormLabel, Select, FormControl } from '@chakra-ui/react';
 import React from 'react';
 
 export enum IssueFilter {
@@ -17,18 +17,19 @@ const FilterIssues: React.FC<FilterIssuesProps> = ({
 	activeFilter,
 }) => {
 	return (
-		<Box w='200px'>
-			<FormLabel for='filterIssues'>Filter issues:</FormLabel>
+		<FormControl w='200px'>
+			<FormLabel>Filter issues:</FormLabel>
 			<Select
 				value={activeFilter}
-				id='filterIssues'
 				onChange={(e) => updateFilter(e.target.value as IssueFilter)}
 			>
 				{Object.values(IssueFilter).map((filter) => (
-					<option value={filter}>{filter}</option>
+					<option value={filter} key={filter}>
+						{filter}
+					</option>
 				))}
 			</Select>
-		</Box>
+		</FormControl>
 	);
 };
 

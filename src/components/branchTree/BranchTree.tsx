@@ -2,7 +2,6 @@ import { Center } from '@chakra-ui/react';
 import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
 import * as React from 'react';
 import { Branch, getBranches } from '../../api';
-import Greeting from '../common/Greeting';
 
 const BranchTree = () => {
 	const options = {
@@ -17,11 +16,10 @@ const BranchTree = () => {
 		}),
 	};
 	return (
-		<Center flexDirection={'column'}>
-			<Greeting />
+		<Center flexDirection={'column'} minH='scale(100%-5em)'>
 			<svg
 				id='graph-container'
-				viewBox={`0 0 700 700`}
+				viewBox={`0 0 600 1000`}
 				style={{ marginTop: '5em', transform: 'scale(1.2)' }}
 			>
 				<Gitgraph options={options}>
@@ -29,7 +27,8 @@ const BranchTree = () => {
 						getBranches().then((res) => {
 							const branches: Array<Branch> = [];
 							let master: any;
-							const mergedBranches: any = [];
+							const mergedBranches: Array<Branch> = [];
+							const activeBranches: Array<Branch> = [];
 
 							res.forEach((element) => {
 								if (
@@ -45,13 +44,16 @@ const BranchTree = () => {
 							});
 
 							branches.forEach((element) => {
-								if (element.merged) {
+								if (!element.merged) {
+									activeBranches.push(element);
+								} else {
 									mergedBranches.push(
 										master.branch(element).commit('')
 									);
-								} else {
-									master.branch(element).commit('');
 								}
+							});
+							activeBranches.forEach((element: any) => {
+								master.branch(element.name).commit('');
 							});
 							mergedBranches.forEach((element: any) => {
 								master.merge(element, ' ');

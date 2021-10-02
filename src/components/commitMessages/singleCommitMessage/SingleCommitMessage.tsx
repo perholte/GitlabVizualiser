@@ -1,17 +1,7 @@
-import {
-	AccordionButton,
-	AccordionIcon,
-	AccordionItem,
-	AccordionPanel,
-	Heading,
-	HStack,
-	ListItem,
-	UnorderedList,
-	useStyleConfig,
-} from '@chakra-ui/react';
-import * as React from 'react';
+import React from 'react';
+import { Heading, ListItem, UnorderedList } from '@chakra-ui/react';
 import { Commit } from '../../../api';
-import '../../issues/issues.css';
+import AccordionListItem from '../../common/AccordionListItem';
 export interface CommitMessageProps {
 	commit: Commit;
 }
@@ -25,38 +15,26 @@ const TimeFormatOptions = {
 };
 
 export default function SingleCommitMessage({ commit }: CommitMessageProps) {
-	const styles = useStyleConfig('SingleCommitMessage', {
-		variant: 'open',
-		size: 'xl',
-	});
 	return (
-		<AccordionItem sx={styles} className='issue_element'>
-			<h1>
-				<AccordionButton>
-					<HStack w='100%' justifyContent='space-between'>
-						<HStack fontWeight='bold'>
-							<Heading
-								textAlign='left'
-								fontSize='1rem'
-								overflow='hidden'
-								w='500px'
-								textOverflow='ellipsis'
-								whiteSpace='nowrap'
-							>
-								{commit.title}
-							</Heading>
-						</HStack>
-						<AccordionIcon />
-					</HStack>
-				</AccordionButton>
-			</h1>
-			<AccordionPanel pb={4}>
+		<AccordionListItem
+			buttonChildren={
+				<Heading
+					textAlign='left'
+					fontSize='1rem'
+					overflow='hidden'
+					textOverflow='ellipsis'
+					whiteSpace='nowrap'
+				>
+					{commit.title}
+				</Heading>
+			}
+			panelChildren={
 				<UnorderedList>
 					<ListItem>Author: {commit.author_name}</ListItem>
 					<ListItem>Commit sha: {commit.short_id}</ListItem>
 					<ListItem>Date: {commit.created_at.toUTCString()}</ListItem>
 				</UnorderedList>
-			</AccordionPanel>
-		</AccordionItem>
+			}
+		/>
 	);
 }

@@ -24,7 +24,6 @@ const Frontpage: FC<{}> = () => {
 			minH='calc(100% - 5em)'
 			maxH='calc(100% - 5em)'
 			flexDir='column'
-			backgroundColor={darkmode ? '#121212' : 'Highlight'}
 			color='HighlightText'
 			fontFamily='heading'
 		>

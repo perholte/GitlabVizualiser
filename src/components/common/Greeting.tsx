@@ -1,19 +1,16 @@
 import { Text } from '@chakra-ui/layout';
 import { FC, useContext } from 'react';
 import { ThemeContext } from '../../App';
+import './Greeting.css';
 
 const Greeting: FC = () => {
 	const theme = useContext(ThemeContext);
 	const darkmode = theme.darkmode;
-	let color = !darkmode ? 'black' : 'green.500';
 	const name = sessionStorage.getItem('name');
+	let mode = darkmode ? 'dark' : 'light';
 	return !!name ? (
-		<Text color={color} textAlign={'center'} margin='2em auto'>
-			Hello {name}
-		</Text>
-	) : (
-		<></>
-	);
+		<Text className={`greeting ${mode}`}>Hello {name}!</Text>
+	) : null;
 };
 
 export default Greeting;

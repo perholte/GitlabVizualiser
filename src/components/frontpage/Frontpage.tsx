@@ -1,9 +1,9 @@
 import { Center, Heading } from '@chakra-ui/layout';
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Text } from '@chakra-ui/react';
 import React, { FC, FormEventHandler, useContext, useState } from 'react';
 import { ThemeContext } from '../../App';
 
-const Frontpage: FC = () => {
+const Frontpage: FC<{}> = () => {
 	const [name, setName] = useState<string>();
 	const [rerender, setRerender] = useState<boolean>(false);
 
@@ -17,33 +17,55 @@ const Frontpage: FC = () => {
 	};
 	const theme = useContext(ThemeContext);
 	const darkmode = theme.darkmode;
-
+	let color = !darkmode ? 'black' : 'green.500';
 	return (
 		<Center
 			minH='85vh'
 			maxH='85vh'
 			flexDir='column'
-			backgroundColor={darkmode ? 'black' : 'Highlight'}
+			backgroundColor={darkmode ? '#121212' : 'Highlight'}
 			color='HighlightText'
 			fontFamily='heading'
 		>
-			<Heading justifyContent='center' textAlign='center' size='4xl'>
+			<Heading
+				color={color}
+				justifyContent='center'
+				textAlign='center'
+				size='4xl'
+			>
 				GitLabViz
 			</Heading>
 			{!hasName() ? (
-				<form onSubmit={storeName}>
+				<form
+					style={{
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						flexWrap: 'wrap',
+						color,
+					}}
+					onSubmit={storeName}
+				>
 					<FormControl margin={3}>
-						<FormLabel>Enter your name</FormLabel>
+						<FormLabel color={color}>Enter your name</FormLabel>
 						<Input
+							color={color}
+							focusBorderColor={darkmode ? '#fff' : 'green.500'}
 							isRequired
 							type='text'
-							onChange={(event) => setName(event.target.value)}
+							onChange={(event: any) =>
+								setName(event.target.value)
+							}
 						></Input>
 					</FormControl>
-					<Button type='submit'>Submit name</Button>
+					<Button type='submit' color={color}>
+						Submit name
+					</Button>
 				</form>
 			) : (
-				<p>Your name will be displayed on the different pages :)</p>
+				<Text color={color}>
+					Your name will be displayed on the different pages :)
+				</Text>
 			)}
 		</Center>
 	);

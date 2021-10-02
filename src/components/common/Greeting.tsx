@@ -1,10 +1,15 @@
 import { Text } from '@chakra-ui/layout';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import { ThemeContext } from '../../App';
 
 const Greeting: FC = () => {
-	return !!sessionStorage.getItem('name') ? (
-		<Text color='HighlightText' fontFamily='cursive'>
-			Hello {sessionStorage.getItem('name')}
+	const theme = useContext(ThemeContext);
+	const darkmode = theme.darkmode;
+	let color = !darkmode ? 'black' : 'green.500';
+	const name = sessionStorage.getItem('name');
+	return !!name ? (
+		<Text color={color} textAlign={'center'} margin='2em auto'>
+			Hello {name}
 		</Text>
 	) : (
 		<></>

@@ -10,7 +10,6 @@ body {
 #root {
 	position: relative !important;
 	overflow-x: hidden;
-	padding-bottom: 5em;
 }
 
 code {

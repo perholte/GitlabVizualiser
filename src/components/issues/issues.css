@@ -11,13 +11,3 @@
 		width: calc(100% - 10vw);
 	}
 }
-
-.issue_element {
-	margin-top: 0.5em !important;
-}
-
-.issue_element ul,
-.issue_element ol {
-	margin: auto !important;
-	padding: 0 1rem !important;
-}

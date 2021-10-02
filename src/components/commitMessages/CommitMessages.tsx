@@ -2,8 +2,9 @@ import { CalendarIcon } from '@chakra-ui/icons';
 import {
 	Accordion,
 	Box,
-	Container,
-	StackDivider,
+	Flex,
+	FormControl,
+	FormLabel,
 	VStack,
 } from '@chakra-ui/react';
 import * as React from 'react';
@@ -14,6 +15,7 @@ import { ThemeContext as DarkmodeContext } from '../../App';
 import './CommitMessages.css';
 import MyInput from './inputs/NumberInput';
 import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage';
+import '../style/AccordionList.css';
 
 interface CommitMessageQuery {
 	date: number;
@@ -91,30 +93,21 @@ const CommitMessages = () => {
 		setSettings(newSettings);
 	};
 	return (
-		<VStack id='Commit-messages-container'>
-			<Container
-				ref={dateRef}
-				maxW={'container.lg'}
-				minW={['4em']}
-				margin={'5em auto'}
-				display={'flex'}
-				flexDirection={['column', 'row', 'row', 'row']}
-				justifyContent={'center'}
-				width={'100vw'}
-			>
-				<Box margin={'auto'}>
-					<h1>
-						<b>Antall commits</b>
-					</h1>
+		<VStack mt='4rem' className='accordion_list_container'>
+			<Flex justifyContent='space-between' w='100%' flexWrap='wrap'>
+				<FormControl maxW='max-content' mb='1rem'>
+					<FormLabel fontWeight='bold' mb='0'>
+						Number of commits
+					</FormLabel>
 					<MyInput
 						numberChange={(a) => numberChange(a)}
 						value={settings.number}
 					/>
-				</Box>
-				<Box margin={'auto'}>
-					<h1>
-						<b>Commits siden dato</b>
-					</h1>
+				</FormControl>
+				<FormControl maxW='max-content'>
+					<FormLabel fontWeight='bold' mb='0'>
+						Start date
+					</FormLabel>
 					<DateTimePicker
 						ref={dateRef}
 						disableCalendar={false}
@@ -132,29 +125,16 @@ const CommitMessages = () => {
 						onChange={(evt: any) => updateDate(evt)}
 						value={new Date(settings.date)}
 					/>
-				</Box>
-			</Container>
-			<VStack
-				divider={<StackDivider borderColor={'gray.200'} />}
-				spacing={4}
-				align='center'
-				margin={'2em auto'}
-			>
-				<Accordion
-					margin={'2em auto'}
-					allowMultiple={false}
-					allowToggle={true}
-				>
-					{commits
-						? commits.map((c) => (
-								<SingleCommitMessage
-									commit={c}
-									key={c.short_id}
-								/>
-						  ))
-						: null}
-				</Accordion>
-			</VStack>
+				</FormControl>
+			</Flex>
+
+			<Accordion w='100%' allowToggle pb='7vh'>
+				{commits
+					? commits.map((c) => (
+							<SingleCommitMessage commit={c} key={c.short_id} />
+					  ))
+					: null}
+			</Accordion>
 		</VStack>
 	);
 };

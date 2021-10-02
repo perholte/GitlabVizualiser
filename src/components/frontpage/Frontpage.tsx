@@ -12,6 +12,7 @@ const Frontpage: FC<{}> = () => {
 	};
 
 	const storeName: FormEventHandler = (event) => {
+		event.preventDefault();
 		sessionStorage.setItem('name', name!);
 		setRerender(!rerender);
 	};

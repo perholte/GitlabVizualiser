@@ -2,10 +2,10 @@
 
 Dette er GitLabViz, en datavisualisering av vårt GitLab repository. Dataene som presenteres er
 
-- Meldingene fra de siste commitene
-- Antall commits fra hver student
-- Et tre med oversikt git branchene våre
-- En liste med issuene våre
+-   Meldingene fra de siste commitene
+-   Antall commits fra hver student
+-   Et tre med oversikt git branchene våre
+-   En liste med issuene våre
 
 ## Valg av løsninger
 
@@ -43,7 +43,21 @@ Recharts er et populært grafbibliotek for React. Vi har brukt det til å lage e
 
 ### Testing
 
-Vi har brukt snapshottesting av appen, for å verifisere at rendrer som den skal.
-Vi har også testet funksjonaliteten til routing componentene i headeren. Dette er gjort ved at vi simulrere et klikk på navigasjonselementene, og deretter bruker `window.location.path` for å sjekke at applikasjonen navigerte til riktig _path_.
-Samtidig sjekker vi at det er det riktige komponentet som blir _render_-et ved å lete etter elementer vi vet er i de gitte komponentene.
+    Prosjektet skal vise oppsett av og eksempel på testing med Jest - minimum er å ha en snapshottest og noen enkle tester på komponentenes oppførsel.
+    Målet med dette kravet er at dere kommer i gang med testing, får erfaring i oppsett og en forståelse av hva vi typisk tester i React-applikasjoner. Vi legger lite vekt på omfanget av testingen, men dere skal vise at dere har forstått prinsippet i testingen.
+    Testing av brukergrensesnitt og responsiv design: Gruppa skal beskrive/dokumentere testing på minimum 3 forskjellige enheter hvor det må inngå en mobil (liten skjerm/horisontal + vertikal orientering og en ordinær pc (stor skjerm).
+
+I tillegg til dependencies vi har fra start(create-react-app) har vi lagt til blant annet:
+
+`@babel/core, @babel/plugin-transform-modules-commonjs, @babel/preset-env, @babel/preset-typescript, ts-node`
+
+Disse er for å hjelpe til med overgangen fra typescript til javascript når det kommer til syntax o.l.
+
+Vi har brukt snapshottesting av appen, for å verifisere at den rendrer som den skal. Dette gjøres ved at man rendrer `<app/>` komponenten og tar et snapshot. Hver gang testen kjøres etter dette sjekker man om den rendrede komponenten matcher dette bildet.
+
+Vi har også testet funksjonaliteten til routing componentene i headeren. Dette er gjort ved at vi simulerer et klikk på navigasjonselementene, og deretter bruker `window.location.path` for å sjekke at applikasjonen navigerte til riktig _path_.
+Samtidig sjekker vi at det er det riktige komponentet som blir _render_-et ved å lete etter elementer vi vet er til stede i de gitte komponentene.
+
+Til slutt har vi også testet brukerinteraksjon ved å fylle inn en string i input field-et på forsiden, for så å sjekke at stringen representeres på alle sidene i applikasjonen.
+
 Med tanke på at det er bruk av et eksternt api er det naturlig å teste api-kallene, men ettersom dette er komplisert og tidkrevende (og ikke et krav i prosjektet) valgte vi å ikke gjøre det.

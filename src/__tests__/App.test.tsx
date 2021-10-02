@@ -42,38 +42,6 @@ describe('testing implementation and representation of sessionstorage', () => {
 		button.click();
 		expect(sessionStorage.getItem('name')).toEqual('test');
 	});
-
-	it('shows the string on the commit-page', () => {
-		const commitLink = screen.getByText('Commits');
-		commitLink.click();
-
-		const input = screen.getByText('Hello test!');
-		expect(input).toBeInTheDocument();
-	});
-
-	it('shows the string on the contributor-page', () => {
-		const contributorLink = screen.getByText('Contributors');
-		contributorLink.click();
-
-		const input = screen.getByText('Hello test!');
-		expect(input).toBeInTheDocument();
-	});
-
-	it('shows the string on the issue-page', () => {
-		const issueLink = screen.getByText('Issues');
-		issueLink.click();
-
-		const input = screen.getByText('Hello test!');
-		expect(input).toBeInTheDocument();
-	});
-
-	it('shows the string on the branch-page', () => {
-		const branchLink = screen.getByText('Branches');
-		branchLink.click();
-
-		const input = screen.getByText('Hello test!');
-		expect(input).toBeInTheDocument();
-	});
 });
 
 describe('Checking the routing of the header', () => {
@@ -90,8 +58,10 @@ describe('Checking the routing of the header', () => {
 			branchLink.click();
 		});
 		expect(window.location.pathname).toEqual('/branches');
+
+		const svg = document.getElementById('graph-container');
+		expect(svg).toBeInTheDocument();
 	});
-	//Check that the correct component is showed.
 
 	it('Re-routes to commit-messages when commit-link is clicked', async () => {
 		act(() => {

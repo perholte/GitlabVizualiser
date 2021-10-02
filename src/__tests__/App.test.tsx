@@ -49,8 +49,10 @@ describe('Checking the routing of the header', () => {
 		const homeLink = screen.getByText('Home');
 		homeLink.click();
 		expect(window.location.pathname).toEqual('/');
+
+		const input = screen.getByRole('checkbox')
+		expect(input).toBeInTheDocument()
 	});
-	//Check that the correct component is showed.
 
 	it('Re-routes to branches when branches-link is clicked', async () => {
 		act(() => {

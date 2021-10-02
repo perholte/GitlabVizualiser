@@ -7,11 +7,11 @@ import {
 import { HStack } from '@chakra-ui/layout';
 import { useStyleConfig } from '@chakra-ui/react';
 import { ComponentStyleConfig } from '@chakra-ui/theme';
-import parse from 'html-react-parser';
 import marked from 'marked';
 import React from 'react';
 import { containerStyles } from '../style/styles';
 import './issues.css';
+import parse from 'html-react-parser';
 
 //TODO: update this type and maybe move it to a 'type' folder
 export interface IssueType {

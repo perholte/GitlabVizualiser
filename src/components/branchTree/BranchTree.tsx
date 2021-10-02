@@ -19,7 +19,7 @@ const BranchTree = () => {
 		<Center flexDirection={'column'} minH='scale(100%-5em)'>
 			<svg
 				id='graph-container'
-				viewBox={`0 0 600 1100`}
+				viewBox={`0 0 600 1000`}
 				style={{ marginTop: '5em', transform: 'scale(1.2)' }}
 			>
 				<Gitgraph options={options}>
@@ -27,7 +27,8 @@ const BranchTree = () => {
 						getBranches().then((res) => {
 							const branches: Array<Branch> = [];
 							let master: any;
-							const mergedBranches: any = [];
+							const mergedBranches: Array<Branch> = [];
+							const activeBranches: Array<Branch> = [];
 
 							res.forEach((element) => {
 								if (
@@ -43,13 +44,16 @@ const BranchTree = () => {
 							});
 
 							branches.forEach((element) => {
-								if (element.merged) {
+								if (!element.merged) {
+									activeBranches.push(element);
+								} else {
 									mergedBranches.push(
 										master.branch(element).commit('')
 									);
-								} else {
-									master.branch(element).commit('');
 								}
+							});
+							activeBranches.forEach((element: any) => {
+								master.branch(element.name).commit('');
 							});
 							mergedBranches.forEach((element: any) => {
 								master.merge(element, ' ');

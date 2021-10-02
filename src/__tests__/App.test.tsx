@@ -18,7 +18,7 @@ beforeEach(() => {
 	);
 });
 afterEach(cleanup);
-/*
+
 it('renders the App correctly', () => {
 	expect(<App></App>).toMatchSnapshot();
 });
@@ -33,8 +33,53 @@ it('Renders the header correctly', () => {
 	).toMatchSnapshot();
 });
 
+describe('testing implementation and representation of sessionstorage', () => {
+	it('Writes a string in the input field and submits it', () => {
+		window.location.pathname = '/';
+		const inputLabel = screen.getByRole('textbox');
+		const button = screen.getByText('Submit name');
+		userEvent.type(inputLabel, 'test');
+		button.click();
+		expect(sessionStorage.getItem('name')).toEqual('test');
+	});
+
+	it('shows the string on the commit-page', () => {
+		const commitLink = screen.getByText('Commits');
+		commitLink.click();
+
+		const input = screen.getByText('Hello test!');
+		expect(input).toBeInTheDocument();
+	});
+
+	it('shows the string on the contributor-page', () => {
+		const contributorLink = screen.getByText('Contributors');
+		contributorLink.click();
+
+		const input = screen.getByText('Hello test!');
+		expect(input).toBeInTheDocument();
+	});
+
+	it('shows the string on the issue-page', () => {
+		const issueLink = screen.getByText('Issues');
+		issueLink.click();
+
+		const input = screen.getByText('Hello test!');
+		expect(input).toBeInTheDocument();
+	});
+
+	it('shows the string on the branch-page', () => {
+		const branchLink = screen.getByText('Branches');
+		branchLink.click();
+
+		const input = screen.getByText('Hello test!');
+		expect(input).toBeInTheDocument();
+	});
+});
+
 describe('Checking the routing of the header', () => {
 	it('Should be on the home page', () => {
+		const homeLink = screen.getByText('Home');
+		homeLink.click();
 		expect(window.location.pathname).toEqual('/');
 	});
 	//Check that the correct component is showed.
@@ -65,46 +110,4 @@ describe('Checking the routing of the header', () => {
 		expect(window.location.pathname).toEqual('/contributors');
 	});
 	//Check that the correct component is showed.
-});
-*/
-describe('testing implementation and representation of sessionstorage', () => {
-	it('Writes a string in the input field and submits it', () => {
-		const inputLabel = screen.getByRole('textbox');
-		const button = screen.getByText('Submit name');
-		userEvent.type(inputLabel, 'test');
-		button.click();
-		expect(sessionStorage.getItem('name')).toEqual('test');
-	});
-
-	it('shows the string on the commit-page', () => {
-		const commitLink = screen.getByText('Commits');
-		commitLink.click();
-
-		const input = screen.getByText('Hello test');
-		expect(input).toBeInTheDocument();
-	});
-
-	it('shows the string on the contributor-page', () => {
-		const contributorLink = screen.getByText('Contributors');
-		contributorLink.click();
-
-		const input = screen.getByText('Hello test');
-		expect(input).toBeInTheDocument();
-	});
-
-	it('shows the string on the issue-page', () => {
-		const issueLink = screen.getByText('Issues');
-		issueLink.click();
-
-		const input = screen.getByText('Hello test');
-		expect(input).toBeInTheDocument();
-	});
-
-	it('shows the string on the branch-page', () => {
-		const branchLink = screen.getByText('Branches');
-		branchLink.click();
-
-		const input = screen.getByText('Hello test');
-		expect(input).toBeInTheDocument();
-	});
 });

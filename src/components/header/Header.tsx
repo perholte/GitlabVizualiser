@@ -2,14 +2,14 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
 	Box,
 	Button,
+	Center,
 	Flex,
+	Heading,
 	HStack,
 	IconButton,
+	Stack,
 	Switch,
 	useDisclosure,
-	Heading,
-	Stack,
-	Center,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -28,6 +28,7 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 	return (
 		<Box>
 			<Flex
+				h={'5em'}
 				justifyContent='space-between'
 				py='1rem'
 				bg={darkmode ? 'seagreen' : 'white'}

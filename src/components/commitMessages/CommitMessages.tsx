@@ -62,7 +62,6 @@ const CommitMessages = () => {
 		(async () => {
 			let c = await fetchCommits();
 			if (c) {
-				console.log(c.map((c) => c.created_at.getDate()).join(', '));
 				c = sortCommitsByDate(c, true);
 				c = filterOutCommitsBeforeDate(c, new Date(settings.date));
 			}
@@ -84,7 +83,6 @@ const CommitMessages = () => {
 		date.setMinutes(0);
 		date.setSeconds(0);
 		date.setMilliseconds(0);
-		console.log(commits);
 		let newSettings: CommitMessageQuery = {
 			...settings,
 			date: date.getTime(),

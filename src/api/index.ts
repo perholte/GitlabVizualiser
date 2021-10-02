@@ -45,27 +45,35 @@ export interface Issue {
  * @returns n amount of Commit objects
  */
 export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
-	const url = `${BASE}repository/commits/?per_page=100&all=true`
-	let commits: Commit[]
-	let res = await fetch(url, {
+	let page: number = 1
+	const url = (page: number) => `${BASE}repository/commits/?page=${page}`
+	let commits: Commit[] = []
+	const result = async (page: number) => await fetch(url(page), {
 		headers: {
 			'PRIVATE-TOKEN': TOKEN,
 		},
 	})
-	commits = await res.json()
-	commits = commits.map((c: any) => {
-		let commit = {
-			title: c.title,
-			author_name: c.author_name,
-			short_id: c.short_id,
-			created_at: new Date(c.created_at),
+	let res = await result(page)
+	while (res.headers.get("x-next-page")) {
+		page++
+		const tmpArray = (await res.json()).map((c: any) => {
+			let commit = {
+				title: c.title,
+				author_name: c.author_name,
+				short_id: c.short_id,
+				created_at: new Date(c.created_at),
+			}
+			return commit
+		})
+		for (let i in tmpArray) {
+			commits.push(tmpArray[i])
 		}
-		return commit
-	})
+		res = await result(page)
+	}
 	if (!n || n <= 0 || n > commits.length) {
-		return sortCommitsByDate(anonymizeAuthors(commits), false)
+		return sortCommitsByDate(anonymizeAuthors(commits), true)
 	} else {
-		return anonymizeAuthors(sortCommitsByDate(commits, false).slice(0, n))
+		return anonymizeAuthors(sortCommitsByDate(commits, true).slice(0, n))
 	}
 }
 

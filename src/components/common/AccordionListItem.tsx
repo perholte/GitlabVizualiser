@@ -31,7 +31,9 @@ const AccordionListItem: React.FC<AccordionListItemProps> = ({
 		<AccordionItem sx={styles}>
 			<AccordionButton>
 				<HStack w='100%' justifyContent='space-between'>
-					<HStack fontWeight='bold'>{buttonChildren}</HStack>
+					<HStack fontWeight='bold' maxW='calc(100% - 2rem)'>
+						{buttonChildren}
+					</HStack>
 					{!disablePanel && <AccordionIcon />}
 				</HStack>
 			</AccordionButton>

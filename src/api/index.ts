@@ -1,3 +1,5 @@
+import { anonymizeAuthors } from './utils'
+
 const BASE = 'https://gitlab.stud.idi.ntnu.no/api/v4/projects/11994/'
 const TOKEN = process.env.REACT_APP_TEAM_08_ACCESS_TOKEN || 'NO TOKEN'
 
@@ -62,9 +64,9 @@ export const getCommits = async (n: number | undefined): Promise<Commit[]> => {
 		return commit
 	})
 	if (!n || n <= 0 || n > commits.length) {
-		return commits
+		return anonymizeAuthors(commits)
 	} else {
-		return commits.slice(0, n)
+		return anonymizeAuthors(commits.slice(0, n))
 	}
 }
 

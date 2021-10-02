@@ -37,7 +37,6 @@ export const getContributionsData = async (): Promise<ContributionsData> => {
 	}, [] as ContributionsData)
 }
 
-
 const animals: string[] = [
 	'Tarsier',
 	'Tasmanskdjevel',
@@ -73,15 +72,19 @@ const animals: string[] = [
 ]!
 
 export const anonymizeAuthors = (commits: Commit[]): Commit[] => {
-	let authors: string[] = commits.map(c => c.author_name)
+	let authors: string[] = commits.map((c) => c.author_name)
 	authors = unique(authors)
 	let authorsDict: Map<string, string> = new Map()
 	for (let i in authors) {
 		const author = authors[i]
-		authorsDict.set(author, `Anonym ${animals[Math.floor(Math.random() * animals.length)]}`)
+		authorsDict.set(
+			author,
+			`Anonym ${animals[Math.floor(Math.random() * animals.length)]}`
+		)
 	}
-	return commits.map(c => {
-		const anonymous = authorsDict.get(c.author_name) || 'Anonym Bidragsyter'
+	return commits.map((c) => {
+		const anonymous =
+			authorsDict.get(c.author_name) || 'Anonym Bidragsyter'
 		c.author_name = anonymous
 		return c
 	})

@@ -1,5 +1,5 @@
-import { extendTheme } from '@chakra-ui/react'
-import { IssueConfig } from '../issues/Issue'
+import { extendTheme } from '@chakra-ui/react';
+import { IssueConfig } from '../issues/Issue';
 
 const theme = extendTheme({
 	fonts: {
@@ -8,12 +8,12 @@ const theme = extendTheme({
 	components: {
 		Button: {
 			baseStyle: {
-				colorScheme: "blue",
-			}
+				colorScheme: 'blue',
+			},
 		},
 		Issue: IssueConfig,
 		SingleCommitMessage: IssueConfig,
 	},
-})
+});
 
-export default theme
+export default theme;

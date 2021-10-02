@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { anonymizeAuthors, sortCommitsByDate } from './utils'
+=======
+import { anonymizeAuthors } from './utils';
+>>>>>>> a857ebbd60c5afed34831f25c883f8bc7b382ecc
 
 const BASE = 'https://gitlab.stud.idi.ntnu.no/api/v4/projects/11994/'
 const TOKEN = process.env.REACT_APP_TEAM_08_ACCESS_TOKEN || 'NO TOKEN'

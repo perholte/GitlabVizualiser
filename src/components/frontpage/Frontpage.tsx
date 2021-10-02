@@ -12,6 +12,9 @@ const Frontpage: FC<{}> = () => {
 		return sessionStorage.getItem('name');
 	};
 
+	/**
+	 * Sets the name in sessionStorage, and rerenders the component
+	 */
 	const storeName: FormEventHandler = (event) => {
 		event.preventDefault();
 		sessionStorage.setItem('name', name!);
@@ -28,6 +31,10 @@ const Frontpage: FC<{}> = () => {
 			color='HighlightText'
 			fontFamily='heading'
 		>
+			{/**
+			 * If a name is set in the sessionStorage, the greeting component will be rendered, if not, all of the code
+			 * after the question mark will be shown. 
+			 */}
 			{!hasName() ? (
 				<>
 					<Heading

@@ -17,11 +17,11 @@ const BranchTree = () => {
 		}),
 	};
 	return (
-		<Center flexDirection={'column'}>
+		<Center flexDirection={'column'} minH='scale(100%-5em)'>
 			<Greeting />
 			<svg
 				id='graph-container'
-				viewBox={`0 0 700 700`}
+				viewBox={`0 0 600 1100`}
 				style={{ marginTop: '5em', transform: 'scale(1.2)' }}
 			>
 				<Gitgraph options={options}>

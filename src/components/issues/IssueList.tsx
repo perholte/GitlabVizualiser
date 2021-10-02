@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import FilterIssues, { IssueFilter } from './FilterIssues';
 import Issue from './Issue';
-// import './issues.css';
 import '../style/AccordionList.css';
 
 const IssueList: React.FC = () => {

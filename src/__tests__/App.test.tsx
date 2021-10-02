@@ -50,8 +50,8 @@ describe('Checking the routing of the header', () => {
 		homeLink.click();
 		expect(window.location.pathname).toEqual('/');
 
-		const input = screen.getByRole('checkbox')
-		expect(input).toBeInTheDocument()
+		const input = screen.getByRole('checkbox');
+		expect(input).toBeInTheDocument();
 	});
 
 	it('Re-routes to branches when branches-link is clicked', async () => {
@@ -71,8 +71,10 @@ describe('Checking the routing of the header', () => {
 			commitLink.click();
 		});
 		expect(window.location.pathname).toEqual('/messages');
+
+		const commits = screen.getByText('Antall commits');
+		expect(commits).toBeInTheDocument();
 	});
-	//Check that the correct component is showed.
 
 	it('Re-routes to contributors when contributor-link is clicked', async () => {
 		act(() => {
@@ -80,6 +82,8 @@ describe('Checking the routing of the header', () => {
 			contributorLink.click();
 		});
 		expect(window.location.pathname).toEqual('/contributors');
+
+		const text = screen.getByText('In terms of commits');
+		expect(text).toBeInTheDocument();
 	});
-	//Check that the correct component is showed.
 });

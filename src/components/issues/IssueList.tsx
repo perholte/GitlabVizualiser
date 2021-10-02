@@ -2,7 +2,6 @@ import { Accordion } from '@chakra-ui/accordion';
 import { VStack, Stack } from '@chakra-ui/layout';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import Greeting from '../common/Greeting';
 import FilterIssues, { IssueFilter } from './FilterIssues';
 import Issue from './Issue';
 import './issues.css';
@@ -37,13 +36,12 @@ const IssueList: React.FC = () => {
 	}, [activeFilter, data]);
 
 	if (error || isLoading || !data) {
-		return <Greeting />;
+		return <></>;
 	}
 
 	return (
 		<>
-			<Greeting />
-			<Stack id='issue_list_container' spacing='5'>
+			<Stack id='issue_list_container' spacing='5' pt='4rem'>
 				<FilterIssues
 					activeFilter={activeFilter}
 					updateFilter={setActiveFilter}

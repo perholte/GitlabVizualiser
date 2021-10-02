@@ -8,9 +8,9 @@ const Greeting: FC = () => {
 	const darkmode = theme.darkmode;
 	const name = sessionStorage.getItem('name');
 	let mode = darkmode ? 'dark' : 'light';
-	return !!name ? (
-		<Text className={`greeting ${mode}`}>Hello {name}!</Text>
-	) : null;
+	return (
+		<Text className={`greeting ${mode}`}>Hello {name || 'Stranger'}!</Text>
+	);
 };
 
 export default Greeting;

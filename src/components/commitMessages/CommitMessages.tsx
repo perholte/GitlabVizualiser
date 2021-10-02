@@ -11,7 +11,6 @@ import DateTimePicker from 'react-datetime-picker';
 import { Commit, getCommits } from '../../api/index';
 import { filterOutCommitsBeforeDate } from '../../api/utils';
 import { ThemeContext as DarkmodeContext } from '../../App';
-import Greeting from '../common/Greeting';
 import './CommitMessages.css';
 import MyInput from './inputs/NumberInput';
 import SingleCommitMessage from './singleCommitMessage/SingleCommitMessage';
@@ -90,7 +89,6 @@ const CommitMessages = () => {
 	};
 	return (
 		<VStack id='Commit-messages-container'>
-			<Greeting />
 			<Container
 				ref={dateRef}
 				maxW={'container.lg'}

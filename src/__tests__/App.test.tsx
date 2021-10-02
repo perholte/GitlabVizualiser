@@ -84,17 +84,17 @@ describe('testing implementation and representation of sessionstorage', () => {
 		expect(input).toBeInTheDocument();
 	});
 
-	it('shows the string on the issue-page', () => {
-		const issueLink = screen.getByRole('button', {name: 'Issues'});
-		issueLink.click();
+	it('shows the string on the contributor-page', () => {
+		const contributorLink = screen.getByText('Contributors');
+		contributorLink.click();
 
 		const input = screen.getByText('Hello test');
 		expect(input).toBeInTheDocument();
 	});
 
-	it('shows the string on the contributor-page', () => {
-		const contributorLink = screen.getByText('Contributors');
-		contributorLink.click();
+	it('shows the string on the issue-page', () => {
+		const issueLink = screen.getByText('Issues');
+		issueLink.click();
 
 		const input = screen.getByText('Hello test');
 		expect(input).toBeInTheDocument();

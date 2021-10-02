@@ -1,19 +1,19 @@
 .greeting {
-    font-size: 3em;
-    font-weight: bold;
-    color: transparent;
-    text-align: center;
-    margin: .5em auto;
+	font-size: 3em;
+	font-weight: bold;
+	color: transparent;
+	text-align: center;
+	margin: 0.5em auto;
 }
 
 .greeting.dark {
-    background-clip: text;
-    background: url(https://i.imgur.com/oPiNf7m.gif?noredirect);
-    background-size: cover;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+	background-clip: text;
+	background: url(https://i.imgur.com/oPiNf7m.gif?noredirect);
+	background-size: cover;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .greeting.light {
-    color: #000000BB
+	color: #000000bb;
 }

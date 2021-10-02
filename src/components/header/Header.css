@@ -9,12 +9,10 @@
     width: 100%;
 } */
 
-
-
 @media screen and (max-width: 992px) {
-    .header-btn>button {
-        display: flex;
-        margin: auto;
-        width: 90%;
-    }
+	.header-btn > button {
+		display: flex;
+		margin: auto;
+		width: 90%;
+	}
 }

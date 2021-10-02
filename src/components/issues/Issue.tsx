@@ -43,14 +43,14 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 						</span>
 						{parse(descriptionTitle)}
 					</HStack>
-					{data.description ? <AccordionIcon /> : null}
+					{data.description && <AccordionIcon />}
 				</HStack>
 			</AccordionButton>
-			{data.description ? (
+			{data.description && (
 				<AccordionPanel pb={4}>
 					<div>{parse(descriptionContent)}</div>
 				</AccordionPanel>
-			) : null}
+			)}
 		</AccordionItem>
 	);
 };

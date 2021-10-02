@@ -107,14 +107,5 @@ export const sortCommitsByDate = (commits: Commit[], ascending: boolean): Commit
 
 export const filterOutCommitsBeforeDate = (commits: Commit[], date: Date): Commit[] => {
 	// Filter out commits that are older than the user specified date
-	// console.log(`Date: ${date.getDate()}`)
-	// console.log(commits.map((c) => c.created_at.getDate()).join(', '))
-
-	commits = commits.filter((c) => {
-		// console.log(c.created_at.getDate())
-		return c.created_at.getTime() >= date.getTime()
-	})
-	console.log(`Date: ${date.getDate()}`)
-	console.log(commits.map((c) => c.created_at.getDate()).join(', '))
-	return commits
+	return commits.filter((c) => c.created_at.getTime() >= date.getTime())
 }

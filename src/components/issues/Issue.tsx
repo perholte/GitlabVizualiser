@@ -8,10 +8,10 @@ import { HStack } from '@chakra-ui/layout';
 import { useStyleConfig } from '@chakra-ui/react';
 import { ComponentStyleConfig } from '@chakra-ui/theme';
 import React from 'react';
-import marked from 'marked'
+import marked from 'marked';
 import { containerStyles } from '../style/styles';
 import './issues.css';
-import parse from 'html-react-parser'
+import parse from 'html-react-parser';
 
 //TODO: update this type and maybe move it to a 'type' folder
 export interface IssueType {
@@ -30,8 +30,8 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 		variant: data.closed ? 'closed' : 'open',
 	});
 
-	const descriptionContent = marked(data.description)
-	const descriptionTitle = marked(data.title)
+	const descriptionContent = marked(data.description);
+	const descriptionTitle = marked(data.title);
 
 	return (
 		<AccordionItem sx={styles} className='issue_element'>
@@ -41,16 +41,14 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 						<span style={{ width: '4ch', textAlign: 'left' }}>
 							{'#' + data.id}
 						</span>
-							{parse(descriptionTitle)}
+						{parse(descriptionTitle)}
 					</HStack>
 					{data.description ? <AccordionIcon /> : null}
 				</HStack>
 			</AccordionButton>
 			{data.description ? (
 				<AccordionPanel pb={4}>
-					<p>
-						{parse(descriptionContent)}
-					</p>
+					<div>{parse(descriptionContent)}</div>
 				</AccordionPanel>
 			) : null}
 		</AccordionItem>

@@ -16,8 +16,6 @@ interface IssueProps {
 	data: IssueType;
 }
 
-const closedColor = 'rgba(161,40,48,0.7)';
-
 const Issue: React.FC<IssueProps> = ({ data }) => {
 	const descriptionContent = marked(data.description);
 	const descriptionTitle = marked(data.title);
@@ -29,18 +27,11 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 					<span
 						style={{
 							width: '4ch',
-							textAlign: 'left',
-							color: data.closed ? closedColor : undefined,
 						}}
 					>
 						{'#' + data.id}
 					</span>
-					<Text
-						textAlign='left'
-						sx={data.closed ? { color: closedColor } : {}}
-					>
-						{parse(descriptionTitle)}
-					</Text>
+					<Text>{parse(descriptionTitle)}</Text>
 				</>
 			}
 			panelChildren={<div>{parse(descriptionContent)}</div>}

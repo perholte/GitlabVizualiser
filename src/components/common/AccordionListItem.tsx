@@ -54,6 +54,7 @@ export const AccordionListItemConfig: ComponentStyleConfig = {
 		...containerStyles,
 		margin: 'auto',
 		mt: '1rem',
+		textAlign: 'left',
 	},
 	variants: {
 		open: {
@@ -61,6 +62,7 @@ export const AccordionListItemConfig: ComponentStyleConfig = {
 		},
 		closed: {
 			background: '#dedede', //TODO: chance color
+			color: 'rgba(161,40,48,0.7)',
 		},
 	},
 };

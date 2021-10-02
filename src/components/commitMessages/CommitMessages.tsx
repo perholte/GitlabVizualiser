@@ -28,12 +28,26 @@ const defualtQuery: CommitMessageQuery = {
 	),
 };
 
+/**
+ *
+ * En samling av commits. Dette komponentet tar inn data fra src/api/index.ts og
+ * delegerer denne dataen til en liste med SingleCommitMessage-komponenter. I tilleg,
+ * inneholder CommitMessages-komponentet tilstand om antall commits som skal vises
+ * og definerer hvor gammel commit-ene som vises maksimalt kan være.
+ *
+ */
 const CommitMessages = () => {
 	let dateRef = React.createRef<HTMLDivElement>();
 	const { darkmode } = React.useContext(DarkmodeContext);
 	let [settings, setSettings] =
 		React.useState<CommitMessageQuery>(defualtQuery);
 	let [commits, setCommits] = React.useState<Commit[] | undefined>(undefined);
+
+	/**
+	 * Wrapper-funksjon for callback som henter data samlingen med api-kall.
+	 * Denne funksjonen blir kallet på når siden laster, når brukeren endrer
+	 * antall commits som skal vises og når brukere endrer dato.
+	 */
 	const fetchCommits: () => Promise<Commit[] | undefined> =
 		React.useCallback(async () => {
 			try {
@@ -45,6 +59,9 @@ const CommitMessages = () => {
 			return undefined;
 		}, [settings.number]);
 
+	/**
+	 * Henter daa når siden laster inn i browseren.
+	 */
 	React.useEffect(() => {
 		(async () => {
 			let c = await fetchCommits();

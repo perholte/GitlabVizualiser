@@ -27,11 +27,12 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 					<span
 						style={{
 							width: '4ch',
+							textAlign: 'left',
 						}}
 					>
 						{'#' + data.id}
 					</span>
-					<Text>{parse(descriptionTitle)}</Text>
+					<Text textAlign='left'>{parse(descriptionTitle)}</Text>
 				</>
 			}
 			panelChildren={<div>{parse(descriptionContent)}</div>}

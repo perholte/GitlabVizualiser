@@ -14,24 +14,28 @@ interface AccordionListItemProps {
 	buttonChildren: ReactNode;
 	panelChildren: ReactNode;
 	disablePanel?: boolean;
+	variant?: string;
 }
 
 const AccordionListItem: React.FC<AccordionListItemProps> = ({
 	buttonChildren,
 	panelChildren,
 	disablePanel,
+	variant,
 }) => {
-	const styles = useStyleConfig('AccordionListItem');
+	const styles = useStyleConfig('AccordionListItem', {
+		variant: variant,
+	});
 
 	return (
 		<AccordionItem sx={styles}>
 			<AccordionButton>
 				<HStack w='100%' justifyContent='space-between'>
 					<HStack fontWeight='bold'>{buttonChildren}</HStack>
-					{disablePanel && <AccordionIcon />}
+					{!disablePanel && <AccordionIcon />}
 				</HStack>
 			</AccordionButton>
-			{disablePanel && (
+			{!disablePanel && (
 				<AccordionPanel pb={4} px='2rem'>
 					{panelChildren}
 				</AccordionPanel>
@@ -47,6 +51,7 @@ export const AccordionListItemConfig: ComponentStyleConfig = {
 		width: '100%',
 		...containerStyles,
 		margin: 'auto',
+		mt: '1rem',
 	},
 	variants: {
 		open: {

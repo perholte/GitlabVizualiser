@@ -31,7 +31,8 @@ const Issue: React.FC<IssueProps> = ({ data }) => {
 				</>
 			}
 			panelChildren={<div>{parse(descriptionContent)}</div>}
-			disablePanel={!!data.description}
+			disablePanel={!data.description}
+			variant={data.closed ? 'closed' : 'open'}
 		></AccordionListItem>
 	);
 };

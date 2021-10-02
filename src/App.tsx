@@ -15,10 +15,12 @@ function App() {
 		JSON.parse(localStorage.getItem('darkmode') ?? 'false')
 	);
 	useEffect(() => {
-		document.getElementById('root')!.className = darkmode
-			? 'dark'
-			: 'light';
 		localStorage.setItem('darkmode', JSON.stringify(darkmode));
+
+		const root = document.getElementById('root');
+		if (root) {
+			root.className = darkmode ? 'dark' : 'light';
+		}
 	}, [darkmode]);
 	return (
 		<ThemeContext.Provider value={{ darkmode: darkmode }}>

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders the header correctly 1`] = `
+<Header
+  handleToggleTheme={[Function]}
+/>
+`;
+
+exports[`renders the App correctly 1`] = `<App />`;

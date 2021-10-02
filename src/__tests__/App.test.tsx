@@ -41,6 +41,8 @@ describe('testing implementation and representation of sessionstorage', () => {
 		userEvent.type(inputLabel, 'test');
 		button.click();
 		expect(sessionStorage.getItem('name')).toEqual('test');
+		const greeting = screen.getByText('Hello test!')
+		expect(greeting).toBeInTheDocument()
 	});
 });
 

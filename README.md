@@ -74,6 +74,4 @@ Samtidig sjekker vi at det er det riktige komponentet som blir _render_-et ved �
 Til slutt har vi også testet brukerinteraksjon ved å fylle inn en string i input field-et på forsiden, for så å sjekke at stringen lagres i sessionStorage.
 Med tanke på at det er bruk av et eksternt api er det naturlig å teste api-kallene, men ettersom dette er komplisert og tidkrevende (og ikke et krav i dette prosjektet) valgte vi å ikke gjøre det.
 
-**Testing av brukergrensesnitt og responsiv design: Gruppa skal beskrive/dokumentere testing på minimum 3 forskjellige enheter hvor det må inngå en mobil (liten skjerm horisontal + vertikal orientering) og en ordinær pc (stor skjerm).**
-
 Etterhvert som vi har implementert komponenter, og gjort designendringer har vi testet disse endringene på de aktuelle skjermstørrelsene og bekreftet at det fungerer.

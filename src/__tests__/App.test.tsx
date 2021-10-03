@@ -74,7 +74,7 @@ describe('Checking the routing of the header', () => {
 		});
 		expect(window.location.pathname).toEqual('/commits');
 
-		const commits = screen.getByText('Antall commits');
+		const commits = screen.getByText('Start date');
 		expect(commits).toBeInTheDocument();
 	});
 

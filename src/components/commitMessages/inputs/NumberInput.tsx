@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 interface MyInputIProps {
 	numberChange: (s: any) => void;
 	value: number;
+	maxVal: number;
 	className?: string;
 }
 
@@ -22,7 +23,7 @@ class MyInput extends Component<MyInputIProps> {
 			<NumberInput
 				defaultValue={5}
 				min={0}
-				max={100}
+				max={this.props.maxVal}
 				value={this.props.value}
 				onChange={this.update.bind(this)}
 				className={this.props.className}

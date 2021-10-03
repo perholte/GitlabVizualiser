@@ -2,7 +2,7 @@ import { Accordion } from '@chakra-ui/accordion';
 import { Stack } from '@chakra-ui/layout';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import FilterIssues, { IssueFilter } from './FilterIssues';
+import SelectIssueFilter, { IssueFilter } from './SelectIssueFilter';
 import Issue from './Issue';
 import '../style/AccordionList.css';
 
@@ -41,7 +41,7 @@ const IssueList: React.FC = () => {
 
 	return (
 		<Stack spacing='5' pt='4rem' className='accordion_list_container'>
-			<FilterIssues
+			<SelectIssueFilter
 				activeFilter={activeFilter}
 				updateFilter={setActiveFilter}
 			/>

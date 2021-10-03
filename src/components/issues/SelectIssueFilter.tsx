@@ -7,12 +7,12 @@ export enum IssueFilter {
 	Open = 'Open',
 }
 
-interface FilterIssuesProps {
+interface SelectIssueFilterProps {
 	updateFilter: (newFilter: IssueFilter) => void;
 	activeFilter: IssueFilter;
 }
 
-const FilterIssues: React.FC<FilterIssuesProps> = ({
+const SelectIssueFilter: React.FC<SelectIssueFilterProps> = ({
 	updateFilter,
 	activeFilter,
 }) => {
@@ -33,4 +33,4 @@ const FilterIssues: React.FC<FilterIssuesProps> = ({
 	);
 };
 
-export default FilterIssues;
+export default SelectIssueFilter;

@@ -1,4 +1,4 @@
-import { Center } from '@chakra-ui/react';
+import { Center, Heading } from '@chakra-ui/react';
 import { Gitgraph, templateExtend, TemplateName } from '@gitgraph/react';
 import * as React from 'react';
 import { Branch, getBranches } from '../../api';
@@ -21,7 +21,8 @@ class BranchTree extends React.Component {
 			}),
 		};
 		return (
-			<Center flexDirection={'column'} minH='scale(100%-5em)'>
+			<Center flexDirection={'column'} minH='scale(100%-7em)' pt='2rem'>
+				<Heading alignSelf='center'>Branches</Heading>
 				{/**
 				 * The gitgraph component returns an unaccessible svg element, so we wrap the gitgraph svg inside an svg tag,
 				 * so that we can scale it.

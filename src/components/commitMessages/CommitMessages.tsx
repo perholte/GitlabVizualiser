@@ -4,6 +4,7 @@ import {
 	Flex,
 	FormControl,
 	FormLabel,
+	Heading,
 	Text,
 	VStack,
 } from '@chakra-ui/react';
@@ -90,6 +91,7 @@ const CommitMessages = () => {
 	};
 	return (
 		<VStack mt='4rem' className='accordion_list_container'>
+			<Heading alignSelf='center'>Commits</Heading>
 			<Flex justifyContent='space-between' w='100%' flexWrap='wrap'>
 				<FormControl maxW='max-content' mb='1rem'>
 					<FormLabel fontWeight='bold' mb='0'>

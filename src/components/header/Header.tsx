@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 					<Link className='header-btn' to='/contributors'>
 						<Button>Contributors</Button>
 					</Link>
-					<Link className='header-btn' to='/messages'>
+					<Link className='header-btn' to='/commits'>
 						<Button>Commits</Button>
 					</Link>
 				</HStack>
@@ -97,19 +97,19 @@ const Header: React.FC<HeaderProps> = ({ handleToggleTheme }) => {
 				<Box pb={4} display={{ lg: 'none' }}>
 					<Stack as={'nav'} spacing={2} pl='0.5em' pt='1rem'>
 						<Link className='header-btn' to='/'>
-							<Button>Home</Button>
+							<Button onClick={onClose}>Home</Button>
 						</Link>
 						<Link className='header-btn' to='/branches'>
-							<Button>Branches</Button>
+							<Button onClick={onClose}>Branches</Button>
 						</Link>
 						<Link className='header-btn' to='/issues'>
-							<Button>Issues</Button>
+							<Button onClick={onClose}>Issues</Button>
 						</Link>
 						<Link className='header-btn' to='/contributors'>
-							<Button>Contributors</Button>
+							<Button onClick={onClose}>Contributors</Button>
 						</Link>
-						<Link className='header-btn' to='/messages'>
-							<Button>Commits</Button>
+						<Link className='header-btn' to='/commits'>
+							<Button onClick={onClose}>Commits</Button>
 						</Link>
 					</Stack>
 				</Box>

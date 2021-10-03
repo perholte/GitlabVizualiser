@@ -35,7 +35,7 @@ function App() {
 				<Route path='/contributors'>
 					<Contributions />
 				</Route>
-				<Route path='/messages'>
+				<Route path='/commits'>
 					<CommitMessages />
 				</Route>
 				<Route path='/'>

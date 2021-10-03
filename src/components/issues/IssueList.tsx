@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import SelectIssueFilter, { IssueFilter } from './SelectIssueFilter';
 import Issue from './Issue';
 import '../style/AccordionList.css';
+import { Heading } from '@chakra-ui/react';
 
 const IssueList: React.FC = () => {
 	const { data, isLoading, error } = useQuery<Array<any>>('issues', () =>
@@ -41,6 +42,7 @@ const IssueList: React.FC = () => {
 
 	return (
 		<Stack spacing='5' pt='4rem' className='accordion_list_container'>
+			<Heading alignSelf='center'>Issues</Heading>
 			<SelectIssueFilter
 				activeFilter={activeFilter}
 				updateFilter={setActiveFilter}

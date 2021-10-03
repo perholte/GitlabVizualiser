@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import BranchTree from './components/branchTree/BranchTree';
 import CommitMessages from './components/commitMessages/CommitMessages';
@@ -38,7 +38,6 @@ function App() {
 				<Route path='/messages'>
 					<CommitMessages />
 				</Route>
-				<Route render={() => <Redirect to='/' />} />
 				<Route path='/'>
 					<Frontpage />
 				</Route>

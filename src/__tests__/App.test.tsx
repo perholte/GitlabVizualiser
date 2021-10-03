@@ -41,8 +41,8 @@ describe('testing implementation and representation of sessionstorage', () => {
 		userEvent.type(inputLabel, 'test');
 		button.click();
 		expect(sessionStorage.getItem('name')).toEqual('test');
-		const greeting = screen.getByText('Hello test!')
-		expect(greeting).toBeInTheDocument()
+		const greeting = screen.getByText('Hello test!');
+		expect(greeting).toBeInTheDocument();
 	});
 });
 
@@ -72,7 +72,7 @@ describe('Checking the routing of the header', () => {
 			const commitLink = screen.getByText('Commits');
 			commitLink.click();
 		});
-		expect(window.location.pathname).toEqual('/messages');
+		expect(window.location.pathname).toEqual('/commits');
 
 		const commits = screen.getByText('Antall commits');
 		expect(commits).toBeInTheDocument();
